@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PetVET.Database.Models;
-using PetVET.Models.CustomerViewModel;
+using PetVET.Models.CustomerViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

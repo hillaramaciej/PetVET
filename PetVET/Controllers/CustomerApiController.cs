@@ -10,7 +10,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PetVET.Database.Models;
-using PetVET.Models.CustomerViewModel;
+using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
