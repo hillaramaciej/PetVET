@@ -1,4 +1,4 @@
-﻿@model PetVET.Models.CustomerViewModel.CustomerViewModel
+﻿@model PetVET.Models.CustomerViewModels.CustomerViewModel
 
 @{
     Layout = "_LayoutVET";
@@ -19,7 +19,7 @@
     customerViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
     </script>
 }
-@*test*@
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -40,7 +40,7 @@
                     <div class="panel-heading">
                         <div class="btn-group" id="buttonlist">
                             <a class="btn btn-add " href="clist.html">
-                                <i class="fa fa-list"></i>  Customer List
+                                <i class="fa fa-list"></i>  Dodaj Klienta
                             </a>
                         </div>
                     </div>
@@ -48,23 +48,23 @@
                         <form class="col-sm-6">
                             <fieldset>
                                 <div class="form-group">
-                                    <label>First Name</label>
-                                    <input data-bind='value: FirstName' type="text" class="form-control" placeholder="Enter First Name" required>
+                                    <label>Imie</label>
+                                    <input data-bind='value: FirstName' type="text" class="form-control" placeholder="Imie">
                                 </div>
                                 <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input data-bind="value: LastName" type="text" class="form-control" placeholder="Enter last Name">
+                                    <label>Nazwisko</label>
+                                    <input data-bind="value: LastName" type="text" class="form-control" placeholder="Nazwisko">
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input data-bind="value: Mail" type="email" class="form-control" placeholder="Enter Email">
+                                    <label>E-mail</label>
+                                    <input data-bind="value: Mail" type="email" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <label>Mobile</label>
-                                    <input data-bind="value: PhonNumber" type="number" class="form-control" placeholder="Enter Mobile">
+                                    <label>Numer telefonu</label>
+                                    <input data-bind="value: PhonNumber" type="number" class="form-control" placeholder="Numer telefonu">
                                 </div>
                                 <div class="form-group">
-                                    <label>Picture upload</label>
+                                    <label>Zdjecie</label>
                                     <input type="file" name="picture">
                                     <input type="hidden" name="old_picture">
                                 </div>
