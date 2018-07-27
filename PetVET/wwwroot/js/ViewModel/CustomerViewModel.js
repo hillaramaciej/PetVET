@@ -33,7 +33,7 @@ function ViewModel () {
                 phonNumber: self.PhonNumber(),
                 lastName: self.LastName(),
                 mail: self.Mail(),
-                isNewCustomer: self.IsNewCustomer() == 1 ? true : false,
+                isNewCustomer: self.IsNewCustomer() === 1 ? true : false,
             }
 
             self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, SaveFailed)
