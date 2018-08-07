@@ -10,27 +10,32 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PetVET.Database.Models;
+using PetVET.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
+using PetVET.Repository.Core;
+using PetVET.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PetVET.Controllers
 {
-   // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
+    // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
     [Route("api/[controller]")]
     public class CustomerApiController : Controller
     {
 
         IUnitOfWork _IUnitOfWork;
         private readonly IMapper _mapper;
-        PetVetDbContext _PetVetDbContext;
+        private IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> _entityCommandService;
 
-        public CustomerApiController(IUnitOfWork IUnitOfWork, IMapper mapper, PetVetDbContext petVetDbContext)
+        public CustomerApiController(IUnitOfWork IUnitOfWork,
+                                     IMapper mapper,
+                                     IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> customerViewModel)
         {
             _IUnitOfWork = IUnitOfWork;
             _mapper = mapper;
-            _PetVetDbContext = petVetDbContext;
+            _entityCommandService = customerViewModel;
         }
 
         // GET: api/<controller>
@@ -44,9 +49,9 @@ namespace PetVET.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Customer result =  _IUnitOfWork.Customer.GetByID(id);
+            Customer result = _IUnitOfWork.Customer.GetByID(id);
 
-            if(result == null)
+            if (result == null)
             {
                 return NotFound("Klient nie istnieje w bazie danych");
             }
@@ -58,24 +63,27 @@ namespace PetVET.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
-            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
-            
+
+            ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
+
+            //Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
+            var ddd = result.Result;
             try
             {
-                if(_IUnitOfWork.Customer.Find(x=>x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
-                {
-                    return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów"); 
-                }
+                //    if(_IUnitOfWork.Customer.Find(x=>x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+                //    {
+                //        return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów"); 
+                //    }
 
-                _IUnitOfWork.Customer.Add(c);
-                _IUnitOfWork.Complete();
+                //    //_IUnitOfWork.Customer.Add(c);
+                //    //_IUnitOfWork.Complete();
 
-                customerViewModel.UserID = _IUnitOfWork.Customer
-                                            .Find(x => x.CusEmail == customerViewModel.Mail
-                                            || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
+                //    customerViewModel.UserID = _IUnitOfWork.Customer
+                //                                .Find(x => x.CusEmail == customerViewModel.Mail
+                //                                || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
             }
             catch (SqlException exc)
-            {                
+            {
                 throw;
             }
 
@@ -85,7 +93,7 @@ namespace PetVET.Controllers
 
         public async Task<IActionResult> GetAll()
         {
-            var contactList = await _IUnitOfWork.Customer.FindAsync(x=> x.Rowid > 0);
+            var contactList = await _IUnitOfWork.Customer.FindAsync(x => x.Rowid > 0);
             return Ok(contactList);
         }
 
@@ -99,6 +107,21 @@ namespace PetVET.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public IActionResult Search([FromBody]CustomerViewModel customerViewModel)
+        {
+            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
+
+            var result = _IUnitOfWork.Customer.Search(c);
+
+            if (result == null)
+            {
+                return NotFound("Nie istnieje klient o takich danych");
+            }
+
+            return Ok(result);
         }
     }
 }

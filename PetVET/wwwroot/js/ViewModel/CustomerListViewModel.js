@@ -4,35 +4,15 @@ function ViewModel () {
         var self = this;
 
        //FORM 
-        
         self.UserID = ko.observable();
         self.FirstName = ko.observable().extend({ required: true }).extend({ minLength: 3 });
         self.PhonNumber = ko.observable();
         self.LastName = ko.observable();
-        self.Mail = ko.observable();
-        self.City = ko.observable();
-        self.IsNewCustomer = ko.observable();
-        //END FORM 
-
-        //Search Trigger
-        self.SerchTrigger = false;
-        self.ClearSearch = function () {
-            if (self.SerchTrigger === false)
-                self.SerchTrigger = true;
-            else {
-                self.SerchTrigger = false;
-                self.UserID = ko.observable(undefined);
-                self.FirstName = ko.observable(undefined)
-                self.PhonNumber = ko.observable(undefined);
-                self.LastName = ko.observable(undefined);
-                self.Mail = ko.observable(undefined);
-                self.City = ko.observable(undefined);
-            }
-        }; 
-        //END Search Trigger
-
-       
-       
+        self.Mail = ko.observable("");
+        self.IsNewCustomer = ko.observable(true);
+       //END FORM 
+        self.InfoMessage = ko.observable("");
+        self.IsInfoMessage = ko.observable(false);
 
         self.optionData = [
             { id: 1, name: "red" },
@@ -158,7 +138,7 @@ ko.validation.configure = {
 
 var components = new ComponentsRegistration();
 
-var customerViewModel = new ViewModel();
-customerViewModel.Utilis = new Utilis();
-ko.applyBindings(customerViewModel);
+var customerListViewModel = new ViewModel();
+customerListViewModel.Utilis = new Utilis();
+ko.applyBindings(customerListViewModel);
 

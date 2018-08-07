@@ -18,8 +18,8 @@ namespace PetVET.Repository
         protected readonly PetVetDbContext Context;
 
         public Repository(PetVetDbContext context)
-        {
-            Context = context;
+        {         
+             Context = context;
             _entities = Context.Set<TEntity>();
         }
 
@@ -59,11 +59,6 @@ namespace PetVET.Repository
         public Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return _entities.FindAsync(predicate);
-        }
-
-        public IEnumerable<TEntity> FromSQl(RawSqlString rawSqlString, params object[] objects)
-        {
-            return _entities.FromSql(rawSqlString, objects);
         }
     }
 }

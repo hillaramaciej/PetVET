@@ -10,6 +10,6 @@ namespace PetVET.Repository
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-       
+        IEnumerable<Customer> Search(Customer customer);
     }
 }

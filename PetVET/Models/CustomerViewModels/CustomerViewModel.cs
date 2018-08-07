@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using PetVET.Repository.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetVET.Models.CustomerViewModels
 {
-    public class CustomerViewModel : Profile
+    public class CustomerViewModel : Profile, IViewModel
     {      
 
         [JsonProperty(PropertyName ="userId")]
@@ -29,6 +30,10 @@ namespace PetVET.Models.CustomerViewModels
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Invalid email format.")]
         [JsonProperty(PropertyName = "mail")]
         public string Mail { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "city")]
+        public string City { get; set; }
 
         [JsonProperty(PropertyName = "isNewCustomer")]
         bool IsNew { get; set; }
