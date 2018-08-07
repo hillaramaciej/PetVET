@@ -1,0 +1,83 @@
+﻿@model PetVET.Models.ServiceViewModels.ServiceViewModel
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/ServiceViewModel.js"></script>
+    <script type="text/javascript">
+    serviceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="header-icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <div class="header-title">
+            <h1>Add Service</h1>
+            <small>Service list</small>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <div class="btn-group" id="buttonlist">
+                            <a class="btn btn-add " href="clist.html">
+                                <i class="fa fa-list"></i>  Service List
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form class="col-sm-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Service Name</label>
+                                    <input data-bind='value: ServiceName' type="text" class="form-control" placeholder="Wpisz nazwę usługi" required>
+                                </div>
+                                @*<div class="form-group">
+                                    <label>Last Name</label>
+                                    <input data-bind="value: PetType1" type="text" class="form-control" placeholder="Enter petType1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input data-bind="value: PetType2" type="text" class="form-control" placeholder="Enter petType2">
+                                </div>*@                       
+
+                                <div class="form-group">
+                                    <label>Cena</label>
+                                    <input data-bind="value: ServiceCost" type="text" class="form-control" placeholder="Wpisz cenę">
+                                </div>
+
+                               
+                                @*<tmpl-ddl params='{data: SexOptionData,
+                                                  name:"Płeć",
+                                                  selectedValue : Sex,
+                                                  caption: "Wybierz",
+                                                  callback: SelectedValueCallback }'></tmpl-ddl>*@
+
+                              
+                                <div class="reset-button">
+                                    <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+                                    <a data-bind="click: Save" class="btn btn-success">Save</a>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
