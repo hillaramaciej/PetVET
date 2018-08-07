@@ -15,7 +15,6 @@ namespace PetVET.Repository
         private DbSet<Customer> Customer;
         public CustomerRepository(PetVetDbContext context) : base(context)
         {
-
             Customer = context.Customer; 
         }
 
@@ -71,6 +70,11 @@ namespace PetVET.Repository
         public Task<Customer> FindAsync(Expression<Func<Customer, bool>> predicate)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customer> Search(Customer customer)
+        {   
+            return Customer.Where(x => x.CusPhone == customer.CusPhone);
         }
     }
 }

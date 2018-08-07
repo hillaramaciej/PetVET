@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Http;
 using PetVET.Repository;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Web.Http.Filters;
+using PetVET.Repository.Core;
 
 namespace PetVET
 {
@@ -52,10 +53,12 @@ namespace PetVET
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
-
+            services.AddTransient<DbContext, PetVetDbContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<ModelStateValidationFilter>();
+            services.AddTransient(typeof(IStoreProcedureParser<>), typeof(StoreProcedureParser<>));
+            services.AddTransient(typeof(IEntityCommandService<,,>), typeof(EntityCommandService<,,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

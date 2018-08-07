@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using PetVET.Database.Models;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace PetVET.Repository
 
         public ICustomerRepository Customer { get; set; }
 
+        PetVetDbContext IUnitOfWork.Context => _context;
 
         public UnitOfWork(PetVetDbContext context)
-        {
+        {            
             _context = context;
             Customer = new CustomerRepository(context);
         }
@@ -29,5 +31,6 @@ namespace PetVET.Repository
         {
             _context.Dispose();
         }
+
     }
 }
