@@ -30,7 +30,7 @@ namespace PetVET.Controllers
         }
 
 
-        [Route("Customers")]
+       
         public IActionResult CustomersList()
         {
             return View();

@@ -26,8 +26,8 @@ namespace PetVET.Controllers
     {
 
         IUnitOfWork _IUnitOfWork;
-        private readonly IMapper _mapper;
-        private IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> _entityCommandService;
+        IMapper _mapper;
+        IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> _entityCommandService;
 
         public CustomerApiController(IUnitOfWork IUnitOfWork,
                                      IMapper mapper,
@@ -46,7 +46,7 @@ namespace PetVET.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="Get")]
         public IActionResult Get(int id)
         {
             Customer result = _IUnitOfWork.Customer.GetByID(id);
@@ -63,32 +63,29 @@ namespace PetVET.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
+           // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
 
-            ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
-
-            //Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
-            var ddd = result.Result;
+            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
             try
             {
-                //    if(_IUnitOfWork.Customer.Find(x=>x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
-                //    {
-                //        return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów"); 
-                //    }
+                if (_IUnitOfWork.Customer.Find(x => x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+                {
+                    return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
+                }
 
-                //    //_IUnitOfWork.Customer.Add(c);
-                //    //_IUnitOfWork.Complete();
+                _IUnitOfWork.Customer.Add(c);
+                _IUnitOfWork.Complete();
 
-                //    customerViewModel.UserID = _IUnitOfWork.Customer
-                //                                .Find(x => x.CusEmail == customerViewModel.Mail
-                //                                || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
+                customerViewModel.UserID = _IUnitOfWork.Customer
+                                            .Find(x => x.CusEmail == customerViewModel.Mail
+                                            || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
             }
             catch (SqlException exc)
             {
-                throw;
+                throw new Exception("Internal servier error");
             }
 
-            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });
-            //return Ok(Json(JsonConvert.SerializeObject(customerViewModel)));
+            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });         
         }
 
         public async Task<IActionResult> GetAll()
@@ -108,20 +105,26 @@ namespace PetVET.Controllers
         public void Delete(int id)
         {
         }
-
-        [HttpGet]
-        public IActionResult Search([FromBody]CustomerViewModel customerViewModel)
-        {
-            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
-
-            var result = _IUnitOfWork.Customer.Search(c);
-
-            if (result == null)
+        [HttpPost("search")]
+        public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
+        {           
+            IEnumerable<Customer> result = null;
+            
+            try
             {
-                return NotFound("Nie istnieje klient o takich danych");
+                result = _IUnitOfWork.Customer.Search(search.Search);
+               
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Przepraszamy, proszę sprubować ponownie!");
+            }
+            if (result == null)
+                return Ok(new List<CustomerViewModel>());
 
-            return Ok(result);
-        }
+            var DTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result.ToList());
+
+            return Ok(DTO);
+       }
     }
 }

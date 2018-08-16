@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetVET.Models.CustomerViewModels
 {
-    public class CustomerViewModel : Profile, IViewModel
+    public class CustomerViewModel :  IViewModel
     {      
 
         [JsonProperty(PropertyName ="userId")]

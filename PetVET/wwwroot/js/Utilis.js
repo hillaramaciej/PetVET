@@ -8,7 +8,8 @@ var Utilis = function () {
 
         $.ajax({
             type: "POST",
-            url: url,
+            url: new URL(url, "https://" + window.location.host),
+
             data: JSON.stringify(data),
             contentType: "application/json",
             success: success,
@@ -22,7 +23,7 @@ var Utilis = function () {
 
         $.ajax({
             type: "Get",
-            url: url,
+            url: new URL(url, "https://" + window.location.host),
             data: JSON.stringify(data),
             contentType: "application/json",
             success: success,
@@ -36,7 +37,7 @@ var Utilis = function () {
 
         $.ajax({
             type: "Get",
-            url: url,
+            url: new URL(url, "https://" + window.location.host),
             data: JSON.stringify(data),
             contentType: "application/json",
             success: success,
