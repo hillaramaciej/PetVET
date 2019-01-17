@@ -21,6 +21,5 @@ namespace PetVET.Repository
 
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
-       // IEnumerable<TEntity> FromSQl(RawSqlString rawSqlString, params object[] objects);
     }
 }

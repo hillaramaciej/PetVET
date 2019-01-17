@@ -19,6 +19,10 @@ using Microsoft.AspNetCore.Http;
 using PetVET.Repository;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Web.Http.Filters;
+using PetVET.Repository.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace PetVET
 {
@@ -48,14 +52,34 @@ namespace PetVET
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+
+          
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(option =>
+                {
+                    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "localhost",
+                        ValidAudience = "localhost",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Some Secure Key"))
+                        
+                };
+                });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
-
+            services.AddTransient<DbContext, PetVetDbContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<ModelStateValidationFilter>();
+            services.AddTransient(typeof(IStoreProcedureParser<>), typeof(StoreProcedureParser<>));
+            services.AddTransient(typeof(IEntityCommandService<,,>), typeof(EntityCommandService<,,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +115,7 @@ namespace PetVET
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
     }
 }

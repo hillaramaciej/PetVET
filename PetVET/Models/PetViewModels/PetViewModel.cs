@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
 using PetVET.Models.Enums;
+using PetVET.Repository.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PetVET.Models.PetViewModels
 {
-    public class PetViewModel : Profile
+    public class PetViewModel : Profile , IViewModel
     {
         [JsonProperty(PropertyName = "petId")]
         public int PetID { get; set; }

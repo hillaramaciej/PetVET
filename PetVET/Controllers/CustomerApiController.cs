@@ -10,27 +10,32 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PetVET.Database.Models;
+using PetVET.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
+using PetVET.Repository.Core;
+using PetVET.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PetVET.Controllers
 {
-   // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
+    // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
     [Route("api/[controller]")]
     public class CustomerApiController : Controller
     {
 
         IUnitOfWork _IUnitOfWork;
-        private readonly IMapper _mapper;
-        PetVetDbContext _PetVetDbContext;
+        IMapper _mapper;
+        IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> _entityCommandService;
 
-        public CustomerApiController(IUnitOfWork IUnitOfWork, IMapper mapper, PetVetDbContext petVetDbContext)
+        public CustomerApiController(IUnitOfWork IUnitOfWork,
+                                     IMapper mapper,
+                                     IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> customerViewModel)
         {
             _IUnitOfWork = IUnitOfWork;
             _mapper = mapper;
-            _PetVetDbContext = petVetDbContext;
+            _entityCommandService = customerViewModel;
         }
 
         // GET: api/<controller>
@@ -41,12 +46,12 @@ namespace PetVET.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="Get")]
         public IActionResult Get(int id)
         {
-            Customer result =  _IUnitOfWork.Customer.GetByID(id);
+            Customer result = _IUnitOfWork.Customer.GetByID(id);
 
-            if(result == null)
+            if (result == null)
             {
                 return NotFound("Klient nie istnieje w bazie danych");
             }
@@ -58,13 +63,14 @@ namespace PetVET.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
-            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);
-            
+           // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
+
+            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
             try
             {
-                if(_IUnitOfWork.Customer.Find(x=>x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+                if (_IUnitOfWork.Customer.Find(x => x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
                 {
-                    return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów"); 
+                    return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
                 }
 
                 _IUnitOfWork.Customer.Add(c);
@@ -75,17 +81,16 @@ namespace PetVET.Controllers
                                             || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
             }
             catch (SqlException exc)
-            {                
-                throw;
+            {
+                throw new Exception("Internal servier error");
             }
 
-            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });
-            //return Ok(Json(JsonConvert.SerializeObject(customerViewModel)));
+            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });         
         }
 
         public async Task<IActionResult> GetAll()
         {
-            var contactList = await _IUnitOfWork.Customer.FindAsync(x=> x.Rowid > 0);
+            var contactList = await _IUnitOfWork.Customer.FindAsync(x => x.Rowid > 0);
             return Ok(contactList);
         }
 
@@ -100,5 +105,27 @@ namespace PetVET.Controllers
         public void Delete(int id)
         {
         }
+        [HttpPost("search")]
+        public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
+        {           
+            IEnumerable<Customer> result = null;
+            
+            try
+            {
+                result = _IUnitOfWork.Customer.Search(search.Search);
+               
+            }
+            catch (Exception ex)
+            {
+                //return NoContent();
+                throw new Exception("Przepraszamy, proszę sprubować ponownie!");
+            }
+            if (result == null)
+                return Ok(new List<CustomerViewModel>());
+
+            var DTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result.ToList());
+
+            return Ok(DTO);
+       }
     }
 }

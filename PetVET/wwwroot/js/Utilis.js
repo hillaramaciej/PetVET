@@ -8,7 +8,36 @@ var Utilis = function () {
 
         $.ajax({
             type: "POST",
-            url: url,
+            url: new URL(url, "https://" + window.location.host),
+
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: success,
+            failed: faild,
+        });
+    };
+
+    self.GetApi = function (url, data, success, faild) {
+
+        var sentDate = JSON.stringify(data);
+
+        $.ajax({
+            type: "Get",
+            url: new URL(url, "https://" + window.location.host),
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: success,
+            failed: faild,
+        });
+    };
+
+    self.SearchApi = function (url, data, success, faild) {
+
+        var sentDate = JSON.stringify(data);
+
+        $.ajax({
+            type: "Get",
+            url: new URL(url, "https://" + window.location.host),
             data: JSON.stringify(data),
             contentType: "application/json",
             success: success,

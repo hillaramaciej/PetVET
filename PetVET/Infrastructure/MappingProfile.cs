@@ -18,6 +18,15 @@ namespace PetVET.Infrastructure
                 .ForMember(m => m.CusLastname, opt => opt.MapFrom(vm => vm.LastName))
                 .ForMember(m => m.CusEmail, opt => opt.MapFrom(vm => vm.Mail))
                 .ForMember(m => m.CusPhone, opt => opt.MapFrom(vm => vm.PhonNumber));
+
+            CreateMap<Customer, CustomerViewModel>()
+             .ForMember(m => m.FirstName, opt => opt.MapFrom(vm => vm.CusName))
+             .ForMember(m => m.LastName , opt => opt.MapFrom(vm => vm.CusLastname))
+             .ForMember(m => m.Mail , opt => opt.MapFrom(vm => vm.CusEmail))
+             .ForMember(m => m.City , opt => opt.MapFrom(vm => vm.CusCity))
+             .ForMember(m => m.UserID , opt => opt.MapFrom(vm => vm.Rowid))
+             .ForMember(m => m.PhonNumber, opt => opt.MapFrom(vm => vm. CusPhone));
+
         }
     }
 }

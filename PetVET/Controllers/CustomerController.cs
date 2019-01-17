@@ -2,19 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PetVET.Database.Models;
 using PetVET.Models.CustomerViewModels;
+using PetVET.Repository;
 
 namespace PetVET.Controllers
 {
     public class CustomerController : Controller
     {
-        [Route("Customer")]
-        public IActionResult AddCustomer()
-        {
-            CustomerViewModel vm = new CustomerViewModel();          
 
-            return View(vm);
-        }   
+        IUnitOfWork _IUnitOfWork;
+        private readonly IMapper _mapper;
+
+
+        public CustomerController(IUnitOfWork IUnitOfWork, IMapper mapper)
+        {
+            _IUnitOfWork = IUnitOfWork;
+            _mapper = mapper;
+        }
+
+        [Route("Customer")]
+        public IActionResult Customer()
+
+        {          
+            return View(new CustomerViewModel());
+        }
+
+
+       
+        public IActionResult CustomersList()
+        {
+            return View();
+        }
+
+
+       // [Route("CustomerProfile")]
+        public IActionResult CustomerProfile(int id)
+        {
+            Customer result = _IUnitOfWork.Customer.GetByID(id);
+
+            var DTO = _mapper.Map<Customer, CustomerViewModel>(result);
+
+            return View(DTO);
+        }
+
     }
 }
