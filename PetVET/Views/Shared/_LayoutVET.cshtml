@@ -396,12 +396,33 @@
                         <ul class="treeview-menu">
                             <li>
                                 <a asp-area="" asp-controller="customer" asp-action="Customer">
-                                     Dodaj Klienta
+                                    Dodaj Klienta
                                 </a>
                             </li>
                             <li>
                                 <a asp-area="" asp-controller="customer" asp-action="CustomersList">
-                                   Lista Klientów
+                                    Lista Klientów
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span>Pacjenci</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-area="" asp-controller="Pet" asp-action="AddPet">
+                                    Dodaj Pacjenta
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Lista Pacjentów
                                 </a>
                             </li>
                         </ul>
@@ -416,14 +437,181 @@
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="invoice.html">Rachunki</a>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Wystaw rachunek
+                                </a>
                             </li>
                             <li>
-                                <a href="ninvoices.html">Wystaw Rachunek</a>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Rejestr kasowy
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Historia płatności
+                                </a>
                             </li>
                         </ul>
                     </li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Marketing</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Zaproś klienta
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Kampanie marketingowe
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Magazyn</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Lista produktów
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Item" asp-action="AddItem">
+                                    Dodaj produkt
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a asp-area="" asp-controller="Item" asp-action="AddItem">
+                            <i class="fa fa-file-text"></i>
+                            <span>Opinie klientów</span>
+                            @*<span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>*@
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a asp-area="" asp-controller="Item" asp-action="AddItem">
+                            <i class="fa fa-file-text"></i>
+                            <span>Statystyki i raporty</span>
+                            @*<span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>*@
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Profil gabinetu</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Informacje ogólne
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Kategorie
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Zdjęcia gabinetu
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Godziny otwarcia
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Grafik pracy
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Pracownicy
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Service" asp-action="AddService">
+                                    Usługi
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Sprzęt
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Ustawienia</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Ustawienia rezerwacji 
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Sprzedaż 
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Powiadomienia wewnętrzne 
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Szablon wiadomości e-mail
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Szablon SMS
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Język, czas, waluta
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    Święta i dni wolne 
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-file-text"></i>
@@ -447,28 +635,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-bitbucket-square"></i>
-                            <span>Magazyn</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a href="stockcat.html">Stock category</a>
-                            </li>
-                            <li>
-                                <a href="manstock.html">Manage Stock</a>
-                            </li>
-                            <li>
-                                <a href="astock.html">Assign stock</a>
-                            </li>
-                        </ul>
-                    </li>
-
 
                 </ul>
             </div>
