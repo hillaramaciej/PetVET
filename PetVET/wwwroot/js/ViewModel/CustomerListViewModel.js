@@ -13,7 +13,7 @@ function ViewModel () {
         self.SearchType = ko.observable("Wyszukiwanie zaawansowane");
         self.QuickSearch = ko.observable("");
        //END FORM 
-
+        
 
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
@@ -89,6 +89,12 @@ function ViewModel () {
 
         //END SUBSCRIBE
 
+
+
+        self.GotoProfile = function (data) {
+            debugger;
+        };
+
         self.ClearSearch = function () {
             self.UserID("");
             self.FirstName("")
@@ -97,7 +103,7 @@ function ViewModel () {
             self.Mail("")
             self.IsNewCustomer("")
             self.QuickSearch("")
-        }
+        };
 
         self.CustomerListVisible = ko.computed(function () {
 
@@ -202,12 +208,7 @@ ko.validation.configure = {
     insertMessages: true,
     parseInputAttributes: true,
     messageTemplate: null
-};  
-
-
-
-
-
+}; 
 
 
 var components = new ComponentsRegistration();
