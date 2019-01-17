@@ -395,10 +395,14 @@
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="add-customer.html">Dodaj klieta</a>
+                                <a asp-area="" asp-controller="customer" asp-action="Customer">
+                                     Dodaj Klienta
+                                </a>
                             </li>
                             <li>
-                                <a href="clist.html">Lista klientów</a>
+                                <a asp-area="" asp-controller="customer" asp-action="CustomersList">
+                                   Lista Klientów
+                                </a>
                             </li>
                         </ul>
                     </li>

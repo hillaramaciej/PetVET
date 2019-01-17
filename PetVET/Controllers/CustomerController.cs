@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PetVET.Database.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
 
@@ -35,5 +36,17 @@ namespace PetVET.Controllers
         {
             return View();
         }
+
+
+       // [Route("CustomerProfile")]
+        public IActionResult CustomerProfile(int id)
+        {
+            Customer result = _IUnitOfWork.Customer.GetByID(id);
+
+            var DTO = _mapper.Map<Customer, CustomerViewModel>(result);
+
+            return View(DTO);
+        }
+
     }
 }

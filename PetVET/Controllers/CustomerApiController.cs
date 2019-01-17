@@ -117,6 +117,7 @@ namespace PetVET.Controllers
             }
             catch (Exception ex)
             {
+                //return NoContent();
                 throw new Exception("Przepraszamy, proszę sprubować ponownie!");
             }
             if (result == null)

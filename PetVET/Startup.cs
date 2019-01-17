@@ -20,6 +20,9 @@ using PetVET.Repository;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Web.Http.Filters;
 using PetVET.Repository.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace PetVET
 {
@@ -48,6 +51,24 @@ namespace PetVET
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+
+          
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(option =>
+                {
+                    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "localhost",
+                        ValidAudience = "localhost",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Some Secure Key"))
+                        
+                };
+                });
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

@@ -76,7 +76,8 @@ namespace PetVET.Repository
         {   
             return Customer.Where(x => x.CusPhone.Contains(search)
                                     || x.CusEmail.Contains(search)
-                                    || x.CusLastname.Contains(search));
+                                    || (x.CusLastname).Contains(search)
+                                    || x.CusName.Contains(search));
         }
 
         //public IEnumerable<Customer> FindAndMap(Expression<Func<Customer, bool>> predicate, object )
