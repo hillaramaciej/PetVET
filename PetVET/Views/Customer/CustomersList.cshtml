@@ -157,10 +157,10 @@
                                                 <span class="label-custom label label-default">Active</span>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1">
+                                                <button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.Mail)" class="btn btn-add btn-sm" >   @*data-toggle="modal" data-target="#customer1">*@
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2">
+                                                <button type="button"  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2">
                                                     <i class="fa fa-trash-o"></i>
                                                 </button>
                                             </td>
