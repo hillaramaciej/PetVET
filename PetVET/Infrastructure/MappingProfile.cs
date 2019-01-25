@@ -29,14 +29,14 @@ namespace PetVET.Infrastructure
              .ForMember(m => m.PhonNumber, opt => opt.MapFrom(vm => vm. CusPhone));
 
 
-            CreateMap<Assortment, ItemViewModel>()
-            .ForMember(m => m.ItemCost, opt => opt.MapFrom(vm => vm.AssNtx01))
-            .ForMember(m => m.ItemExpirationDate, opt => opt.MapFrom(vm => vm.AssDtx01))
-            .ForMember(m => m.ItemID, opt => opt.MapFrom(vm => vm.AssCode))
-            .ForMember(m => m.ItemKind, opt => opt.MapFrom(vm => vm.AssTxt01))
-            .ForMember(m => m.ItemName, opt => opt.MapFrom(vm => vm.AssDesc))
-            .ForMember(m => m.ItemPrice, opt => opt.MapFrom(vm => vm.AssNtx02))
-            .ForMember(m => m.ItemPurchaseDate, opt => opt.MapFrom(vm => vm.AssDtx02));
+            CreateMap<ItemViewModel, Assortment>()
+            .ForMember(m => m.AssNtx01, opt => opt.MapFrom(vm => vm.ItemCost))
+            .ForMember(m => m.AssDtx01, opt => opt.MapFrom(vm => vm.ItemExpirationDate))
+            .ForMember(m => m.AssCode, opt => opt.MapFrom(vm => vm.ItemID))
+            .ForMember(m => m.AssTxt01, opt => opt.MapFrom(vm => vm.ItemKind))
+            .ForMember(m => m.AssDesc, opt => opt.MapFrom(vm => vm.ItemName))
+            .ForMember(m => m.AssNtx02, opt => opt.MapFrom(vm => vm.ItemPrice))
+            .ForMember(m => m.AssDtx02, opt => opt.MapFrom(vm => vm.ItemPurchaseDate));
 
 
         }
