@@ -18,11 +18,11 @@ function ViewModel() {
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    //self.SexOptionData = [
-    //    { id: 1, name: "Obojniak" },
-    //    { id: 2, name: "Samiec" },
-    //    { id: 3, name: "Samica" },
-    //];
+    self.SexOptionData = [
+        { id: 1, name: "Obojniak" },
+        { id: 2, name: "Samiec" },
+        { id: 3, name: "Samica" },
+    ];
     
     self.SelectedValueCallback = function (value) {
         self.Sex(value);
@@ -46,6 +46,8 @@ function ViewModel() {
         self.Utilis.PostApi('api/PetApi', data, self.SaveSuccessfull, SaveFailed)
 
     };
+
+
 
     SaveSuccessfull = function (response, textStatus, xhr) {
         window.setTimeout(function () {
@@ -74,7 +76,9 @@ function ViewModel() {
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
-    }
+    };
+
+    self.AddPet = function () { };
 
     self.AddNew = function () {
         self.ClearInfoMessage();

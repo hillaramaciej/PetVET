@@ -101,7 +101,7 @@ function ViewModel () {
         self.ClearInfoMessage = function () {
             self.InfoMessage = ko.observable("");
             self.IsInfoMessage = ko.observable(false);
-        };s
+        };
 
         self.AddPet = function () {
 
