@@ -2,6 +2,7 @@
 using PetVET.Database.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Models.ItemViewModels;
+using PetVET.Models.PetViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
