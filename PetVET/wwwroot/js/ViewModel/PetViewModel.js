@@ -53,6 +53,8 @@ function ViewModel() {
 
     };
 
+
+
     SaveSuccessfull = function (response, textStatus, xhr) {
         window.setTimeout(function () {
             if (response.state) {
@@ -80,7 +82,9 @@ function ViewModel() {
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
-    }
+    };
+
+    self.AddPet = function () { };
 
     self.AddNew = function () {
         self.ClearInfoMessage();
