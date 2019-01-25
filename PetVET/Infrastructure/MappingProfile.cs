@@ -38,6 +38,15 @@ namespace PetVET.Infrastructure
             .ForMember(m => m.AssNtx02, opt => opt.MapFrom(vm => vm.ItemPrice))
             .ForMember(m => m.AssDtx02, opt => opt.MapFrom(vm => vm.ItemPurchaseDate));
 
+            CreateMap<PetViewModel, CustomerAnimal>()
+            .ForMember(m => m.CalName, opt => opt.MapFrom(vm => vm.))
+            .ForMember(m => m.CalTyp1, opt => opt.MapFrom(vm => vm.ItemExpirationDate))
+            .ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.ItemID))
+            .ForMember(m => m.CalCustomerid, opt => opt.MapFrom(vm => vm.ItemKind))
+            .ForMember(m => m., opt => opt.MapFrom(vm => vm.ItemName))
+            .ForMember(m => m.AssNtx02, opt => opt.MapFrom(vm => vm.ItemPrice))
+            .ForMember(m => m.AssDtx02, opt => opt.MapFrom(vm => vm.ItemPurchaseDate));
+
 
         }
     }
