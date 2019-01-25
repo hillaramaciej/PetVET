@@ -20,11 +20,11 @@ namespace PetVET.Models.ItemViewModels
 
         [Required]
         [JsonProperty(PropertyName = "itemCost")]
-        public int ItemCost { get; set; }
+        public decimal ItemCost { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "itemPrice")]
-        public int ItemPrice { get; set; }
+        public decimal ItemPrice { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "itemExpirationDate")]

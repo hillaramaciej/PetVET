@@ -57,21 +57,22 @@ namespace PetVET.Controllers
         public IActionResult Post([FromBody]ItemViewModel itemViewModel)
         {
            // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", itemViewModel).Result;
-
-            
-
-
+           
 
             try
             {
-                Assortment c = _mapper.Map<ItemViewModel, Assortment>(itemViewModel);
+                OfficeDepartment od = _IUnitOfWork.OfficeDepartment.Find(x => x.Rowid == 1).First();
 
+                Assortment c = _mapper.Map<ItemViewModel, Assortment>(itemViewModel);
+                
                 if (_IUnitOfWork.Assortment.Find(x => x.AssDesc == itemViewModel.ItemName).FirstOrDefault() != null)
                 {
                     return new ObjectResult($"Klient o podanym email : {itemViewModel.ItemName}, istnieje juz w bazie klientów");
                 }
 
-                _IUnitOfWork.Assortment.Add(c);
+                od.Assortment.Add(c);
+
+                //_IUnitOfWork.Assortment(c);
                 _IUnitOfWork.Complete();
 
                 itemViewModel.ItemID = _IUnitOfWork.Assortment

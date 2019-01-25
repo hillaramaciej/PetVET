@@ -12,6 +12,7 @@ namespace PetVET.Repository
     {
         ICustomerRepository Customer { get; }
         IAssortmentRepository Assortment { get; }
+        IOfficeDepartmentRepository OfficeDepartment { get; }
 
         PetVetDbContext Context { get; }
 
