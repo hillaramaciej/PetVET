@@ -20,18 +20,34 @@ namespace PetVET.Models.PetViewModels
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "petType1")]
-        public int PetType1 { get; set; }
+        [JsonProperty(PropertyName = "species")]
+        public string Species { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "petType2")]
-        public int PetType2 { get; set; }
+        [JsonProperty(PropertyName = "race")]
+        public string Race { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "age")]
+        public int Age { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "chipNumber")]
+        public int ChipNumber { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "weight")]
+        public int Weight { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "sex")]
         public string Sex { get; set; }
 
-        [JsonProperty(PropertyName = "chipNo")]
-        public string ChipNo { get; set; }
+        [JsonProperty(PropertyName = "coat")]
+        public string Coat { get; set; }
+
+        [JsonProperty(PropertyName = "castrated")]
+        bool Castrated { get; set; }
+
     }
 }

@@ -5,19 +5,24 @@ function ViewModel() {
     //FORM 
     self.PetID = ko.observable();
     self.Name = ko.observable();
-    self.PetType1 = ko.observable();
-    self.PetType2 = ko.observable();
+    self.Species = ko.observable();
+    self.Race = ko.observable();
+    self.Age = ko.observable();
+    self.ChipNumber = ko.observable();
+    self.Weight = ko.observable();
+    self.Coat = ko.observable();
     self.Sex = ko.observable();
-    self.ChipNo = ko.observable();
+    self.Castrated = ko.observable();
+
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    self.SexOptionData = [
-        { id: 1, name: "Obojniak" },
-        { id: 2, name: "Samiec" },
-        { id: 3, name: "Samica" },
-    ];
+    //self.SexOptionData = [
+    //    { id: 1, name: "Obojniak" },
+    //    { id: 2, name: "Samiec" },
+    //    { id: 3, name: "Samica" },
+    //];
     
     self.SelectedValueCallback = function (value) {
         self.Sex(value);
@@ -28,10 +33,14 @@ function ViewModel() {
         var data = {
             petId: self.PetID(),
             name: self.Name(),
-            petType1: self.PetType1(),
-            petType2: self.PetType2(),
+            species: self.Species(),
+            race: self.Race(),
+            age: self.Age(),
+            chipNumber: self.ChipNumber(),
+            weight: self.Weight(),
+            coat: self.Coat(),
             sex: self.Sex(),
-            chipNo: self.ChipNo(),
+            castrated: self.Castrated(),
         }
 
         self.Utilis.PostApi('api/PetApi', data, self.SaveSuccessfull, SaveFailed)
@@ -72,10 +81,14 @@ function ViewModel() {
 
         self.PetID(undefined);
         self.Name("");
-        self.PetType1(undefined);
-        self.PetType2(undefined);
+        self.Species(undefined);
+        self.Race(undefined);
+        self.Age(null);
+        self.ChipNumber(null);
+        self.Weight(null);
+        self.Coat(undefined);
         self.Sex(undefined);
-        self.ChipNo("");
+        self.Castrated(null);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -94,10 +107,14 @@ function ViewModel() {
 
         self.PetID(jsonData.petId)
         self.Name(jsonData.name);
-        self.PetType1(jsonData.petType1);
-        self.PetType2(jsonData.petType2);
+        self.Species(jsonData.species);
+        self.Race(jsonData.race);
+        self.Age(jsonData.age);
+        self.ChipNumber(jsonData.chipNumber);
+        self.Weight(jsonData.weight);
+        self.Coat(jsonData.coat);
         self.Sex(jsonData.sex);
-        self.ChipNo(jsonData.chipNo);
+        self.Castrated(jsonData.castrated);
     };
 
 }

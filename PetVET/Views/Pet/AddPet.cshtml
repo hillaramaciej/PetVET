@@ -42,34 +42,78 @@
                         <form class="col-sm-6">
                             <fieldset>
                                 <div class="form-group">
-                                    <label>First Name</label>
-                                    <input data-bind='value: Name' type="text" class="form-control" placeholder="Enter Name" required>
-                                </div>
-                                @*<div class="form-group">
-                                    <label>Last Name</label>
-                                    <input data-bind="value: PetType1" type="text" class="form-control" placeholder="Enter petType1">
+                                    <label>Name</label>
+                                    <input data-bind='value: Name' type="text" class="form-control" placeholder="Nazwa" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input data-bind="value: PetType2" type="text" class="form-control" placeholder="Enter petType2">
-                                </div>*@                       
-
+                                    <label>Gatunek</label>
+                                    <input data-bind="value: Species" type="text" class="form-control" placeholder="Gatunek">
+                                </div>
                                 <div class="form-group">
-                                    <label>Mobile</label>
-                                    <input data-bind="value: ChipNo" type="text" class="form-control" placeholder="Enter chipNo">
+                                    <label>Rasa</label>
+                                    <input data-bind="value: Race" type="text" class="form-control" placeholder="Rasa">
+                                </div>
+                                <div class="form-group">
+                                    <label>Wiek</label>
+                                    <input data-bind="value: Age" type="number" class="form-control" placeholder="Wiek">
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer Chip</label>
+                                    <input data-bind="value: ChipNumber" type="number" class="form-control" placeholder="Numer Chip">
                                 </div>
 
-                               
-                                <tmpl-ddl params='{data: SexOptionData,
-                                                  name:"Płeć",
-                                                  selectedValue : Sex,
-                                                  caption: "Wybierz",
-                                                  callback: SelectedValueCallback }'></tmpl-ddl>
+                                <div class="form-group">
+                                    <label>Waga</label>
+                                    <input data-bind="value: Weight" type="number" class="form-control" placeholder="Waga">
+                                </div>
 
-                              
+                                @*<tmpl-ddl params='{data: SexOptionData,
+        name:"Płeć",
+        selectedValue : Sex,
+        caption: "Wybierz",
+        callback: SelectedValueCallback }'></tmpl-ddl>*@
+                                <div class="form-group">
+                                    <label>Umaszczenie</label>
+                                    <select  data-bind="value: Coat" type="text" class="form-control">
+                                        <option></option>
+                                        <option>Inne</option>
+                                        <option>Szare</option>
+                                        <option>Białe</option>
+                                        <option>Czarne</option>
+                                        <option>Niebieskie</option>
+                                        <option>Mieszane</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Płeć</label>
+                                    <select data-bind="value: Sex" type="text" class="form-control">
+                                        <option></option>
+                                        <option>Suka</option>
+                                        <option>Obojniak</option>
+                                        <option>Samiec</option>
+                                    </select>
+                                </div>
+                                <div class="form-check">
+                                    <label>Wykastrowany ?</label><br>
+                                    <label class="radio-inline">
+                                        <input data-bind="checked: Castrated" type="radio" name="status" value="1">Tak
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input data-bind="checked: Castrated" type="radio" name="status" value="0" checked="checked">Nie
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>Przypisz Klienta</label><br />
+                                    <a data-bind="click: AddPet" class="btn btn-warning">Dodaj Klienta</a>
+                                </div>
+                                <div class="form-group">
+                                    <label>Zdjecie</label>
+                                    <input type="file" name="petPicture">
+                                    <input type="hidden" name="old_petPicture">
+                                </div>
                                 <div class="reset-button">
-                                    <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
-                                    <a data-bind="click: Save" class="btn btn-success">Save</a>
+                                    <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+                                    <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
                                 </div>
                             </fieldset>
                         </form>
