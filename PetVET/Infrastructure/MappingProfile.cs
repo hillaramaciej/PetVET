@@ -39,13 +39,15 @@ namespace PetVET.Infrastructure
             .ForMember(m => m.AssDtx02, opt => opt.MapFrom(vm => vm.ItemPurchaseDate));
 
             CreateMap<PetViewModel, CustomerAnimal>()
-            .ForMember(m => m.CalName, opt => opt.MapFrom(vm => vm.))
-            .ForMember(m => m.CalTyp1, opt => opt.MapFrom(vm => vm.ItemExpirationDate))
-            .ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.ItemID))
-            .ForMember(m => m.CalCustomerid, opt => opt.MapFrom(vm => vm.ItemKind))
-            .ForMember(m => m., opt => opt.MapFrom(vm => vm.ItemName))
-            .ForMember(m => m.AssNtx02, opt => opt.MapFrom(vm => vm.ItemPrice))
-            .ForMember(m => m.AssDtx02, opt => opt.MapFrom(vm => vm.ItemPurchaseDate));
+            .ForMember(m => m.CalName, opt => opt.MapFrom(vm => vm.Name))
+            .ForMember(m => m.CalTyp1, opt => opt.MapFrom(vm => vm.Species))
+            .ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.Race))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Age))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.ChipNumber))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Weight))
+            .ForMember(m => m.CalSex, opt => opt.MapFrom(vm => vm.Sex));
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Coat));
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Castrated)); 
 
 
         }
