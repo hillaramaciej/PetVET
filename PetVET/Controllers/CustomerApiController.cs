@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http.Filters;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using PetVET.Database.Models;
 using PetVET.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
 using PetVET.Repository.Core;
-using PetVET.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -46,7 +41,7 @@ namespace PetVET.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}",Name ="Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             Customer result = _IUnitOfWork.Customer.GetByID(id);

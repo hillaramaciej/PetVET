@@ -28,10 +28,10 @@ namespace PetVET.Models.ItemViewModels
 
         [Required]
         [JsonProperty(PropertyName = "itemExpirationDate")]
-        public string ItemExpirationDate { get; set; }
+        public DateTime ItemExpirationDate { get; set; }
 
         [JsonProperty(PropertyName = "itemPurchaseDate")]
-        public string ItemPurchaseDate { get; set; }
+        public DateTime ItemPurchaseDate { get; set; }
 
         [JsonProperty(PropertyName = "itemKind")]
         public string ItemKind { get; set; }

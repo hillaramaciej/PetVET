@@ -11,6 +11,7 @@ namespace PetVET.Repository
     public interface IUnitOfWork
     {
         ICustomerRepository Customer { get; }
+        IAssortmentRepository Assortment { get; }
 
         PetVetDbContext Context { get; }
 

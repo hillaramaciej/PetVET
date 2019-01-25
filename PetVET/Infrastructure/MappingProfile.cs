@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PetVET.Database.Models;
 using PetVET.Models.CustomerViewModels;
+using PetVET.Models.ItemViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,17 @@ namespace PetVET.Infrastructure
              .ForMember(m => m.City , opt => opt.MapFrom(vm => vm.CusCity))
              .ForMember(m => m.UserID , opt => opt.MapFrom(vm => vm.Rowid))
              .ForMember(m => m.PhonNumber, opt => opt.MapFrom(vm => vm. CusPhone));
+
+
+            CreateMap<Assortment, ItemViewModel>()
+            .ForMember(m => m.ItemCost, opt => opt.MapFrom(vm => vm.AssNtx01))
+            .ForMember(m => m.ItemExpirationDate, opt => opt.MapFrom(vm => vm.AssDtx01))
+            .ForMember(m => m.ItemID, opt => opt.MapFrom(vm => vm.AssCode))
+            .ForMember(m => m.ItemKind, opt => opt.MapFrom(vm => vm.AssTxt01))
+            .ForMember(m => m.ItemName, opt => opt.MapFrom(vm => vm.AssDesc))
+            .ForMember(m => m.ItemPrice, opt => opt.MapFrom(vm => vm.AssNtx02))
+            .ForMember(m => m.ItemPurchaseDate, opt => opt.MapFrom(vm => vm.AssDtx02));
+
 
         }
     }

@@ -14,6 +14,7 @@ namespace PetVET.Repository
         private readonly PetVetDbContext _context;
 
         public ICustomerRepository Customer { get; set; }
+        public IAssortmentRepository Assortment { get; set; }
 
         PetVetDbContext IUnitOfWork.Context => _context;
 
@@ -21,6 +22,7 @@ namespace PetVET.Repository
         {            
             _context = context;
             Customer = new CustomerRepository(context);
+            Assortment = new AssortmentRepository(context);
         }
 
         public int Complete()
