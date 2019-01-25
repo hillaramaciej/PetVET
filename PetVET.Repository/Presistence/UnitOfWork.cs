@@ -16,16 +16,18 @@ namespace PetVET.Repository
         public ICustomerRepository Customer { get; set; }
         public IAssortmentRepository Assortment { get; set; }
         public IOfficeDepartmentRepository OfficeDepartment { get; set; }
+        public ICustomerAnimalRepository CustomerAnimal { get; set; }
 
         PetVetDbContext IUnitOfWork.Context => _context;
 
 
         public UnitOfWork(PetVetDbContext context)
-        {            
+        {
             _context = context;
             Customer = new CustomerRepository(context);
             Assortment = new AssortmentRepository(context);
             OfficeDepartment = new OfficeDepartmentRepository(context);
+            CustomerAnimal = new CustomerAnimalRepository(context);
         }
 
         public int Complete()
