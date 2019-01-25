@@ -31,14 +31,15 @@ namespace PetVET.Controllers
         }
 
 
-       
+        [Route("customer/CustomersList")]
         public IActionResult CustomersList()
         {
+
             return View();
         }
 
 
-       // [Route("CustomerProfile")]
+        [Route("Customer/CustomerProfile/{id}")]
         public IActionResult CustomerProfile(int id)
         {
             Customer result = _IUnitOfWork.Customer.GetByID(id);

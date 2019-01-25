@@ -157,10 +157,19 @@
                                                 <span class="label-custom label label-default">Active</span>
                                             </td>
                                             <td>
-                                                <button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.Mail)" class="btn btn-add btn-sm" >   @*data-toggle="modal" data-target="#customer1">*@
+                                                <a href="#"  data-url="Customer/CustomerProfile/id=0" 
+                                                        data-bind="attr: { 'href' : $parent.GotoProfile($element, UserID) }"
+                                                   
+                                                        class="btn btn-add btn-sm">
+                                                    @*data-toggle="modal" data-target="#customer1">*@
                                                     <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button"  class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2">
+                                                </a>
+
+                                                @*<button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.UserID)" class="btn btn-add btn-sm">
+                                                    @*data-toggle="modal" data-target="#customer1">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>*@
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2">
                                                     <i class="fa fa-trash-o"></i>
                                                 </button>
                                             </td>

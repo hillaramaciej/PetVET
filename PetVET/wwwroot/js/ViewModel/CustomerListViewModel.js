@@ -71,13 +71,13 @@ function ViewModel () {
 
         var SearchSuccess = function (result) {
             for (var i = 0; i < result.length; i++) {
-
-                var c = new self.Customer();
+               
+                var c = new self.Customer();               
                 c.LastName(result[i].lastName); 
                 c.FirstName(result[i].firstName); 
                 c.PhonNumber(result[i].phonNumber); 
                 c.Mail(result[i].mail); 
-                c.UserID(result[i].userID); 
+                c.UserID(result[i].userId); 
                 c.City(result[i].city); 
                 
                 self.CustomerList.push(c);
@@ -91,8 +91,9 @@ function ViewModel () {
 
 
 
-        self.GotoProfile = function (data) {
-            debugger;
+        self.GotoProfile = function (element, id) {           
+       
+            return window.location.origin + "//" + element.getAttribute('data-url').replace('id=0', id());
         };
 
         self.ClearSearch = function () {
