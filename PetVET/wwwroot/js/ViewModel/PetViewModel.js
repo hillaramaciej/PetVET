@@ -12,17 +12,18 @@ function ViewModel() {
     self.Weight = ko.observable();
     self.Coat = ko.observable();
     self.Sex = ko.observable();
+    self.SexOptionData = ko.observable();
     self.Castrated = ko.observable();
 
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    //self.SexOptionData = [
-    //    { id: 1, name: "Obojniak" },
-    //    { id: 2, name: "Samiec" },
-    //    { id: 3, name: "Samica" },
-    //];
+    self.SexOptionData = [
+        { id: 1, name: "Obojniak" },
+        { id: 2, name: "Samiec" },
+        { id: 3, name: "Samica" },
+    ];
     
     self.SelectedValueCallback = function (value) {
         self.Sex(value);
@@ -40,8 +41,13 @@ function ViewModel() {
             weight: self.Weight(),
             coat: self.Coat(),
             sex: self.Sex(),
+            sexOptionData: self.SexOptionData(),
             castrated: self.Castrated(),
         }
+
+        self.AddPet = function () {
+
+        };
 
         self.Utilis.PostApi('api/PetApi', data, self.SaveSuccessfull, SaveFailed)
 
@@ -88,6 +94,7 @@ function ViewModel() {
         self.Weight(null);
         self.Coat(undefined);
         self.Sex(undefined);
+        self.SexOptionData(undefined);
         self.Castrated(null);
     };
 
@@ -114,6 +121,7 @@ function ViewModel() {
         self.Weight(jsonData.weight);
         self.Coat(jsonData.coat);
         self.Sex(jsonData.sex);
+        self.SexOptionData(jsonData.sexOptionData);
         self.Castrated(jsonData.castrated);
     };
 
