@@ -84,15 +84,15 @@ function ViewModel() {
         self.ClearInfoMessage();
 
         self.PetID(undefined);
-        self.Name("");
+        self.Name(undefined);
         self.Species(undefined);
         self.Race(undefined);
-        self.Age(null);
-        self.ChipNumber(null);
-        self.Weight(null);
+        self.Age(undefined);
+        self.ChipNumber(undefined);
+        self.Weight(undefined);
         self.Coat(undefined);
         self.Sex(undefined);
-        self.Castrated(null);
+        self.Castrated(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
