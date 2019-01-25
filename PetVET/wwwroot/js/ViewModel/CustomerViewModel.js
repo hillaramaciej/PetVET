@@ -17,6 +17,8 @@ function ViewModel () {
         self.FlatNumber = ko.observable();
         self.CityCode = ko.observable();
         self.DateOfBirth = ko.observable();
+
+        self.SelectedValue = ko.observable(); 
         //END FORM 
 
         //Search Trigger
@@ -41,16 +43,13 @@ function ViewModel () {
         }; 
         //END Search Trigger
 
-       
-       
-
         self.optionData = [
             { id: 1, name: "red" },
             { id: 2, name: "green" },
             { id: 3, name: "blue" },
         ];
 
-        self.SelectedValue = ko.observable();    
+           
         self.SelectedValueCallback = function (value) {
             self.SelectedValue(value);
         }        
@@ -102,7 +101,11 @@ function ViewModel () {
         self.ClearInfoMessage = function () {
             self.InfoMessage = ko.observable("");
             self.IsInfoMessage = ko.observable(false);
-        }
+        };s
+
+        self.AddPet = function () {
+
+        };
 
         self.AddNew = function () {
             var ttt = self.SelectedValue()
