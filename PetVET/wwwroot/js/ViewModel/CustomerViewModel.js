@@ -6,12 +6,17 @@ function ViewModel () {
        //FORM 
         
         self.UserID = ko.observable();
-        self.FirstName = ko.observable().extend({ required: true }).extend({ minLength: 3 });
+        self.FirstName = ko.observable();//.extend({ required: true }).extend({ minLength: 3 });
         self.PhonNumber = ko.observable();
         self.LastName = ko.observable();
         self.Mail = ko.observable();
         self.City = ko.observable();
         self.IsNewCustomer = ko.observable();
+        self.Street = ko.observable();
+        self.HouseNumber = ko.observable();
+        self.FlatNumber = ko.observable();
+        self.CityCode = ko.observable();
+        self.DateOfBirth = ko.observable();
         //END FORM 
 
         //Search Trigger
@@ -27,6 +32,11 @@ function ViewModel () {
                 self.LastName = ko.observable(undefined);
                 self.Mail = ko.observable(undefined);
                 self.City = ko.observable(undefined);
+                self.Street = ko.observable(undefined);
+                self.HouseNumber = ko.observable(undefined);
+                self.FlatNumber = ko.observable(undefined);
+                self.CityCode = ko.observable(undefined);
+                self.DateOfBirth = ko.observable(undefined);
             }
         }; 
         //END Search Trigger
@@ -54,6 +64,11 @@ function ViewModel () {
                 lastName: self.LastName(),
                 mail: self.Mail(),
                 isNewCustomer: self.IsNewCustomer() === 1 ? true : false,
+                street: self.Street(),
+                houseNumber: self.HouseNumber(),
+                flatNumber: self.FlatNumber(),
+                cityCode: self.CityCode(),
+                dateOfBirth: self.DateOfBirth(),
             }
 
             self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, SaveFailed)
@@ -97,8 +112,13 @@ function ViewModel () {
             self.FirstName("");
             self.PhonNumber(null);
             self.LastName("");
-            self.Mail("")
+            self.Mail("");
             self.IsNewCustomer(false);
+            self.Street("");
+            self.HouseNumber(null);
+            self.FlatNumber(null);
+            self.CityCode(null);
+            self.DateOfBirth(null);
         };
 
         self.MapFromJson = function (jsonData) {
@@ -121,6 +141,11 @@ function ViewModel () {
             self.LastName(jsonData.lastName);
             self.Mail(jsonData.mail);
             self.IsNewCustomer(jsonData.isNewCustomer);
+            self.Street(jsonData.street);
+            self.HouseNumber(jsonData.houseNumber);
+            self.FlatNumber(jsonData.flatNumber);
+            self.CityCode(jsonData.cityCode);
+            self.DateOfBirth(jsonData.dateOfBirth);
         };
 
     }

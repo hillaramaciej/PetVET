@@ -70,16 +70,44 @@
                                         <input data-bind="value: PhonNumber" type="number" class="form-control" placeholder="Numer telefonu">
                                     </div>
                                     <div class="form-group">
+                                        <label>Ulica</label>
+                                        <input data-bind="value: Street" type="text" class="form-control" placeholder="Ulica">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Numer domu</label>
+                                        <input data-bind="value: HouseNumber" type="number" class="form-control" placeholder="Numer domu">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Numer lokalu</label>
+                                        <input data-bind="value: FlatNumber" type="number" class="form-control" placeholder="Numer lokalu">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Miasto</label>
+                                        <input data-bind="value: City" type="text" class="form-control" placeholder="Miasto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kod pocztowy</label>
+                                        <input data-bind="value: CityCode" type="number" class="form-control" placeholder="Kod pocztowy">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Data urodzenia</label>
+                                        <input data-bind="value: DateOfBirth" type="date" class="form-control" placeholder="Data urodzenia">
+                                    </div>
+                                    <div>
+                                        <label>Przypisz pacjentów</label><br />
+                                        <a data-bind="click: AddPet" class="btn btn-warning">Dodaj pacjentów</a>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Zdjecie</label>
                                         <input type="file" name="picture">
                                         <input type="hidden" name="old_picture">
                                     </div>
 
-                                    <tmpl-ddl params='{data: optionData,
-                                                  name:"Kolor",
-                                                  selectedValue : SelectedValue,
-                                                  caption: "Wybierz kolor",
-                                                  callback: SelectedValueCallback }'></tmpl-ddl>
+                                    @*<tmpl-ddl params='{data: optionData,
+        name:"Kolor",
+        selectedValue : SelectedValue,
+        caption: "Wybierz kolor",
+        callback: SelectedValueCallback }'></tmpl-ddl>*@
 
                                     <div class="form-check">
                                         <label>Nowy Klient</label><br>
@@ -90,6 +118,7 @@
                                             <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="0">Nie
                                         </label>
                                     </div>
+
                                     <div class="reset-button">
                                         <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
                                         <a data-bind="click: Save" class="btn btn-success">Zapisz</a>

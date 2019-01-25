@@ -23,17 +23,37 @@ namespace PetVET.Models.CustomerViewModels
         [JsonProperty(PropertyName = "lastName")]
         public string LastName { get; set; }
 
-        [Required]
-        [JsonProperty(PropertyName = "phonNumber")]
-        public string PhonNumber { get; set; }
-
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Invalid email format.")]
         [JsonProperty(PropertyName = "mail")]
         public string Mail { get; set; }
 
         [Required]
+        [JsonProperty(PropertyName = "phonNumber")]
+        public string PhonNumber { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "street")]
+        public string Street { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "houseNumber")]
+        public int HouseNumber { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "flatNumber")]
+        public int FlatNumber { get; set; }
+
+        [Required]
         [JsonProperty(PropertyName = "city")]
         public string City { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "cityCode")]
+        public int CityCode { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "dateOfBirth")]
+        public DateTime DateOfBirth { get; set; }
 
         [JsonProperty(PropertyName = "isNewCustomer")]
         bool IsNew { get; set; }
