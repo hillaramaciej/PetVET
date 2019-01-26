@@ -92,7 +92,7 @@
                 caption: "Wybierz kolor",
                 callback: SelectedValueCallback }'></tmpl-ddl>*@
 
-                                    <div class="form-check">
+                                    @*<div class="form-check">
                                         <label>Nowy Klient</label><br>
                                         <label class="radio-inline">
                                             <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">Tak
@@ -100,7 +100,7 @@
                                         <label class="radio-inline">
                                             <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="0">Nie
                                         </label>
-                                    </div>
+                                    </div>*@
 
                                     @*<div class="reset-button">
                                         <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
@@ -137,20 +137,17 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-check">
-                                    <br />
+                              
                                     <label class="radio-inline">
-                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
+                                        <input data-bind="checked: Agreement1" type="checkbox" name="agreement1" value="1" checked="checked">
                                         <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
-                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
+                                        <input data-bind="checked: Agreement2" type="checkbox" name="agreement2" value="2" checked="checked">
                                         <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
-                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
-                                        <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
-
+                                        <input data-bind="checked: Agreement3" type="checkbox" name="agreement3" value="3" checked="checked">
+                                        <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany / Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
+                                       <br />
+                                        <a data-bind="click: Print" class="btn btn-success">Drukuj zgody</a>
                                     </label>
-                                    <div class="reset-button">
-
-                                        <a data-bind="click: Save" class="btn btn-success">Drukuj zgody</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

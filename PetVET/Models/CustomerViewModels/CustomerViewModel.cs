@@ -57,5 +57,14 @@ namespace PetVET.Models.CustomerViewModels
 
         [JsonProperty(PropertyName = "isNewCustomer")]
         bool IsNew { get; set; }
+
+        [JsonProperty(PropertyName = "agreement1")]
+        bool Agreement1 { get; set; }
+
+        [JsonProperty(PropertyName = "agreement2")]
+        bool Agreement2 { get; set; }
+
+        [JsonProperty(PropertyName = "agreement3")]
+        bool Agreement3 { get; set; }
     }
 }

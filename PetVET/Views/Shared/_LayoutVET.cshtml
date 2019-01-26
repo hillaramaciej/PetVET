@@ -381,19 +381,19 @@
                         <a href="index.html">
                             <i class="fa fa-tachometer"></i>
                             <span>Dashboard</span>
-                            <span class="pull-right-container">     
+                            <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a asp-area="" asp-controller="customer" asp-action="CustomersList">
                             <i class="fa fa-users"></i>
                             <span>Klienci</span>
-                            <span class="pull-right-container">
+                            @*<span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                            </span>*@
                         </a>
-                        <ul class="treeview-menu">
+                        @*<ul class="treeview-menu">
                             <li>
                                 <a asp-area="" asp-controller="customer" asp-action="Customer">
                                     Dodaj Klienta
@@ -404,7 +404,7 @@
                                     Lista Klientów
                                 </a>
                             </li>
-                        </ul>
+                        </ul>*@
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -502,8 +502,8 @@
                             <i class="fa fa-file-text"></i>
                             <span>Opinie klientów</span>
                             @*<span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>*@
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>*@
                         </a>
                     </li>
                     <li class="treeview">
@@ -511,8 +511,8 @@
                             <i class="fa fa-file-text"></i>
                             <span>Statystyki i raporty</span>
                             @*<span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>*@
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>*@
                         </a>
                     </li>
                     <li class="treeview">
@@ -577,17 +577,17 @@
                         <ul class="treeview-menu">
                             <li>
                                 <a asp-area="" asp-controller="" asp-action="">
-                                    Ustawienia rezerwacji 
+                                    Ustawienia rezerwacji
                                 </a>
                             </li>
                             <li>
                                 <a asp-area="" asp-controller="" asp-action="">
-                                    Sprzedaż 
+                                    Sprzedaż
                                 </a>
                             </li>
                             <li>
                                 <a asp-area="" asp-controller="" asp-action="">
-                                    Powiadomienia wewnętrzne 
+                                    Powiadomienia wewnętrzne
                                 </a>
                             </li>
                             <li>
@@ -607,7 +607,7 @@
                             </li>
                             <li>
                                 <a asp-area="" asp-controller="" asp-action="">
-                                    Święta i dni wolne 
+                                    Święta i dni wolne
                                 </a>
                             </li>
                         </ul>

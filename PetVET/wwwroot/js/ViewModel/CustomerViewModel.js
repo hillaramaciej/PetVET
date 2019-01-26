@@ -17,6 +17,9 @@ function ViewModel () {
         self.FlatNumber = ko.observable();
         self.CityCode = ko.observable();
         self.DateOfBirth = ko.observable();
+        self.Agreement1 = ko.observable();
+        self.Agreement2 = ko.observable();
+        self.Agreement3 = ko.observable();
 
         self.SelectedValue = ko.observable(); 
         //END FORM 
@@ -39,6 +42,9 @@ function ViewModel () {
                 self.FlatNumber = ko.observable(undefined);
                 self.CityCode = ko.observable(undefined);
                 self.DateOfBirth = ko.observable(undefined);
+                self.Agreement1 = ko.observable(undefined);
+                self.Agreement2 = ko.observable(undefined);
+                self.Agreement3 = ko.observable(undefined);
             }
         }; 
         //END Search Trigger
@@ -52,7 +58,9 @@ function ViewModel () {
            
         self.SelectedValueCallback = function (value) {
             self.SelectedValue(value);
-        }        
+    }        
+
+    self.Print = function () { }
   
         self.Save = function () {
 
@@ -68,6 +76,9 @@ function ViewModel () {
                 flatNumber: self.FlatNumber(),
                 cityCode: self.CityCode(),
                 dateOfBirth: self.DateOfBirth(),
+                agreement1: self.Agreement1() === 1 ? true : false,
+                agreement2: self.Agreement2() === 1 ? true : false,
+                agreement3: self.Agreement3() === 1 ? true : false,
             }
 
             self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, SaveFailed)
@@ -122,6 +133,9 @@ function ViewModel () {
             self.FlatNumber(null);
             self.CityCode(null);
             self.DateOfBirth(null);
+            self.Agreement1(false);
+            self.Agreement2(false);
+            self.Agreement3(false);
         };
 
         self.MapFromJson = function (jsonData) {
@@ -149,6 +163,9 @@ function ViewModel () {
             self.FlatNumber(jsonData.flatNumber);
             self.CityCode(jsonData.cityCode);
             self.DateOfBirth(jsonData.dateOfBirth);
+            self.Agreement1(jsonData.agreement1);
+            self.Agreement2(jsonData.agreement2);
+            self.Agreement3(jsonData.agreement3);
         };
 
     }

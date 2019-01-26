@@ -36,66 +36,71 @@
                             <a class="btn btn-add " href="clist.html">
                                 <i class="fa fa-list"></i>  Customer List
                             </a>
+                            <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+                            <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form class="col-sm-6">
+                        
+                        <form class="col-sm-12">
                             <fieldset>
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input data-bind='value: Name' type="text" class="form-control" placeholder="Nazwa" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Gatunek</label>
-                                    <input data-bind="value: Species" type="text" class="form-control" placeholder="Gatunek">
-                                </div>
-                                <div class="form-group">
-                                    <label>Rasa</label>
-                                    <input data-bind="value: Race" type="text" class="form-control" placeholder="Rasa">
-                                </div>
-                                <div class="form-group">
-                                    <label>Wiek</label>
-                                    <input data-bind="value: Age" type="number" class="form-control" placeholder="Wiek">
-                                </div>
-                                <div class="form-group">
-                                    <label>Numer Chip</label>
-                                    <input data-bind="value: ChipNumber" type="number" class="form-control" placeholder="Numer Chip">
-                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input data-bind='value: Name' type="text" class="form-control" placeholder="Nazwa" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gatunek</label>
+                                        <input data-bind="value: Species" type="text" class="form-control" placeholder="Gatunek">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rasa</label>
+                                        <input data-bind="value: Race" type="text" class="form-control" placeholder="Rasa">
+                                    </div>
+                                    <div>
+                                        <label>Przypisz Klienta</label><br />
+                                        <a data-bind="click: AddPet" class="btn btn-warning">Dodaj Klienta</a>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label>Waga</label>
-                                    <input data-bind="value: Weight" type="number" class="form-control" placeholder="Waga">
                                 </div>
-
-                                <tmpl-ddl params='{data: SexOptionData,
-        name:"Płeć",
-        selectedValue : Sex,
-        caption: "Wybierz",
-        callback: SelectedValueCallback }'></tmpl-ddl>
-
-                                <div class="form-check">
-                                    <label>Wykastrowany ?</label><br>
-                                    <label class="radio-inline">
-                                        <input data-bind="checked: Castrated" type="radio" name="status" value="1">Tak
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input data-bind="checked: Castrated" type="radio" name="status" value="0" checked="checked">Nie
-                                    </label>
-                                </div>
-                                <div>
-                                    <label>Przypisz Klienta</label><br />
-                                    <a data-bind="click: AddPet" class="btn btn-warning">Dodaj Klienta</a>
-                                </div>
-                                <div class="form-group">
-                                    <label>Zdjecie</label>
-                                    <input type="file" name="petPicture">
-                                    <input type="hidden" name="old_petPicture">
-                                </div>
-                                <div class="reset-button">
-                                    <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
-                                    <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
-                                </div>
-                            </fieldset>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Wiek</label>
+                                            <input data-bind="value: Age" type="number" class="form-control" placeholder="Wiek">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Numer Chip</label>
+                                            <input data-bind="value: ChipNumber" type="number" class="form-control" placeholder="Numer Chip">
+                                        </div>
+                                        <div class="form-check">
+                                            <label>Wykastrowany ?</label><br>
+                                            <label class="radio-inline">
+                                                <input data-bind="checked: Castrated" type="radio" name="status" value="1">Tak
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input data-bind="checked: Castrated" type="radio" name="status" value="0" checked="checked">Nie
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Waga</label>
+                                            <input data-bind="value: Weight" type="number" class="form-control" placeholder="Waga">
+                                        </div>
+                                        <tmpl-ddl params='{data: SexOptionData,
+                                                            name:"Płeć",
+                                                            selectedValue : Sex,
+                                                            caption: "Wybierz",
+                                                            callback: SelectedValueCallback }'></tmpl-ddl>
+                                        <div class="form-group">
+                                            <label>Zdjecie</label>
+                                            <input type="file" name="petPicture">
+                                            <input type="hidden" name="old_petPicture">
+                                        </div>
+                                    </div>
+                                 </div>
+</fieldset>
                         </form>
                     </div>
                 </div>
