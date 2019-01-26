@@ -17,13 +17,11 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="header-icon">
-            <i class="fa fa-users"></i>
-        </div>
-        <div class="header-title">
-            <h1>Dodaj klienta</h1>
-            <small></small>
-        </div>
+            <a class="btn btn-add " href="clist.html">
+                  Przejdź do listy pacjentów
+            </a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+            <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -32,12 +30,8 @@
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
-                        <div class="btn-group" id="buttonlist">
-                            <a class="btn btn-add " href="clist.html">
-                                <i class="fa fa-list"></i>  Customer List
-                            </a>
-                            <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
-                            <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
+                        <div class="btn-group">
+                            <a>Lista pacjentów</a>
                         </div>
                     </div>
                     <div class="panel-body">

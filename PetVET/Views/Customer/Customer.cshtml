@@ -27,13 +27,11 @@
         <!-- Site wrapper -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="header-icon">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="header-title">
-                <h1>Dodaj Klienta</h1>
-                <small></small>
-            </div>
+                <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="CustomersList">
+                    <i class="fa fa-plus"></i> Przejdź do listy klientów
+                </a>
+                <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
+                <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -43,16 +41,8 @@
                 <div class="col-sm-12">
                     <div class="panel panel-bd lobidrag">
                         <div class="panel-heading">
-
-                            <div class="btn-group" id="buttonlist">
-
-                                <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="CustomersList">
-                                    <i class="fa fa-plus"></i> Przejdź do listy klientów
-                                </a>
-                               
-                                    <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
-                                    <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
-                                
+                            <div class="btn-group">
+                                <a>Lista klientów</a>
                             </div>
                         </div>
                         <div class="panel-body">
