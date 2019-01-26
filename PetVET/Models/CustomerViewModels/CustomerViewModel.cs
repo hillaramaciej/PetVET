@@ -37,11 +37,11 @@ namespace PetVET.Models.CustomerViewModels
 
         [Required]
         [JsonProperty(PropertyName = "houseNumber")]
-        public int HouseNumber { get; set; }
+        public string HouseNumber { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "flatNumber")]
-        public int FlatNumber { get; set; }
+        public string FlatNumber { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "city")]

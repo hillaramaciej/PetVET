@@ -32,7 +32,7 @@
             </div>
             <div class="header-title">
                 <h1>Dodaj Klienta</h1>
-                <small>Nowy klient</small>
+                <small></small>
             </div>
         </section>
         <!-- Main content -->
@@ -45,13 +45,18 @@
                         <div class="panel-heading">
 
                             <div class="btn-group" id="buttonlist">
+
                                 <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="CustomersList">
-                                    <i class="fa fa-plus"></i> Lista Klientów
+                                    <i class="fa fa-plus"></i> Przejdź do listy klientów
                                 </a>
+                               
+                                    <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
+                                    <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
+                                
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form class="col-sm-8">
+                            <form class="col-sm-4">
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Imie</label>
@@ -69,26 +74,7 @@
                                         <label>Numer telefonu</label>
                                         <input data-bind="value: PhonNumber" type="number" class="form-control" placeholder="Numer telefonu">
                                     </div>
-                                    <div class="form-group">
-                                        <label>Ulica</label>
-                                        <input data-bind="value: Street" type="text" class="form-control" placeholder="Ulica">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Numer domu</label>
-                                        <input data-bind="value: HouseNumber" type="number" class="form-control" placeholder="Numer domu">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Numer lokalu</label>
-                                        <input data-bind="value: FlatNumber" type="number" class="form-control" placeholder="Numer lokalu">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Miasto</label>
-                                        <input data-bind="value: City" type="text" class="form-control" placeholder="Miasto">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Kod pocztowy</label>
-                                        <input data-bind="value: CityCode" type="number" class="form-control" placeholder="Kod pocztowy">
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label>Data urodzenia</label>
                                         <input data-bind="value: DateOfBirth" type="date" class="form-control" placeholder="Data urodzenia">
@@ -97,17 +83,14 @@
                                         <label>Przypisz pacjentów</label><br />
                                         <a data-bind="click: AddPet" class="btn btn-warning">Dodaj pacjentów</a>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Zdjecie</label>
-                                        <input type="file" name="picture">
-                                        <input type="hidden" name="old_picture">
-                                    </div>
+                                    <br />
+
 
                                     @*<tmpl-ddl params='{data: optionData,
-                                         name:"Kolor",
-                                         selectedValue : SelectedValue,
-                                         caption: "Wybierz kolor",
-                                         callback: SelectedValueCallback }'></tmpl-ddl>*@
+                name:"Kolor",
+                selectedValue : SelectedValue,
+                caption: "Wybierz kolor",
+                callback: SelectedValueCallback }'></tmpl-ddl>*@
 
                                     <div class="form-check">
                                         <label>Nowy Klient</label><br>
@@ -119,13 +102,59 @@
                                         </label>
                                     </div>
 
-                                    <div class="reset-button">
+                                    @*<div class="reset-button">
                                         <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
                                         <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
-                                    </div>
+                                    </div>*@
                                 </fieldset>
                             </form>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Ulica</label>
+                                    <input data-bind="value: Street" type="text" class="form-control" placeholder="Ulica">
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer domu</label>
+                                    <input data-bind="value: HouseNumber" type="text" class="form-control" placeholder="Numer domu">
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer lokalu</label>
+                                    <input data-bind="value: FlatNumber" type="text" class="form-control" placeholder="Numer lokalu">
+                                </div>
+                                <div class="form-group">
+                                    <label>Miasto</label>
+                                    <input data-bind="value: City" type="text" class="form-control" placeholder="Miasto">
+                                </div>
+                                <div class="form-group">
+                                    <label>Kod pocztowy</label>
+                                    <input data-bind="value: CityCode" type="number" class="form-control" placeholder="Kod pocztowy">
+                                </div>
+                                <div class="form-group">
+                                    <label>Zdjecie</label>
+                                    <input type="file" name="picture">
+                                    <input type="hidden" name="old_picture">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <br />
+                                    <label class="radio-inline">
+                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
+                                        <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
+                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
+                                        <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
+                                        <input data-bind="checked: IsNewCustomer" type="radio" name="status" value="1" checked="checked">
+                                        <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
+
+                                    </label>
+                                    <div class="reset-button">
+
+                                        <a data-bind="click: Save" class="btn btn-success">Drukuj zgody</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
