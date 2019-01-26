@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetVET.Models.ServiceViewModels;
 
@@ -11,6 +12,7 @@ namespace PetVET.Controllers
 {
     public class ServiceController : Controller
     {
+        [Authorize]
         [Route("Service")]
         public IActionResult AddService()
         {

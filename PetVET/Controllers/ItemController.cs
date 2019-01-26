@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetVET.Models.ItemViewModels;
 
@@ -11,6 +12,7 @@ namespace PetVET.Controllers
 {
     public class ItemController : Controller
     {
+        [Authorize]
         [Route("Item")]
         public IActionResult AddItem()
         {

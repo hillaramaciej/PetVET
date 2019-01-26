@@ -10,7 +10,8 @@
     <script src="~/js/Utilis.js"></script>
     <script src="~/js/ViewModel/ItemViewModel.js"></script>
     <script type="text/javascript">
-    itemViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+        itemViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+        itemViewModel.Dll();
     </script>
 }
 

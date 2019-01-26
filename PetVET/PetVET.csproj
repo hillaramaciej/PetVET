@@ -67,4 +67,8 @@
     <ProjectReference Include="..\PetVET.Repository\PetVET.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+  </ItemGroup>
+
 </Project>
