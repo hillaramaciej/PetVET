@@ -23,6 +23,7 @@ using PetVET.Repository.Core;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PetVET.Extentions;
 
 namespace PetVET
 {
@@ -107,6 +108,24 @@ namespace PetVET
                     RequestPath = new PathString("/vendor")
                 });
             }
+
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                //if (!serviceScope.ServiceProvider.GetService<GrommerContext>().AllMigrationsApplied())
+                //{
+                //    serviceScope.ServiceProvider.GetService<GrommerContext>().Database.Migrate();
+                //    //serviceScope.ServiceProvider.GetService<GrommerContext>().EnsureSeeded();
+                //}
+
+                if (!serviceScope.ServiceProvider.GetService<ApplicationDbContext>().AllMigrationsApplied())
+                {
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    //serviceScope.ServiceProvider.GetService<GrommerContext>().EnsureSeeded();
+                }
+            }
+
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>

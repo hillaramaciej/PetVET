@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetVET.Database.Models;
 using PetVET.Models;
@@ -15,6 +16,7 @@ using PetVET.Repository.Core;
 
 namespace PetVET.Controllers
 {
+    [Authorize]
     // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
     [Route("api/[controller]")]
     public class CustomerApiController : Controller
