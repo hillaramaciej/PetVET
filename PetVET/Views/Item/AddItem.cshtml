@@ -18,13 +18,11 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="header-icon">
-            <i class="fa fa-users"></i>
-        </div>
-        <div class="header-title">
-            <h1>Dodaj towar</h1>
-            <small>Lista towaru</small>
-        </div>
+        <a class="btn btn-add " href="clist.html">
+            Przejdź do listy towarów
+        </a>
+        <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+        <a data-bind="click: Save" class="btn btn-success">Save</a>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -33,50 +31,45 @@
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
-                        <div class="btn-group" id="buttonlist">
-                            <a class="btn btn-add " href="clist.html">
-                                <i class="fa fa-list"></i>  Lista towaru
-                            </a>
+                        <div class="btn-group">
+                            <a>Dodaj towar</a>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        <form class="col-sm-6">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label>Nazwa towaru</label>
-                                    <input data-bind='value: ItemName' type="text" class="form-control" placeholder="Wpisz nazwę towaru" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cena zakupu</label>
-                                    <input data-bind="value: ItemCost" type="number" class="form-control" placeholder="Wpisz">
-                                </div>
-                                <div class="form-group">
-                                    <label>Cena sprzedaży</label>
-                                    <input data-bind="value: ItemPrice" type="number" class="form-control" placeholder="...">
-                                </div>
-                                <div class="form-group">
-                                    <label>Data zakupu</label>
-                                    <input data-bind="value: ItemPurchaseDate" type="date" class="form-control" placeholder="...">
-                                </div>
-                                <div class="form-group">
-                                    <label>Data ważności</label>
-                                    <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
-                                </div>
+                        </div>
+                        <div class="panel-body">
+                            <form class="col-sm-6">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label>Nazwa towaru</label>
+                                        <input data-bind='value: ItemName' type="text" class="form-control" placeholder="Wpisz nazwę towaru" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cena zakupu</label>
+                                        <input data-bind="value: ItemCost" type="number" class="form-control" placeholder="Wpisz">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cena sprzedaży</label>
+                                        <input data-bind="value: ItemPrice" type="number" class="form-control" placeholder="...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Data zakupu</label>
+                                        <input data-bind="value: ItemPurchaseDate" type="date" class="form-control" placeholder="...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Data ważności</label>
+                                        <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
+                                    </div>
 
-                                <tmpl-ddl params='{data: ItemKindOptionData,
+                                    <tmpl-ddl params='{data: ItemKindOptionData,
                                         name:"Rodzaj towaru ",
                                         selectedValue : ItemKind,
                                         caption: "Wybierz",
                                         callback: SelectedValueCallback }'></tmpl-ddl>
 
-                                <div class="reset-button">
-                                    <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
-                                    <a data-bind="click: Save" class="btn btn-success">Save</a>
-                                </div>
-                            </fieldset>
-                        </form>
+
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>

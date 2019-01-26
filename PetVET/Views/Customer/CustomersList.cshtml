@@ -18,13 +18,9 @@
         <!-- Site wrapper -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="header-icon">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="header-title">
-                <h1>Lista Klientów</h1>
-                <small></small>
-            </div>
+            <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="Customer">
+                <i class="fa fa-plus"></i>   Dodaj Klienta
+            </a>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -34,11 +30,8 @@
                 <div class="col-sm-12">
                     <div class="panel panel-bd lobidrag">
                         <div class="panel-heading">
-                            <div class="btn-group" id="buttonexport">
-                                <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="Customer">
-                                    <i class="fa fa-plus"></i>   Dodaj Klienta
-                                </a>
-                                
+                            <div class="btn-group">
+                                <a > Lista klientów </a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -135,7 +128,6 @@
                                     <thead>
                                         <tr class="info">
                                             <th>Imię i Nazwisko</th>
-                                            @*<th>Imię Pacjenta</th>*@
                                             <th>Telefon</th>
                                             <th>E-mail</th>
                                             <th>Miasto</th>
@@ -150,15 +142,12 @@
                                             <td data-bind="text: $data.PhonNumber"></td>
                                             <td data-bind="text: $data.Mail"></td>
                                             <td data-bind="text: $data.City"></td>                                          
-                                            <td>
-                                                <span class="label-custom label label-default">Active</span>
-                                            </td>
+                                            <td><span class="label-custom label label-default">Active</span> </td>
                                             <td>
                                                 <a href="#"  data-url="Customer/CustomerProfile/id=0"  data-bind="attr: { 'href' : $parent.GotoProfile($element, UserID) }"
                                                    class="btn btn-add btn-sm">
                                                    <i class="fa fa-pencil"></i>
                                                 </a>
-
                                                 @*<button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.UserID)" class="btn btn-add btn-sm">
                                                     @*data-toggle="modal" data-target="#customer1">
                                                     <i class="fa fa-pencil"></i>
