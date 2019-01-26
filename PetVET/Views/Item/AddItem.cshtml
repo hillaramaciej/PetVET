@@ -54,24 +54,20 @@
                                     <label>Cena sprzedaży</label>
                                     <input data-bind="value: ItemPrice" type="number" class="form-control" placeholder="...">
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Data ważności</label>
-                                    <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
-                                </div>
-
                                 <div class="form-group">
                                     <label>Data zakupu</label>
                                     <input data-bind="value: ItemPurchaseDate" type="date" class="form-control" placeholder="...">
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Data ważności</label>
+                                    <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
+                                </div>
 
                                 <tmpl-ddl params='{data: ItemKindOptionData,
                                         name:"Rodzaj towaru ",
                                         selectedValue : ItemKind,
                                         caption: "Wybierz",
                                         callback: SelectedValueCallback }'></tmpl-ddl>
-
 
                                 <div class="reset-button">
                                     <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
