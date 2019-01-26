@@ -18,13 +18,9 @@
         <!-- Site wrapper -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="header-icon">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="header-title">
-                <h1>Customer</h1>
-                <small>Customer List</small>
-            </div>
+            <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="Customer">
+                <i class="fa fa-plus"></i>   Dodaj Klienta
+            </a>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -34,10 +30,8 @@
                 <div class="col-sm-12">
                     <div class="panel panel-bd lobidrag">
                         <div class="panel-heading">
-                            <div class="btn-group" id="buttonexport">
-                                <a href="#">
-                                    <h4>Lista Klientów</h4>
-                                </a>
+                            <div class="btn-group">
+                                <a > Lista klientów </a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -59,6 +53,7 @@
                                         <label>Telefon</label>
                                         <input data-bind="value: PhonNumber, valueUpdate: 'afterkeydown'"}" type="tel" class="form-control" placeholder="Wpisz numer telefonu" required>
                                     </div>*@
+
                                 </div>                               
                                 <div class="btn-group">
                                     <div class="buttonexport" id="buttonlist">
@@ -125,25 +120,19 @@
                                 @*<a href="#search1" data-toggle="collapse"> Wyszukiwanie zaawansowane</a>*@
                                 <a href="" data-bind="click: CollapseSearch, text:SearchType"></a>
 
-                                <div class="buttonexport" id="buttonlist">
-                                    <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="Customer">
-                                        <i class="fa fa-plus"></i> Dodaj Klienta
-                                    </a>
-                                </div>
+                                
                             </div>
                             <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                             <div class="table-responsive" data-bind="visible: CustomerListVisible()">
                                 <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr class="info">
-                                            <th>Imię i Nazwisko Klienta</th>
-                                            <th>Imię Pacjenta</th>
+                                            <th>Imię i Nazwisko</th>
                                             <th>Telefon</th>
                                             <th>E-mail</th>
-                                            <th>Adres</th>
-                                            <th>Rodzaj Makretingu</th>
-                                            <th>Data pierwszej rejestracji</th>
+                                            <th>Miasto</th>
                                             <th>Status</th>
+                                           
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -153,15 +142,12 @@
                                             <td data-bind="text: $data.PhonNumber"></td>
                                             <td data-bind="text: $data.Mail"></td>
                                             <td data-bind="text: $data.City"></td>                                          
-                                            <td>
-                                                <span class="label-custom label label-default">Active</span>
-                                            </td>
+                                            <td><span class="label-custom label label-default">Active</span> </td>
                                             <td>
                                                 <a href="#"  data-url="Customer/CustomerProfile/id=0"  data-bind="attr: { 'href' : $parent.GotoProfile($element, UserID) }"
                                                    class="btn btn-add btn-sm">
                                                    <i class="fa fa-pencil"></i>
-                                                </a>s
-
+                                                </a>
                                                 @*<button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.UserID)" class="btn btn-add btn-sm">
                                                     @*data-toggle="modal" data-target="#customer1">
                                                     <i class="fa fa-pencil"></i>

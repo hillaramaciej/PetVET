@@ -23,13 +23,12 @@ namespace PetVET.Infrastructure
 
             CreateMap<Customer, CustomerViewModel>()
              .ForMember(m => m.FirstName, opt => opt.MapFrom(vm => vm.CusName))
-             .ForMember(m => m.LastName , opt => opt.MapFrom(vm => vm.CusLastname))
-             .ForMember(m => m.Mail , opt => opt.MapFrom(vm => vm.CusEmail))
-             .ForMember(m => m.City , opt => opt.MapFrom(vm => vm.CusCity))
-             .ForMember(m => m.UserID , opt => opt.MapFrom(vm => vm.Rowid))
-             .ForMember(m => m.PhonNumber, opt => opt.MapFrom(vm => vm. CusPhone));
-
-
+             .ForMember(m => m.LastName, opt => opt.MapFrom(vm => vm.CusLastname))
+             .ForMember(m => m.Mail, opt => opt.MapFrom(vm => vm.CusEmail))
+             .ForMember(m => m.City, opt => opt.MapFrom(vm => vm.CusCity))
+             .ForMember(m => m.UserID, opt => opt.MapFrom(vm => vm.Rowid))
+             .ForMember(m => m.PhonNumber, opt => opt.MapFrom(vm => vm.CusPhone));
+            
             CreateMap<ItemViewModel, Assortment>()
             .ForMember(m => m.AssNtx01, opt => opt.MapFrom(vm => vm.ItemCost))
             .ForMember(m => m.AssDtx01, opt => opt.MapFrom(vm => vm.ItemExpirationDate))
