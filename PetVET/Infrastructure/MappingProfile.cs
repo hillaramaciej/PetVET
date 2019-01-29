@@ -3,6 +3,7 @@ using PetVET.Database.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Models.ItemViewModels;
 using PetVET.Models.PetViewModels;
+using PetVET.Models.ServiceViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,17 @@ namespace PetVET.Infrastructure
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.ChipNumber))
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Weight))
             .ForMember(m => m.CalSex, opt => opt.MapFrom(vm => vm.Sex));
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Coat));
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Castrated)); 
+
+            CreateMap<ServiceViewModel, Treatment>()
+            .ForMember(m => m.TreDescription, opt => opt.MapFrom(vm => vm.))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Species))
+            //.ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.Race))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Age))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.ChipNumber))
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Weight))
+            .ForMember(m => m.TreCost, opt => opt.MapFrom(vm => vm.Sex));
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Coat));
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Castrated)); 
 

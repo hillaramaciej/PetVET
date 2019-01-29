@@ -5,7 +5,9 @@ function ViewModel() {
     //FORM 
     self.ServiceID = ko.observable();
     self.ServiceName = ko.observable();
+    self.ServiceType = ko.observable();
     self.ServiceCost = ko.observable();
+    self.ServiceDuration = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
@@ -25,7 +27,9 @@ function ViewModel() {
         var data = {
             serviceId: self.ServiceID(),
             serviceName: self.ServiceName(),
-            serviceCost: self.ServiceCost()
+            ServiceType: self.ServiceType(),
+            serviceCost: self.ServiceCost(),
+            ServiceDuration: self.ServiceDuration(),
         }
 
         self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
@@ -66,7 +70,9 @@ function ViewModel() {
 
         self.ServiceID(undefined);
         self.ServiceName("");
+        self.ServiceType(undefined);
         self.ServiceCost(undefined);
+        self.ServiceDuration(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -83,9 +89,11 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.ServiceID(jsonData.serviceId)
+        self.ServiceID(jsonData.serviceId);
         self.ServiceName(jsonData.serviceName);
+        self.ServiceType(jsonData.serviceType);
         self.ServiceCost(jsonData.serviceCost);
+        self.ServiceDuration(jsonData.serviceDuration);
     };
 
 }
