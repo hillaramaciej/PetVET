@@ -18,6 +18,7 @@ namespace PetVET.Repository
         public IOfficeDepartmentRepository OfficeDepartment { get; set; }
         public ICustomerAnimalRepository CustomerAnimal { get; set; }
         public IServiceRepository Treatment { get; set; }
+        public IEmployeesRepository Vet { get; set; }
 
         PetVetDbContext IUnitOfWork.Context => _context;
 
@@ -30,6 +31,7 @@ namespace PetVET.Repository
             OfficeDepartment = new OfficeDepartmentRepository(context);
             CustomerAnimal = new CustomerAnimalRepository(context);
             Treatment = new ServiceRepository(context);
+            Vet = new EmployeesRepository(context);
         }
 
         public int Complete()

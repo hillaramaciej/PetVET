@@ -1,0 +1,83 @@
+﻿@model PetVET.Models.AboutUsViewModels.AboutUsViewModel
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/AboutUsViewModel.js"></script>
+    <script type="text/javascript">
+    aboutUsViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <a class="btn btn-add " href="clist.html">
+                <i class="fa fa-list"></i>  Przejdź na listę usług
+            </a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+            <a data-bind="click: Save" class="btn btn-success">Save</a>
+
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- Form controls -->
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="btn-group">
+                                <a>Service List</a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form class="col-sm-6">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label>Nazwa Firmy</label>
+                                        <input data-bind='value: CompanyName' type="text" class="form-control" placeholder="Nazwa Firmy" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nazwa gabinetu</label>
+                                        <input data-bind="value: CabinetName" type="text" class="form-control" placeholder="Nazwa gabinetu">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Numer telefonu</label>
+                                        <input data-bind="value: Phone" type="number" class="form-control" placeholder="Numer telefonu">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Opis</label>
+                                        <input data-bind="value: Desc" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Link do FB</label>
+                                        <input data-bind="value: FB" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Link do Insta</label>
+                                        <input data-bind="value: Insta" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Link do strony WWW</label>
+                                        <input data-bind="value: WWW" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+<!-- /.content-wrapper -->
