@@ -12,26 +12,28 @@ namespace PetVET.Models.EmployeesViewModels
 {
     public class EmployeesViewModel : Profile , IViewModel
     {
-        [JsonProperty(PropertyName = "petId")]
-        public int EmployeeID { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceName")]
-        public string EmployeeName { get; set; }
+        [JsonProperty(PropertyName = "lastName")]
+        public string LastName { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceCost")]
-        public double EmployeeMail { get; set; }
+        [JsonProperty(PropertyName = "email")]
+        public string Email { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceCost")]
-        public double EmployeeTel { get; set; }
+        [JsonProperty(PropertyName = "pWZNumber")]
+        public int PWZNumber { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceType")]
-        public string EmployeeType { get; set; }
+        [JsonProperty(PropertyName = "address")]
+        public string Address { get; set; }
 
-
+        [Required]
+        [JsonProperty(PropertyName = "phoneNumber")]
+        public string PhoneNumber { get; set; }
 
 
     }

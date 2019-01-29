@@ -1,6 +1,6 @@
-﻿@model PetVET.Models.PetViewModels.PetViewModel
+﻿@model PetVET.Models.EmployeesViewModels.EmployeesViewModel
 @{
-    ViewData["Title"] = "AddPet";
+    ViewData["Title"] = "Employees";
     Layout = "~/Views/Shared/_LayoutVET.cshtml";
 }
 
@@ -8,9 +8,9 @@
     {
     <script src="~/js/Components/tmpl-ddl.js"></script>
     <script src="~/js/Utilis.js"></script>
-    <script src="~/js/ViewModel/PetViewModel.js"></script>
+    <script src="~/js/ViewModel/EmployeesViewModel.js"></script>
     <script type="text/javascript">
-    petViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    employeesViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
     </script>
 }
 
@@ -18,7 +18,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
             <a class="btn btn-add " href="clist.html">
-                  Przejdź do listy pacjentów
+                  Przejdź do listy pracowników
             </a>
             <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
             <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
@@ -40,57 +40,51 @@
                             <fieldset>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input data-bind='value: Name' type="text" class="form-control" placeholder="Nazwa" required>
+                                        <label>Imię</label>
+                                        <input data-bind='value: Name' type="text" class="form-control" placeholder="Imię" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Gatunek</label>
-                                        <input data-bind="value: Species" type="text" class="form-control" placeholder="Gatunek">
+                                        <label>Nazwiesko</label>
+                                        <input data-bind="value: LastName" type="text" class="form-control" placeholder="Nazwisko"required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Rasa</label>
-                                        <input data-bind="value: Race" type="text" class="form-control" placeholder="Rasa">
+                                        <label>E-mail</label>
+                                        <input data-bind="value: Email" type="email" class="form-control" placeholder="E-mail"required>
                                     </div>
-                                    <div>
-                                        <label>Przypisz Klienta</label><br />
-                                        <a data-bind="click: AddPet" class="btn btn-warning">Dodaj Klienta</a>
-                                    </div>
-
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Wiek</label>
-                                            <input data-bind="value: Age" type="number" class="form-control" placeholder="Wiek">
+                                            <label>Numer PWZ</label>
+                                            <input data-bind="value: PWZNumber" type="number" class="form-control" placeholder="Numer PWZ">
                                         </div>
                                         <div class="form-group">
-                                            <label>Numer Chip</label>
-                                            <input data-bind="value: ChipNumber" type="number" class="form-control" placeholder="Numer Chip">
+                                            <label>Adres</label>
+                                            <input data-bind="value: Address" type="text" class="form-control" placeholder="Adres">
                                         </div>
                                         <div class="form-check">
-                                            <label>Wykastrowany ?</label><br>
+                                            <label>Posiada konto ?</label><br>
                                             <label class="radio-inline">
-                                                <input data-bind="checked: Castrated" type="radio" name="status" value="1">Tak
+                                                <input data-bind="checked: UserAdded" type="radio" name="status" value="1">Tak
                                             </label>
                                             <label class="radio-inline">
-                                                <input data-bind="checked: Castrated" type="radio" name="status" value="0" checked="checked">Nie
+                                                <input data-bind="checked: UserAdded" type="radio" name="status" value="0" checked="checked">Nie
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Waga</label>
-                                            <input data-bind="value: Weight" type="number" class="form-control" placeholder="Waga">
+                                            <label>Telefon</label>
+                                            <input data-bind="value: PhoneNumber" type="number" class="form-control" placeholder="Telefon">
                                         </div>
-                                        <tmpl-ddl params='{data: SexOptionData,
-                                                            name:"Płeć",
-                                                            selectedValue : Sex,
+                                        <tmpl-ddl params='{data: PermitOptionData,
+                                                            name:"Uprawnienia",
+                                                            selectedValue : Uprawnienia,
                                                             caption: "Wybierz",
                                                             callback: SelectedValueCallback }'></tmpl-ddl>
-                                        <div class="form-group">
-                                            <label>Zdjecie</label>
-                                            <input type="file" name="petPicture">
-                                            <input type="hidden" name="old_petPicture">
+                                        <div>
+                                            <label>Utwórz konto</label><br />
+                                            <a data-bind="click: AddUser" class="btn btn-warning">Utwórz konto</a>
                                         </div>
                                     </div>
                                  </div>
