@@ -106,11 +106,16 @@ namespace PetVET.Controllers
         public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
         {           
             IEnumerable<Customer> result = null;
-            
+            int count = 0;
             try
             {
-                result = _IUnitOfWork.Customer.Search(search.Search);
-               
+                count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);
+                if(search.Search.Length >0)
+                result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);
+                else
+                    result = _IUnitOfWork.Customer.Search(search.Search, 1, count);
+
+
             }
             catch (Exception ex)
             {
@@ -120,7 +125,14 @@ namespace PetVET.Controllers
             if (result == null)
                 return Ok(new List<CustomerViewModel>());
 
-            var DTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result.ToList());
+            IEnumerable<CustomerViewModel> CustomerViewModel = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result.ToList());
+
+            CustomerQuickSearchResultDTO DTO = new CustomerQuickSearchResultDTO()
+            {
+                Result = CustomerViewModel,
+                Count = count,
+                PagesNumber = count % search.Step == 0 ? count/ search.Step : count / search.Step + 1
+            };
 
             return Ok(DTO);
        }

@@ -11,9 +11,11 @@ namespace PetVET.Repository
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        IEnumerable<Customer> Search(string search);
+        IEnumerable<Customer> Search(string search,int page, int step);
+
+        int SearchCount(string search, int page, int step);
 
       // public IEnumerable<Customer> FindAndMap(Expression<Func<Customer, bool>> predicate,)
-       
+
     }
 }

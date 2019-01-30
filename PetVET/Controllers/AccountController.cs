@@ -48,7 +48,7 @@ namespace PetVET.Controllers
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
@@ -64,6 +64,13 @@ namespace PetVET.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                   // var user  = await _userManager.FindByEmailAsync(model.Email);
+                   // var ttt = await _userManager.AddClaimAsync(user, new Claim("OrganizationId","1"));
+                   // var yy = _userManager.GetClaimsAsync(user).GetAwaiter().GetResult();
+
+                   //await _userManager.RemoveClaimsAsync(user, yy);
+
+                    //_userManager.AddToRoleAsync(, new Claim("OrganizationId", "1"));
                     _logger.LogInformation("Użytkownik zalogowany");
                     return RedirectToLocal(returnUrl);
                 }

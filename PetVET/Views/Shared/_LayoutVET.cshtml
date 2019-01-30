@@ -41,9 +41,11 @@
     <script src="~/Vendor/knockout/build/output/knockout-latest.js" type="text/javascript"></script>
     <script src="~/Vendor/knockout.validation/dist/knockout.validation.min.js" type="text/javascript"></script>
     <script src="~/Vendor/knockout-mapping/dist/knockout.mapping.min.js" type="text/javascript"></script>
+ 
+
     <!-- End Knockout -->
 </head>
-<body class="hold-transition sidebar-mini">   
+<body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="https://localhost:44343/" class="logo">
@@ -63,7 +65,7 @@
                     <span class="pe-7s-angle-left-circle"></span>
                 </a>
                 <!-- searchbar-->
-               
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Orders -->
@@ -360,9 +362,19 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Account" asp-action="Login" >
+
+                                   @* <a data-bind="click: Logout" class="btn btn-success">*@
+                                    <form method="post" asp-area="" asp-controller="Account" asp-action="Logout">
                                         <i class="fa fa-sign-out"></i> Signout
-                                    </a>
+
+                                        <button  type="submit">
+                                            //<a>
+
+
+                                                //
+                                            </a>
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -502,8 +514,8 @@
                             <i class="fa fa-file-text"></i>
                             <span>Opinie klientów</span>
                             @*<span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>*@
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>*@
                         </a>
                     </li>
                     <li class="treeview">
@@ -511,8 +523,8 @@
                             <i class="fa fa-file-text"></i>
                             <span>Statystyki i raporty</span>
                             @*<span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>*@
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>*@
                         </a>
                     </li>
                     <li class="treeview">
@@ -643,11 +655,11 @@
         <!-- =============================================== -->
         @RenderBody()
         @*<footer class="main-footer">
-            <strong>
-                Copyright &copy; 2016-2017
-                <a href="#">thememinister</a>.
-            </strong> All rights reserved.
-        </footer>*@
+                <strong>
+                    Copyright &copy; 2016-2017
+                    <a href="#">thememinister</a>.
+                </strong> All rights reserved.
+            </footer>*@
     </div>
     <!-- ./wrapper -->
     <!-- Start Core Plugins
@@ -686,5 +698,7 @@
     <!-- End Theme label Script
        =====================================================================-->
     @RenderSection("Scripts", required: false)
+    @*<script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/LayoutViewModel.js"></script>*@
 </body>
 </html>
