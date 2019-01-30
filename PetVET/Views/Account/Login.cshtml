@@ -14,7 +14,7 @@
     <div class="col-md-4">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                
+
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -37,6 +37,11 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Zaloguj się</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a asp-action="Register">Nowe konto?</a>
+                    </p>
                 </div>
                 <div class="form-group">
                     <p>

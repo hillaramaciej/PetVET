@@ -1,206 +1,243 @@
 ﻿
 
-function ViewModel () {
-        var self = this;
+function ViewModel() {
+    var self = this;
 
-       //FORM 
-        self.UserID = ko.observable();
-        self.FirstName = ko.observable("").extend({ required: true }).extend({ minLength: 3 });
-        self.PhonNumber = ko.observable("");
-        self.LastName = ko.observable("");
-        self.Mail = ko.observable("");
-        self.IsNewCustomer = ko.observable(true);
-        self.SearchType = ko.observable("Wyszukiwanie zaawansowane");
-        self.QuickSearch = ko.observable("");
-       //END FORM 
-        
+    //FORM 
+    self.UserID = ko.observable();
+    self.FirstName = ko.observable("").extend({ required: true }).extend({ minLength: 3 });
+    self.PhonNumber = ko.observable("");
+    self.LastName = ko.observable("");
+    self.Mail = ko.observable("");
+    self.IsNewCustomer = ko.observable(true);
+    self.SearchType = ko.observable("Wyszukiwanie zaawansowane");
+    self.QuickSearch = ko.observable("");
+    //END FORM
 
+    self.InfoMessage = ko.observable("");
+    self.IsInfoMessage = ko.observable(false);
+
+
+    //Paggination
+
+
+    //self.PaginnationArray = ko.observableArray([]);
+    //self.Page = ko.observable(1);
+    //self.Step = ko.observable(2);
+    //self.AllPages = ko.observable(0);
+
+    //self.Next = function () {
+
+    //    self.Page(self.Page() + 1);
+    //    var data = {
+    //        //firstName: self.FirstName(),
+    //        //phonNumber: self.PhonNumber(),
+    //        //lastName: self.LastName(),
+    //        //mail: self.Mail(),
+    //        page: self.Page(),
+    //        step: self.Step(),
+    //        search: self.QuickSearch(),
+    //    };
+
+    //    self.CustomerList([]);
+    //    self.Utilis.PostApi('api/customerApi/search', data, SearchSuccess, SearchFaild);
+    //};
+
+    //self.Previous = function () {
+
+    //    self.Page(self.Page() - 1);
+    //    var data = {
+    //        //firstName: self.FirstName(),
+    //        //phonNumber: self.PhonNumber(),
+    //        //lastName: self.LastName(),
+    //        //mail: self.Mail(),
+    //        page: self.Page(),
+    //        step: self.Step(),
+    //        search: self.QuickSearch(),
+    //    };
+
+    //    self.CustomerList([]);
+    //    self.Utilis.PostApi('api/customerApi/search', data, SearchSuccess, SearchFaild);
+    //};
+
+    //self.NextBy = function (param) {
+
+    //    self.Page(param());
+
+
+    //    console.log(self.Page());
+
+    //    var data = {
+    //        //firstName: self.FirstName(),
+    //        //phonNumber: self.PhonNumber(),
+    //        //lastName: self.LastName(),
+    //        //mail: self.Mail(),
+    //        page: self.Page(),
+    //        step: self.Step(),
+    //        search: self.QuickSearch(),
+    //    };
+
+    //    self.CustomerList([]);
+    //    self.Utilis.PostApi('api/customerApi/search', data, SearchSuccess, SearchFaild);
+    //};
+
+    //End Paggination
+
+    self.CustomerList = ko.observableArray([]);
+
+    self.Customer = function () {
+        var selfC = this;
+
+        selfC.UserID = ko.observable();
+        selfC.FirstName = ko.observable("")
+        selfC.PhonNumber = ko.observable("");
+        selfC.LastName = ko.observable("");
+        selfC.Mail = ko.observable("");
+        selfC.City = ko.observable("");
+
+        selfC.FullName = ko.computed(function () {
+            return selfC.FirstName() + " " + selfC.LastName();
+        }, selfC);
+    }
+
+    //SUBSCRIBE
+
+    ko.computed(function () {
+
+        quickSearchObject = {
+            //FirstName : ko.observable(self.FirstName),
+            //LastName: ko.observable(self.LastName),
+            //PhonNumber: ko.observable(self.PhonNumber),
+            //Mail: ko.observable(self.Mail),
+
+            QuickSearch: ko.observable(self.QuickSearch),
+        }
+
+        return ko.toJSON(quickSearchObject);
+    }).subscribe(function () {
+
+        if (self.QuickSearch() !== "") {
+            self.Page(1);
+            //self.Step(5);
+
+            var data = {
+                //firstName: self.FirstName(),
+                //phonNumber: self.PhonNumber(),
+                //lastName: self.LastName(),
+                //mail: self.Mail(),
+                page: self.Page(),
+                step: self.Step(),
+                search: self.QuickSearch(),
+            };
+
+            self.CustomerList([]);
+            self.Utilis.PostApi('api/customerApi/search', data, self.SearchSuccess, self.SearchFaild);
+        } else {
+            self.CustomerList([]);
+        }
+    });
+
+    self.SearchSuccess = function (response) {
+       
+        self.AllPages(response.pagesNumber);
+        self.PaginnationUtilis.SetPaginnation(self.PaginnationArray, self.Page(), self.Step(), response.count, self.AllPages());      
+
+        for (var i = 0; i < response.result.length; i++) {
+
+            var c = new self.Customer();
+            c.LastName(response.result[i].lastName);
+            c.FirstName(response.result[i].firstName);
+            c.PhonNumber(response.result[i].phonNumber);
+            c.Mail(response.result[i].mail);
+            c.UserID(response.result[i].userId);
+            c.City(response.result[i].city);
+
+            self.CustomerList.push(c);
+        }
+    };
+
+
+    self.SearchFaild = function (response) {
+
+    };
+    //END SUBSCRIBE
+
+    self.GotoProfile = function (element, id) {
+
+        return window.location.origin + "//" + element.getAttribute('data-url').replace('id=0', id());
+    };
+
+    self.ClearSearch = function () {
+        self.UserID("");
+        self.FirstName("")
+        self.PhonNumber("")
+        self.LastName("")
+        self.Mail("")
+        self.IsNewCustomer("")
+        self.QuickSearch("")
+    };
+
+    self.CustomerListVisible = ko.computed(function () {
+
+        if (self.CustomerList().length > 0)
+            return true;
+        else
+            return false;
+
+    });
+
+    self.optionData = [
+        { id: 1, name: "red" },
+        { id: 2, name: "green" },
+        { id: 3, name: "blue" },
+    ];
+
+    self.SelectedValue = ko.observable();
+    self.SelectedValueCallback = function (value) {
+        self.SelectedValue(value);
+    }
+
+    self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
-
-        self.CustomerList = ko.observableArray([]);
-
-        self.Customer = function () {
-            var selfC = this;
-
-            selfC.UserID = ko.observable();
-            selfC.FirstName = ko.observable("")
-            selfC.PhonNumber = ko.observable("");
-            selfC.LastName = ko.observable("");
-            selfC.Mail = ko.observable("");
-            selfC.City = ko.observable("");
-
-            selfC.FullName = ko.computed(function () {
-                return selfC.FirstName() + " " + selfC.LastName();
-            }, selfC);
-        }
-        
-
-        //SUBSCRIBE
-
-        ko.computed(function () {
-
-            quickSearchObject = {
-                //FirstName : ko.observable(self.FirstName),
-                //LastName: ko.observable(self.LastName),
-                //PhonNumber: ko.observable(self.PhonNumber),
-                //Mail: ko.observable(self.Mail),
-                QuickSearch: ko.observable(self.QuickSearch),
-            }
-
-            return ko.toJSON(quickSearchObject);
-        }).subscribe(function () {
-
-            if (self.QuickSearch() !== "") {
-                var data = {
-                    //firstName: self.FirstName(),
-                    //phonNumber: self.PhonNumber(),
-                    //lastName: self.LastName(),
-                    //mail: self.Mail(),
-                    search: self.QuickSearch(),
-                };
-
-                self.CustomerList([]);
-                self.Utilis.PostApi('api/customerApi/search', data, SearchSuccess, SearchFaild);
-            } else {
-                self.CustomerList([]);
-            }
-            });
-
-
-
-        var SearchSuccess = function (result) {
-            for (var i = 0; i < result.length; i++) {
-               
-                var c = new self.Customer();               
-                c.LastName(result[i].lastName); 
-                c.FirstName(result[i].firstName); 
-                c.PhonNumber(result[i].phonNumber); 
-                c.Mail(result[i].mail); 
-                c.UserID(result[i].userId); 
-                c.City(result[i].city); 
-                
-                self.CustomerList.push(c);
-            }            
-        };
-        var SearchFaild = function (result) {
-            let t = result;
-        };
-
-        //END SUBSCRIBE
-
-
-
-        self.GotoProfile = function (element, id) {           
-       
-            return window.location.origin + "//" + element.getAttribute('data-url').replace('id=0', id());
-        };
-
-        self.ClearSearch = function () {
-            self.UserID("");
-            self.FirstName("")
-            self.PhonNumber("")
-            self.LastName("")
-            self.Mail("")
-            self.IsNewCustomer("")
-            self.QuickSearch("")
-        };
-
-        self.CustomerListVisible = ko.computed(function () {
-
-            if (self.CustomerList().length > 0)
-                return true;
-            else
-                return false;
-
-        });
-
-        self.optionData = [
-            { id: 1, name: "red" },
-            { id: 2, name: "green" },
-            { id: 3, name: "blue" },
-        ];
-
-        self.SelectedValue = ko.observable();    
-        self.SelectedValueCallback = function (value) {
-            self.SelectedValue(value);
-        } 
-
-        self.ClearInfoMessage = function () {
-            self.InfoMessage = ko.observable("");
-            self.IsInfoMessage = ko.observable(false);
-        }
-    
-
-        self.MapFromJson = function (jsonData) {
-            if (window.console) {
-                console.log('MapFromJson>>');
-                console.log(jsonData);
-            }
-            window.setTimeout(function () {
-                self.MapFromJsonInternal(jsonData);
-            }, 1);
-        };
-
-        self.MapFromJsonInternal = function (jsonData) {
-            if (window.console)
-                console.log('MapFromJsonInternal');
-
-            self.UserID(jsonData.userID)
-            self.FirstName(jsonData.firstName);
-            self.PhonNumber(jsonData.phonNumber);
-            self.LastName(jsonData.lastName);
-            self.Mail(jsonData.mail);
-            self.IsNewCustomer(jsonData.isNewCustomer);
-        };
-
-        self.CollapseSearch = function () {
-            self.CustomerList([]);
-
-            self.ClearSearch();
-
-            $('#quickSearch').collapse('toggle');
-            $('#fullSearch').collapse('toggle');
-            if (self.SearchType() == "Wyszukiwanie zaawansowane")
-                self.SearchType("Wszukiwanie szybkie");
-            else
-                self.SearchType("Wyszukiwanie zaawansowane");
-        }
-        self.QuickSearchCall = function (data, event) {
-
-            if (event.which == 13) {                
-                return false;
-            }
-
-
-
-
-            return true;
-        }
-
     }
 
 
-//ko.components.register("tmpl-ddl", {
-//    viewModel: function (params) {
-//        var self = this;
-//        self.parent = params.$raw;
-//        self._data = params.data;
-//        self._name = params.name;
-//        self.Callback = params.callback;
-//        self._caption = params.caption;
+    self.MapFromJson = function (jsonData) {
+        if (window.console) {
+            console.log('MapFromJson>>');
+            console.log(jsonData);
+        }
+        window.setTimeout(function () {
+            self.MapFromJsonInternal(jsonData);
+        }, 1);
+    };
 
-//        self._selectedValue = ko.observable(ko.utils.unwrapObservable(params.selectedValue()));
-//        self._selectedValue.subscribe(function (newval) {
-//            self._selectedValue(newval);
-//            self.Callback(newval);
-//        });
-//    },
-//    template: '<div class="form-group">\
-//                 <label data-bind="text:_name">Bład nie ma ddlName!!!!</label>\
-//                 <select class="form-control" data-bind="options: _data ,optionsText: \'name\', optionsValue: \'id\', value: _selectedValue, optionsCaption: _caption "></select>\
-//               </div>'
-//});
+    self.MapFromJsonInternal = function (jsonData) {
+        if (window.console)
+            console.log('MapFromJsonInternal');
+
+        self.UserID(jsonData.userID)
+        self.FirstName(jsonData.firstName);
+        self.PhonNumber(jsonData.phonNumber);
+        self.LastName(jsonData.lastName);
+        self.Mail(jsonData.mail);
+        self.IsNewCustomer(jsonData.isNewCustomer);
+    };
+
+    self.CollapseSearch = function () {
+        self.CustomerList([]);
+
+        self.ClearSearch();
+
+        $('#quickSearch').collapse('toggle');
+        $('#fullSearch').collapse('toggle');
+        if (self.SearchType() == "Wyszukiwanie zaawansowane")
+            self.SearchType("Wszukiwanie szybkie");
+        else
+            self.SearchType("Wyszukiwanie zaawansowane");
+    }
+}
 
 ko.validation.configure = {
     decorateElement: true,
@@ -209,12 +246,14 @@ ko.validation.configure = {
     insertMessages: true,
     parseInputAttributes: true,
     messageTemplate: null
-}; 
+};
 
 
 var components = new ComponentsRegistration();
 
 var customerListViewModel = new ViewModel();
 customerListViewModel.Utilis = new Utilis();
+customerListViewModel.PaginnationUtilis = new PaginationUtilis();
+customerListViewModel.PaginnationUtilis.InitPaginnation(customerListViewModel,2);
 ko.applyBindings(customerListViewModel);
 

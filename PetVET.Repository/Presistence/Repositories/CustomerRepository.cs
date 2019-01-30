@@ -72,18 +72,31 @@ namespace PetVET.Repository
         //    throw new NotImplementedException();
         //}
 
-        public IEnumerable<Customer> Search(string search)
-        {   
+        public IEnumerable<Customer> Search(string search, int page, int step)
+        {
+
+            var p = (page - 1) * step;
+
             return Customer.Where(x => x.CusPhone.Contains(search)
                                     || x.CusEmail.Contains(search)
                                     || (x.CusLastname).Contains(search)
-                                    || x.CusName.Contains(search));
+                                    || x.CusName.Contains(search)).Skip(p).Take(step);
+        }
+
+
+        public int SearchCount(string search, int page, int step)
+        {
+
+            return Customer.Where(x => x.CusPhone.Contains(search)
+                                    || x.CusEmail.Contains(search)
+                                    || (x.CusLastname).Contains(search)
+                                    || x.CusName.Contains(search)).Count();
         }
 
         //public IEnumerable<Customer> FindAndMap(Expression<Func<Customer, bool>> predicate, object )
         //{
         //    throw new NotImplementedException();
         //}
-    
+
     }
 }
