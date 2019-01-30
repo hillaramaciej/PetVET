@@ -1,6 +1,6 @@
-﻿@model PetVET.Models.ServiceViewModels.ServiceViewModel
+﻿@model PetVET.Models.EquipmentViewModels.EquipmentViewModel
 @{
-    ViewData["Title"] = "AddService";
+    ViewData["Title"] = "Equipment";
     Layout = "~/Views/Shared/_LayoutVET.cshtml";
 }
 
@@ -8,7 +8,7 @@
     {
     <script src="~/js/Components/tmpl-ddl.js"></script>
     <script src="~/js/Utilis.js"></script>
-    <script src="~/js/ViewModel/ServiceViewModel.js"></script>
+    <script src="~/js/ViewModel/EquipmentViewModel.js"></script>
     <script type="text/javascript">
     serviceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
     </script>
@@ -18,7 +18,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
             <a class="btn btn-add " href="clist.html">
-                <i class="fa fa-list"></i>  Przejdź na listę usług
+                <i class="fa fa-list"></i>  Przejdź na listę sprzętów
             </a>
             <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
             <a data-bind="click: Save" class="btn btn-success">Save</a>
@@ -32,34 +32,19 @@
                 <div class="panel panel-bd ">
                     @*<div class="panel-heading">
                         <div class="btn-group">
-                            <a>Service List</a>
+                            <a>Lista Sprzętów</a>
                         </div>
                     </div>*@
                     <div class="panel-body">
                         <form class="col-sm-6">
                             <fieldset>
                                 <div class="form-group">
-                                    <label>Nazwa usługi</label>
-                                    <input data-bind='value: ServiceName' type="text" class="form-control" >
+                                    <label>Nazwa Sprzętu</label>
+                                    <input data-bind='value: EquipmentName' type="text" class="form-control" placeholder="Wpisz nazwę usługi" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Kategoria</label>
-                                    <input data-bind="value: ServiceType" type="text" class="form-control" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Cena</label>
-                                    <input data-bind="value: ServiceCost" type="number" class="form-control" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Podatek</label>
-                                    <input data-bind="value: ServiceCost" type="number" class="form-control" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Czas trwania</label>
-                                    <input data-bind="value: ServiceDuration" type="number" class="form-control" >
+                                    <input data-bind="value: EquipmentType" type="text" class="form-control" placeholder="Wybierz kategorie">
                                 </div>
 
                             </fieldset>

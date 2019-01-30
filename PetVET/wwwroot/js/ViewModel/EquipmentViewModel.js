@@ -3,43 +3,23 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.Name = ko.observable();
-    self.LastName = ko.observable();
-    self.Email = ko.observable();
-    self.PWZNumber = ko.observable();
-    self.Address = ko.observable();
-    self.PhoneNumber = ko.observable();
-    self.Permit = ko.observable();
-
+    self.EquipmentID = ko.observable();
+    self.EquipmentName = ko.observable();
+    self.EquipmentType = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
-
-    self.PermitOptionData = [
-        { id: 1, name: "Manager" },
-        { id: 2, name: "Weterynarz" },
-        { id: 3, name: "Recepcja" },
-    ];
-    
-    self.SelectedValueCallback = function (value) {
-        self.Permit(value);
-    }
-
 
 
     self.Save = function () {
 
         var data = {
-            name: self.Name(),
-            lastName: self.LastName(),
-            email: self.Email(),
-            pWZNumber: self.PWZNumber(),
-            address: self.Address(),
-            phoneNumber: self.PhoneNumber(),
-            permit: self.Permit(),
+            equipmentId: self.EquipmentID(),
+            equipmentName: self.EquipmentName(),
+            equipmentType: self.EquipmentType(),
         }
 
-        self.Utilis.PostApi('api/EmployeesApi', data, self.SaveSuccessfull, SaveFailed)
+        self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
 
     };
 
@@ -74,13 +54,10 @@ function ViewModel() {
 
     self.AddNew = function () {
         self.ClearInfoMessage();
-        self.Name(undefined);
-        self.LastName("");
-        self.Email(undefined);
-        self.PWZNumber(undefined);
-        self.Address(undefined); 
-        self.PhoneNumber(undefined);
-        self.Permit("");
+
+        self.EquipmentID(undefined);
+        self.EquipmentName("");
+        self.EquipmentType(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -97,13 +74,9 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.Name(jsonData.name);
-        self.LastName(jsonData.lastName);
-        self.Email(jsonData.email);
-        self.PWZNumber(jsonData.pWZNumber);
-        self.Address(jsonData.address);
-        self.PhoneNumber(jsonData.phoneNumber);
-        self.Permit(jsonData.permit);
+        self.EquipmentID(jsonData.equipmentId);
+        self.EquipmentName(jsonData.equipmentName);
+        self.EquipmentType(jsonData.equipmentType);
     };
 
 }
@@ -141,7 +114,7 @@ function ViewModel() {
 
 var components = new ComponentsRegistration();
 
-var employeesViewModel = new ViewModel();
-employeesViewModel.Utilis = new Utilis();
-ko.applyBindings(employeesViewModel);
+var equipmentViewModel = new ViewModel();
+equipmentViewModel.Utilis = new Utilis();
+ko.applyBindings(equipmentViewModel);
 

@@ -3,43 +3,46 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.Name = ko.observable();
-    self.LastName = ko.observable();
-    self.Email = ko.observable();
-    self.PWZNumber = ko.observable();
-    self.Address = ko.observable();
-    self.PhoneNumber = ko.observable();
-    self.Permit = ko.observable();
-
+    self.InvoiceID = ko.observable();
+    self.InvoiceTyp = ko.observable();
+    self.Service = ko.observable();
+    self.Item = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    self.PermitOptionData = [
-        { id: 1, name: "Manager" },
-        { id: 2, name: "Weterynarz" },
-        { id: 3, name: "Recepcja" },
+
+    self.ServiceOptionData = [
+        { id: 1, name: "Usługa 1" },
+        { id: 2, name: "Treba podłączyć z bazy usługi" },
+        { id: 3, name: "Usługa 3" },
     ];
     
     self.SelectedValueCallback = function (value) {
-        self.Permit(value);
+        self.Service(value);
     }
 
+    self.ItemOptionData = [
+        { id: 1, name: "Lek 1" },
+        { id: 2, name: "Treba podłączyć z bazy leki" },
+        { id: 3, name: "Lek 3" },
+    ];
 
+    self.SelectedValueCallback = function (value) {
+        self.Item(value);
+    }
 
     self.Save = function () {
 
         var data = {
-            name: self.Name(),
-            lastName: self.LastName(),
-            email: self.Email(),
-            pWZNumber: self.PWZNumber(),
-            address: self.Address(),
-            phoneNumber: self.PhoneNumber(),
-            permit: self.Permit(),
+            invoiceID: self.InvoiceID(),
+            invoiceTyp: self.InvoiceTyp(),
+            invoiceTyp: self.Service(),
+            itemTyp: self.Item(),
+        
         }
 
-        self.Utilis.PostApi('api/EmployeesApi', data, self.SaveSuccessfull, SaveFailed)
+        self.Utilis.PostApi('api/InvoiceApi', data, self.SaveSuccessfull, SaveFailed)
 
     };
 
@@ -74,13 +77,11 @@ function ViewModel() {
 
     self.AddNew = function () {
         self.ClearInfoMessage();
-        self.Name(undefined);
-        self.LastName("");
-        self.Email(undefined);
-        self.PWZNumber(undefined);
-        self.Address(undefined); 
-        self.PhoneNumber(undefined);
-        self.Permit("");
+
+        self.InvoiceID(undefined);
+        self.InvoiceTyp("");
+        self.Service("");
+        self.Item("");
     };
 
     self.MapFromJson = function (jsonData) {
@@ -97,13 +98,10 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.Name(jsonData.name);
-        self.LastName(jsonData.lastName);
-        self.Email(jsonData.email);
-        self.PWZNumber(jsonData.pWZNumber);
-        self.Address(jsonData.address);
-        self.PhoneNumber(jsonData.phoneNumber);
-        self.Permit(jsonData.permit);
+        self.InvoiceID(jsonData.invoiceID);
+        self.InvoiceTyp(jsonData.invoiceTyp);
+        self.Service(jsonData.service);
+        self.Item(jsonData.item);
     };
 
 }
@@ -141,7 +139,6 @@ function ViewModel() {
 
 var components = new ComponentsRegistration();
 
-var employeesViewModel = new ViewModel();
-employeesViewModel.Utilis = new Utilis();
-ko.applyBindings(employeesViewModel);
-
+var invoiceViewModel = new ViewModel();
+invoiceViewModel.Utilis = new Utilis();
+ko.applyBindings(invoiceViewModel);

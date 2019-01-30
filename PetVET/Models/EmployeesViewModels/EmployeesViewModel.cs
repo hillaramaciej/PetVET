@@ -35,6 +35,8 @@ namespace PetVET.Models.EmployeesViewModels
         [JsonProperty(PropertyName = "phoneNumber")]
         public string PhoneNumber { get; set; }
 
-
+        [Required]
+        [JsonProperty(PropertyName = "permit")]
+        public string Permit { get; set; }
     }
 }
