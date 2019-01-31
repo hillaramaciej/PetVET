@@ -52,6 +52,8 @@ namespace PetVET.Infrastructure
 
             CreateMap<ServiceViewModel, Treatment>()
             .ForMember(m => m.TreDescription, opt => opt.MapFrom(vm => vm.ServiceName))
+            .ForMember(m => m.TreOdt, opt => opt.MapFrom(vm => vm.OfficeId))
+            .ForMember(m => m.TrePkwiu, opt => opt.MapFrom(vm => vm.ServiceType))
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Species))
             //.ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.Race))
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Age))

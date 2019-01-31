@@ -58,9 +58,13 @@ namespace PetVET.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]ServiceViewModel serviceViewModel)
         {
-            // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
+            //   User.Identity.Name
+            //Forenig key
+            serviceViewModel.OfficeId = 1;
+            serviceViewModel.ServiceType = "21.10.54.0";
+          //End Forenig Key
 
-            Treatment c = _mapper.Map<ServiceViewModel, Treatment>(serviceViewModel);           //baza danych 
+          Treatment c = _mapper.Map<ServiceViewModel, Treatment>(serviceViewModel);           //baza danych 
             try
             {
                 if (_IUnitOfWork.Treatment.Find(x => x.TreDescription == serviceViewModel.ServiceName).FirstOrDefault() != null)     //baza danych
@@ -73,7 +77,6 @@ namespace PetVET.Controllers
 
                 serviceViewModel.ServiceID = _IUnitOfWork.Treatment
                                             .Find(x => x.TreDescription == serviceViewModel.ServiceName).First().Rowid;
-                //|| x.CusPhone == serviceViewModel.PhonNumber).First().Rowid;
             }
             catch (SqlException exc)
             {
@@ -101,40 +104,5 @@ namespace PetVET.Controllers
         {
         }
 
-
-       // [HttpPost("search")]
-       // public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
-       // {           
-       //     IEnumerable<Customer> result = null;
-       //     int count = 0;
-       //     try
-       //     {
-       //         count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);
-       //         if(search.Search.Length >0)
-       //         result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);
-       //         else
-       //             result = _IUnitOfWork.Customer.Search(search.Search, 1, count);
-
-
-       //     }
-       //     catch (Exception ex)
-       //     {
-       //         //return NoContent();
-       //         throw new Exception("Przepraszamy, proszę sprubować ponownie!");
-       //     }
-       //     if (result == null)
-       //         return Ok(new List<CustomerViewModel>());
-
-       //     IEnumerable<CustomerViewModel> CustomerViewModel = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerViewModel>>(result.ToList());
-
-       //     CustomerQuickSearchResultDTO DTO = new CustomerQuickSearchResultDTO()
-       //     {
-       //         Result = CustomerViewModel,
-       //         Count = count,
-       //         PagesNumber = count % search.Step == 0 ? count/ search.Step : count / search.Step + 1
-       //     };
-
-       //     return Ok(DTO);
-       //}
     }
 }
