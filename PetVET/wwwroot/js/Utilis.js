@@ -47,6 +47,7 @@ var Utilis = function () {
 
     return {
         PostApi: self.PostApi,
+        GetApi: self.GetApi
     }
 
 };

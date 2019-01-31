@@ -1,0 +1,60 @@
+@using Microsoft.AspNetCore.Identity
+@using PetVET.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("SuperAdmin") || User.IsInRole("Manager")))
+{
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Profil gabinetu</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li>
+            <a asp-area="" asp-controller="AboutUs" asp-action="AboutUs">
+                Informacje ogólne
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="" asp-action="">
+                Kategorie
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="" asp-action="">
+                Zdjêcia gabinetu
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="OpenHours" asp-action="OpenHours">
+                Godziny otwarcia
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="" asp-action="">
+                Grafik pracy
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Employees" asp-action="Employees">
+                Pracownicy
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Service" asp-action="AddService">
+                Us³ugi
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Equipment" asp-action="Equipment">
+                Sprzêt
+            </a>
+        </li>
+    </ul>
+</li>
+}

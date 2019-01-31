@@ -12,11 +12,7 @@ function ViewModel() {
     self.IsInfoMessage = ko.observable(false);
 
 
-    self.ServiceOptionData = [
-        { id: 1, name: "Usługa 1" },
-        { id: 2, name: "Treba podłączyć z bazy usługi" },
-        { id: 3, name: "Usługa 3" },
-    ];
+    self.ServiceOptionData = ko.observableArray([]);
     
     self.SelectedValueCallback = function (value) {
         self.Service(value);
@@ -124,6 +120,22 @@ function ViewModel() {
         self.Item(jsonData.item);
     };
 
+
+    self.Init = function () {
+        debugger;
+
+        var data = null;
+        self.Utilis.GetApi('api/serviceApi/', data, function (response) {
+
+            debugger;
+            for (var i = 0; i < response.length; i++) {
+                self.ServiceOptionData.push({ id : response[i].id, name : response[i].name});
+            }
+
+
+        }, self.SearchFaild);
+    };
+
 }
 
 
@@ -161,4 +173,5 @@ var components = new ComponentsRegistration();
 
 var invoiceViewModel = new ViewModel();
 invoiceViewModel.Utilis = new Utilis();
+invoiceViewModel.Init();
 ko.applyBindings(invoiceViewModel);

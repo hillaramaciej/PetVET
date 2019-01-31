@@ -11,27 +11,30 @@ using PetVET.Models;
 using PetVET.Models._Common;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Models.ServiceViewModels;
+using PetVET.Models.SuperAdmin;
 using PetVET.Repository;
 using PetVET.Repository.Core;
+using PetVET.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PetVET.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="SuperAdmin")]
     // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
     [Route("api/[controller]")]
-    public class ServiceApiController : Controller
+    public class SuperAdminApiController : Controller
     {
 
         IUnitOfWork _IUnitOfWork;
         IMapper _mapper;
-
-        public ServiceApiController(IUnitOfWork IUnitOfWork,
-                                     IMapper mapper)
+        ICreateOrganization _createOrganization;
+        public SuperAdminApiController(IUnitOfWork IUnitOfWork,
+                                     IMapper mapper, ICreateOrganization createOrganization)
         {
             _IUnitOfWork = IUnitOfWork;
             _mapper = mapper;
+            _createOrganization = createOrganization;
         }
 
         // GET: api/<controller>
@@ -75,32 +78,19 @@ namespace PetVET.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Post([FromBody]ServiceViewModel serviceViewModel)
+        async public Task<IActionResult> Post([FromBody]AddOrganizationViewModel serviceViewModel)
         {
-            //   User.Identity.Name
-            //Forenig key
-            //serviceViewModel.OfficeId = 1;
-            //serviceViewModel.ServiceType = "21.10.54.0";
-          //End Forenig Key
-
+            if (!ModelState.IsValid)
+                return null;    //do obczajenia kiedy co powinien zwracać
             try
             {
-                Treatment c = _mapper.Map<ServiceViewModel, Treatment>(serviceViewModel);           //baza danych 
-                c.TreOdt = _IUnitOfWork.OfficeDepartment.Find(x => x.Rowid == 1).FirstOrDefault();
-                c.TrePkwiuNavigation = _IUnitOfWork.PKWIUR.Find(x => x.PkwiuCode == "21.10.54.0").FirstOrDefault();
+              var result = await _createOrganization.Create(serviceViewModel.Mail, serviceViewModel.LicenseCount);
 
-
-
-                if (_IUnitOfWork.Treatment.Find(x => x.TreDescription == serviceViewModel.ServiceName).FirstOrDefault() != null)     //baza danych
+                if (!result)
                 {
-                    return new ObjectResult($"Usługa o podanej nazwie : {serviceViewModel.ServiceName}, istnieje juz w bazie usług");
+                    return Ok("nie udało sie zpisać");
                 }
 
-                _IUnitOfWork.Treatment.Add(c);   //baza
-                _IUnitOfWork.Complete();
-
-                serviceViewModel.ServiceID = _IUnitOfWork.Treatment
-                                            .Find(x => x.TreDescription == serviceViewModel.ServiceName).First().Rowid;
             }
             catch (SqlException exc)
             {
@@ -108,10 +98,13 @@ namespace PetVET.Controllers
             }
             catch(Exception ex)
             {
-                var t = "";
+               
             }
 
-            return CreatedAtAction("Get", new { id = serviceViewModel.ServiceID });         
+            return Ok("Poprawnie dodano nowe konto");
+
+
+            //return CreatedAtAction("Get", new { id = serviceViewModel.ServiceID });         
         }
 
         public async Task<IActionResult> GetAll()

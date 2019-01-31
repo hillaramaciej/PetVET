@@ -12,5 +12,10 @@ namespace PetVET.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+
+        public int OrganizationId { get; set; }
+
+        public int LicenseCount { get; set; }
     }
 }

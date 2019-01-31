@@ -19,10 +19,12 @@ namespace PetVET.Repository
         public ICustomerAnimalRepository CustomerAnimal { get; set; }
         public IServiceRepository Treatment { get; set; }
         public IEmployeesRepository Vet { get; set; }
-        //public IEquipmentRepository Equipment { get; set; }
+        public IPKWIURepository PKWIUR { get; }
+        public IInvoiceRepository Invoice { get; }
+        public IOfficeRepository Office { get; }
+
 
         PetVetDbContext IUnitOfWork.Context => _context;
-
 
         public UnitOfWork(PetVetDbContext context)
         {
@@ -33,6 +35,7 @@ namespace PetVET.Repository
             CustomerAnimal = new CustomerAnimalRepository(context);
             Treatment = new ServiceRepository(context);
             Vet = new EmployeesRepository(context);
+            PKWIUR = new PKWIURepository(context);
             //Equipment = new EquipmentRepository(context);
         }
 
