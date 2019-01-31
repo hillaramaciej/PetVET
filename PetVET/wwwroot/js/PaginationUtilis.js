@@ -7,6 +7,7 @@ var PaginationUtilis = function () {
         var self = this;
         this.Page = ko.observable(stepObject.Page);
         this.Visable = ko.observable(stepObject.Visable);
+        this.Selected = ko.observable(false);
     };
 
 
@@ -29,7 +30,6 @@ var PaginationUtilis = function () {
                 step: parent.Step(),
                 search: parent.QuickSearch(),
             };
-            debugger;
             parent.CustomerList([]);
             parent.Utilis.PostApi('api/customerApi/search', data, parent.SearchSuccess, parent.SearchFaild);
         };
@@ -71,6 +71,18 @@ var PaginationUtilis = function () {
             parent.CustomerList([]);
             parent.Utilis.PostApi('api/customerApi/search', data, parent.SearchSuccess, parent.SearchFaild);
         };
+    };
+
+
+    var SetSelected = function (array, page) {
+        debugger;
+        var match = ko.utils.arrayFirst(array(), function (item) {
+            return item.Page() == page;
+        });
+
+        if (match) {
+            match.Selected(true);
+        }
     };
 
     self.SetPaginnation = function (array, page, step, max, allPages) {
@@ -168,22 +180,18 @@ var PaginationUtilis = function () {
                     new stepViewModel({ Page: 'Next', Visable: page + 1 != allPages && page != allPages })
                 );
 
-                if (page >= 4) {
-                    debugger;
-
+                if (page >= 4) {  
 
                     array()[2].Page(page - 1);
                     array()[3].Page(page);
                     array()[4].Page(page + 1)
-
-
-
                 }
             }
-
         }
 
 
+        debugger;
+        SetSelected(array, page);
     };    
 
     return {

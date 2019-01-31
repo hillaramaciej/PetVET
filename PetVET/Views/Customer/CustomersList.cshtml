@@ -163,17 +163,17 @@
                             <!-- ko if: PaginnationArray().length > 0 -->
                             <div class="btn-group pull-right">
                                 <button data-bind="click: Previous   ,    text: PaginnationArray()[0].Page, visible :PaginnationArray()[0].Visable"></button>
-                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[1].Page) ,        text: PaginnationArray()[1].Page, visible :PaginnationArray()[1].Visable"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[1].Page) ,        text: PaginnationArray()[1].Page, visible :PaginnationArray()[1].Visable ,  css: {'selected-paggination' :  PaginnationArray()[1].Selected()}"></button>
                                 <!-- ko if:  Page() >= 4 -->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <!-- /ko -->
-                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[2].Page) ,        text: PaginnationArray()[2].Page, visible :PaginnationArray()[2].Visable"></button>
-                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[3].Page) ,        text: PaginnationArray()[3].Page, visible :PaginnationArray()[3].Visable"></button>
-                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[4].Page) ,        text: PaginnationArray()[4].Page, visible :PaginnationArray()[4].Visable"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[2].Page) ,        text: PaginnationArray()[2].Page, visible :PaginnationArray()[2].Visable,  css: {'selected-paggination' :  PaginnationArray()[2].Selected()  }"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[3].Page) ,        text: PaginnationArray()[3].Page, visible :PaginnationArray()[3].Visable ,  css: {'selected-paggination' :  PaginnationArray()[3].Selected()  }"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[4].Page) ,        text: PaginnationArray()[4].Page, visible :PaginnationArray()[4].Visable,  css: {'selected-paggination' :  PaginnationArray()[4].Selected() }"></button>
                                 <!-- ko if:  (Page() + 1 !=  AllPages()) ||(Page() !=  AllPages())  -->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <!-- /ko -->
-                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[5].Page) ,        text: PaginnationArray()[5].Page, visible :PaginnationArray()[5].Visable"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[5].Page) ,        text: PaginnationArray()[5].Page, visible :PaginnationArray()[5].Visable,  css: {'selected-paggination' :  PaginnationArray()[5].Selected() }"></button>
                                 <button data-bind="click: Next   ,        text: PaginnationArray()[6].Page, visible :PaginnationArray()[6].Visable"></button>
                             </div>
                             <!-- /ko -->
