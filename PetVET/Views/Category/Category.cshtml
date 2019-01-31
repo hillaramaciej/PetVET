@@ -1,0 +1,57 @@
+﻿@model PetVET.Models.CategoryViewModels.CategoryViewModel
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/CategoryViewModel.js"></script>
+    <script type="text/javascript">
+    serviceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+            <a class="btn btn-add " href="clist.html">
+                <i class="fa fa-list"></i>  Przejdź na listę sprzętów
+            </a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+            <a data-bind="click: Save" class="btn btn-success">Save</a>
+      
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-12">
+                <div class="panel panel-bd ">
+                    @*<div class="panel-heading">
+                        <div class="btn-group">
+                            <a>Lista Sprzętów</a>
+                        </div>
+                    </div>*@
+                    <div class="panel-body">
+                        <form class="col-sm-6">
+                            <fieldset>
+                                <tmpl-ddl params='{data: ServiceOptionData,
+                                        name:"Usługa",
+                                        selectedValue : Service,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                            </fieldset>
+                        </form>
+                      
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
