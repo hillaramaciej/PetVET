@@ -27,6 +27,10 @@ namespace PetVET.Models.ServiceViewModels
         public int ServiceCost { get; set; }
 
         [Required]
+        [JsonProperty(PropertyName = "serviceTax")]
+        public int ServiceTax { get; set; }
+
+        [Required]
         [JsonProperty(PropertyName = "serviceDuration")]
         public int ServiceDuration { get; set; }
 

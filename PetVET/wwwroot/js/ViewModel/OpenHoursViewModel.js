@@ -3,12 +3,9 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.ServiceID = ko.observable();
-    self.ServiceName = ko.observable();
-    self.ServiceType = ko.observable();
-    self.ServiceCost = ko.observable();
-    self.ServiceTax = ko.observable();
-    self.ServiceDuration = ko.observable();
+    self.OpenHoursID = ko.observable();
+    self.OpenHoursName = ko.observable();
+    self.OpenHoursType = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
@@ -17,12 +14,9 @@ function ViewModel() {
     self.Save = function () {
 
         var data = {
-            serviceId: self.ServiceID(),
-            serviceName: self.ServiceName(),
-            ServiceType: self.ServiceType(),
-            serviceCost: self.ServiceCost(),
-            serviceTax: self.ServiceTax(),
-            ServiceDuration: self.ServiceDuration(),
+            openHoursId: self.OpenHoursID(),
+            openHoursName: self.OpenHoursName(),
+            openHoursType: self.OpenHoursType(),
         }
 
         self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
@@ -61,12 +55,9 @@ function ViewModel() {
     self.AddNew = function () {
         self.ClearInfoMessage();
 
-        self.ServiceID(undefined);
-        self.ServiceName("");
-        self.ServiceType(undefined);
-        self.ServiceCost(undefined);
-        self.ServiceTax(undefined);
-        self.ServiceDuration(undefined);
+        self.OpenHoursID(undefined);
+        self.OpenHoursName("");
+        self.OpenHoursType(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -83,12 +74,9 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.ServiceID(jsonData.serviceId);
-        self.ServiceName(jsonData.serviceName);
-        self.ServiceType(jsonData.serviceType);
-        self.ServiceCost(jsonData.serviceCost);
-        self.ServiceTax(jsonData.serviceTax);
-        self.ServiceDuration(jsonData.serviceDuration);
+        self.OpenHoursID(jsonData.openHoursId);
+        self.OpenHoursName(jsonData.openHoursName);
+        self.OpenHoursType(jsonData.openHoursType);
     };
 
 }
@@ -126,7 +114,7 @@ function ViewModel() {
 
 var components = new ComponentsRegistration();
 
-var serviceViewModel = new ViewModel();
-serviceViewModel.Utilis = new Utilis();
-ko.applyBindings(serviceViewModel);
+var openHoursViewModel = new ViewModel();
+openHoursViewModel.Utilis = new Utilis();
+ko.applyBindings(openHoursViewModel);
 
