@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PetVET.Database.Models;
+using PetVET.Models._Common;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Models.ItemViewModels;
 using PetVET.Models.PetViewModels;
@@ -16,6 +17,12 @@ namespace PetVET.Infrastructure
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
+            
+
+            CreateMap<Treatment, DllDTO>()
+                .ForMember(m => m.Id, opt => opt.MapFrom(vm => vm.Rowid))
+                .ForMember(m => m.Name, opt => opt.MapFrom(vm => vm.TreDescription));
+
             CreateMap<CustomerViewModel, Customer>()
                 .ForMember(m => m.CusName, opt => opt.MapFrom(vm => vm.FirstName))
                 .ForMember(m => m.CusLastname, opt => opt.MapFrom(vm => vm.LastName))
@@ -52,9 +59,9 @@ namespace PetVET.Infrastructure
 
             CreateMap<ServiceViewModel, Treatment>()
             .ForMember(m => m.TreDescription, opt => opt.MapFrom(vm => vm.ServiceName))
-            .ForMember(m => m.TreOdt, opt => opt.MapFrom(vm => vm.OfficeId))
-            .ForMember(m => m.TrePkwiu, opt => opt.MapFrom(vm => vm.ServiceType))
-            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Species))
+            //.ForMember(m => m.TreOdt, opt => opt.MapFrom(vm => vm.OfficeId))
+            //.ForMember(m => m.TrePkwiu, opt => opt.MapFrom(vm => vm.ServiceType))
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Species))
             //.ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.Race))
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Age))
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.ChipNumber))

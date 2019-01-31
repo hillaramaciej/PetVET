@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetVET.Database.Models;
 using PetVET.Models;
+using PetVET.Models._Common;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Models.ServiceViewModels;
 using PetVET.Repository;
@@ -35,9 +36,27 @@ namespace PetVET.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Treatment> dto = null;
+            try
+            {
+                dto =  _IUnitOfWork.Treatment.GetAll().ToList();
+                var result = _mapper.Map<List<Treatment>, List<DllDTO>>(dto);
+                return Ok(result);
+            }
+            catch (SqlException exc)
+            {
+                throw new Exception("Internal servier error");
+            }
+            catch (Exception ex)
+            {
+               
+            }
+
+            return NotFound("Klient nie istnieje w bazie danych");
+            
+
         }
 
         // GET api/<controller>/5
@@ -60,13 +79,18 @@ namespace PetVET.Controllers
         {
             //   User.Identity.Name
             //Forenig key
-            serviceViewModel.OfficeId = 1;
-            serviceViewModel.ServiceType = "21.10.54.0";
+            //serviceViewModel.OfficeId = 1;
+            //serviceViewModel.ServiceType = "21.10.54.0";
           //End Forenig Key
 
-          Treatment c = _mapper.Map<ServiceViewModel, Treatment>(serviceViewModel);           //baza danych 
             try
             {
+                Treatment c = _mapper.Map<ServiceViewModel, Treatment>(serviceViewModel);           //baza danych 
+                c.TreOdt = _IUnitOfWork.OfficeDepartment.Find(x => x.Rowid == 1).FirstOrDefault();
+                c.TrePkwiuNavigation = _IUnitOfWork.PKWIUR.Find(x => x.PkwiuCode == "21.10.54.0").FirstOrDefault();
+
+
+
                 if (_IUnitOfWork.Treatment.Find(x => x.TreDescription == serviceViewModel.ServiceName).FirstOrDefault() != null)     //baza danych
                 {
                     return new ObjectResult($"Usługa o podanej nazwie : {serviceViewModel.ServiceName}, istnieje juz w bazie usług");
@@ -81,6 +105,10 @@ namespace PetVET.Controllers
             catch (SqlException exc)
             {
                 throw new Exception("Internal servier error");
+            }
+            catch(Exception ex)
+            {
+                var t = "";
             }
 
             return CreatedAtAction("Get", new { id = serviceViewModel.ServiceID });         

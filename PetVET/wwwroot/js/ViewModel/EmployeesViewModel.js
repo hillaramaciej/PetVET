@@ -26,6 +26,15 @@ function ViewModel() {
     }
 
 
+    self.AddUser  = function () {
+
+    };
+
+
+    self.UserAdded = function () {
+
+    };
+
 
     self.Save = function () {
 

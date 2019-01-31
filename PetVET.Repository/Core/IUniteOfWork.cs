@@ -15,6 +15,11 @@ namespace PetVET.Repository
         IOfficeDepartmentRepository OfficeDepartment { get; }
         ICustomerAnimalRepository CustomerAnimal { get; }
         IServiceRepository Treatment { get; }
+        IPKWIURepository PKWIUR { get; }
+        IInvoiceRepository Invoice { get; }
+        IOfficeRepository Office { get; }
+        
+
         //IEquipmentRepository Equipment { get; }
 
         PetVetDbContext Context { get; }
