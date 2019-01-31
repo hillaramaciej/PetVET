@@ -102,6 +102,22 @@ function ViewModel() {
 
     //SUBSCRIBE
 
+    self.Init = function () {
+        debugger;
+        var data = {
+            //firstName: self.FirstName(),
+            //phonNumber: self.PhonNumber(),
+            //lastName: self.LastName(),
+            //mail: self.Mail(),
+            page: self.Page(),
+            step: self.Step(),
+            search: self.QuickSearch(),
+        };
+
+        self.CustomerList([]);
+        self.Utilis.PostApi('api/customerApi/search', data, self.SearchSuccess, self.SearchFaild);
+    };
+
     ko.computed(function () {
 
         quickSearchObject = {
@@ -116,7 +132,7 @@ function ViewModel() {
         return ko.toJSON(quickSearchObject);
     }).subscribe(function () {
 
-        if (self.QuickSearch() !== "") {
+       // if (self.QuickSearch() !== "") {
             self.Page(1);
             //self.Step(5);
 
@@ -132,9 +148,9 @@ function ViewModel() {
 
             self.CustomerList([]);
             self.Utilis.PostApi('api/customerApi/search', data, self.SearchSuccess, self.SearchFaild);
-        } else {
-            self.CustomerList([]);
-        }
+       // } else {
+       //     self.CustomerList([]);
+       // }
     });
 
     self.SearchSuccess = function (response) {
@@ -202,29 +218,6 @@ function ViewModel() {
         self.IsInfoMessage = ko.observable(false);
     }
 
-
-    self.MapFromJson = function (jsonData) {
-        if (window.console) {
-            console.log('MapFromJson>>');
-            console.log(jsonData);
-        }
-        window.setTimeout(function () {
-            self.MapFromJsonInternal(jsonData);
-        }, 1);
-    };
-
-    self.MapFromJsonInternal = function (jsonData) {
-        if (window.console)
-            console.log('MapFromJsonInternal');
-
-        self.UserID(jsonData.userID)
-        self.FirstName(jsonData.firstName);
-        self.PhonNumber(jsonData.phonNumber);
-        self.LastName(jsonData.lastName);
-        self.Mail(jsonData.mail);
-        self.IsNewCustomer(jsonData.isNewCustomer);
-    };
-
     self.CollapseSearch = function () {
         self.CustomerList([]);
 
@@ -254,6 +247,7 @@ var components = new ComponentsRegistration();
 var customerListViewModel = new ViewModel();
 customerListViewModel.Utilis = new Utilis();
 customerListViewModel.PaginnationUtilis = new PaginationUtilis();
-customerListViewModel.PaginnationUtilis.InitPaginnation(customerListViewModel,2);
+customerListViewModel.PaginnationUtilis.InitPaginnation(customerListViewModel, 10);
+customerListViewModel.Init();
 ko.applyBindings(customerListViewModel);
 

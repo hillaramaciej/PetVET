@@ -109,11 +109,8 @@ namespace PetVET.Controllers
             int count = 0;
             try
             {
-                count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);
-                if(search.Search.Length >0)
-                result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);
-                else
-                    result = _IUnitOfWork.Customer.Search(search.Search, 1, count);
+                count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);               
+                result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);               
 
 
             }
