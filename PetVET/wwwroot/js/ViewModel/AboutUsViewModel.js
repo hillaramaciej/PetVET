@@ -14,15 +14,7 @@ function ViewModel() {
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    //self.SexOptionData = [
-    //    { id: 1, name: "Obojniak" },
-    //    { id: 2, name: "Samiec" },
-    //    { id: 3, name: "Samica" },
-    //];
-    
-    //self.SelectedValueCallback = function (value) {
-    //    self.Sex(value);
-    //}
+
 
     self.Save = function () {
 
