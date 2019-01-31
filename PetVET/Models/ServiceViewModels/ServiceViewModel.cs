@@ -34,5 +34,9 @@ namespace PetVET.Models.ServiceViewModels
         [JsonProperty(PropertyName = "serviceDuration")]
         public int ServiceDuration { get; set; }
 
+
+        [Required]
+        [JsonProperty(PropertyName = "officeId")]
+        public int OfficeId { get; set; }
     }
 }
