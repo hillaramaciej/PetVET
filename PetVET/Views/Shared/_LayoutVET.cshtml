@@ -515,8 +515,8 @@
                             <i class="fa fa-file-text"></i>
                             <span>Opinie klientów</span>
                             @*<span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>*@
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>*@
                         </a>
                     </li>
                     <li class="treeview">
@@ -524,61 +524,11 @@
                             <i class="fa fa-file-text"></i>
                             <span>Statystyki i raporty</span>
                             @*<span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>*@
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>*@
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Profil gabinetu</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a asp-area="" asp-controller="AboutUs" asp-action="AboutUs">
-                                    Informacje ogólne
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="" asp-action="">
-                                    Kategorie
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="" asp-action="">
-                                    Zdjęcia gabinetu
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="OpenHours" asp-action="OpenHours">
-                                    Godziny otwarcia
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="" asp-action="">
-                                    Grafik pracy
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="Employees" asp-action="Employees">
-                                    Pracownicy
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="Service" asp-action="AddService">
-                                    Usługi
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="Equipment" asp-action="Equipment">
-                                    Sprzęt
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                   
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-shopping-cart"></i>
@@ -625,29 +575,52 @@
                             </li>
                         </ul>
                     </li>
-                    @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-file-text"></i>
-                            <span>Raporty</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a href="preport.html">Project Report</a>
-                            </li>
-                            <li>
-                                <a href="creport.html">Client Report</a>
-                            </li>
-                            <li>
-                                <a href="ereport.html">Expense Report</a>
-                            </li>
-                            <li>
-                                <a href="incomexp.html">Income expense comparesion</a>
-                            </li>
-                        </ul>
-                    </li>*@
+
+
+
+
+                    @await Html.PartialAsync("_Manager_SuperAdminPartial")
+                @await Html.PartialAsync("_SuperAdminPartial")
+                @*<li class="treeview">
+        <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Panel Super Admina</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a asp-area="" asp-controller="SuperAdmin" asp-action="AddOrganization">
+                    Dodaj Nową firmę
+                </a>
+            </li>
+        </ul>
+    </li>*@
+
+                @*<li class="treeview">
+        <a href="#">
+            <i class="fa fa-file-text"></i>
+            <span>Raporty</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a href="preport.html">Project Report</a>
+            </li>
+            <li>
+                <a href="creport.html">Client Report</a>
+            </li>
+            <li>
+                <a href="ereport.html">Expense Report</a>
+            </li>
+            <li>
+                <a href="incomexp.html">Income expense comparesion</a>
+            </li>
+        </ul>
+    </li>*@
 
                 </ul>
             </div>

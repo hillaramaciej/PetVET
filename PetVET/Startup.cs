@@ -26,6 +26,7 @@ using System.Text;
 using PetVET.Extentions;
 using PetVET.Infrastructure;
 using PetVET.Infrastructure.ErrorHandling;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace PetVET
 {
@@ -95,6 +96,7 @@ namespace PetVET
             services.AddMvc();
             services.AddTransient<DbContext, PetVetDbContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICreateOrganization, CreateOrganization>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<ModelStateValidationFilter>();
             services.AddTransient(typeof(IStoreProcedureParser<>), typeof(StoreProcedureParser<>));
@@ -102,7 +104,7 @@ namespace PetVET
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -130,11 +132,8 @@ namespace PetVET
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                //if (!serviceScope.ServiceProvider.GetService<GrommerContext>().AllMigrationsApplied())
-                //{
-                //    serviceScope.ServiceProvider.GetService<GrommerContext>().Database.Migrate();
-                //    //serviceScope.ServiceProvider.GetService<GrommerContext>().EnsureSeeded();
-                //}
+
+
 
                 if (!serviceScope.ServiceProvider.GetService<ApplicationDbContext>().AllMigrationsApplied())
                 {
@@ -142,17 +141,61 @@ namespace PetVET
                     //serviceScope.ServiceProvider.GetService<GrommerContext>().EnsureSeeded();
                 }
             }
-            
+
             app.UseAuthentication();
             app.ConfigureCustomExceptionMiddleware();
-           // app.UseSession();
+            // app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
+
+
+            CreateUserRoles(services).Wait();
+
+        }
+
+        private async Task CreateUserRoles(IServiceProvider services)
+        {
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+            var roleCheck = await roleManager.RoleExistsAsync("Manager");
+            if (!roleCheck)
+                await roleManager.CreateAsync(new IdentityRole("Manager"));
+
+            roleCheck = await roleManager.RoleExistsAsync("Weterynarz");
+            if (!roleCheck)
+                await roleManager.CreateAsync(new IdentityRole("Weterynarz"));
+
+            roleCheck = await roleManager.RoleExistsAsync("Recepcja");
+            if (!roleCheck)
+                await roleManager.CreateAsync(new IdentityRole("Recepcja"));
+
+
+            roleCheck = await roleManager.RoleExistsAsync("SuperAdmin");
+            if (!roleCheck)
+                await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+
+
+            var mail = "petvet@gmail.com";
+            var user = await UserManager.FindByEmailAsync(mail);
+
+            if (user == null)
+            {
+                int LastOrganizatioId = UserManager.Users.ToList().Max(x => x.OrganizationId);
+                user = new ApplicationUser { Email = mail, UserName = mail, LicenseCount = 10, OrganizationId = LastOrganizatioId + 1 };
+                var result = await UserManager.CreateAsync(user, "Haslo1!");
+                
+                if (result.Succeeded)
+                {
+                    user = await UserManager.FindByEmailAsync(mail);
+                    await UserManager.AddToRoleAsync(user, "SuperAdmin");
+                }
+
+            }
         }
     }
 }
