@@ -25,7 +25,13 @@ function ViewModel() {
         self.Permit(value);
     }
 
+    self.UserAdded = function () {
+        // do implementacji
+    }
 
+    self.AddUser = function () {
+        // do implementacji
+    }
 
     self.Save = function () {
 

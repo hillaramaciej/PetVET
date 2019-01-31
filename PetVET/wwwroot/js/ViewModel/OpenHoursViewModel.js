@@ -6,6 +6,22 @@ function ViewModel() {
     self.OpenHoursID = ko.observable();
     self.OpenHoursName = ko.observable();
     self.OpenHoursType = ko.observable();
+    self.MonStart = ko.observable();
+    self.MonEnd = ko.observable();
+    self.TuStart = ko.observable();
+    self.TuEnd = ko.observable();
+    self.WenStart = ko.observable();
+    self.WenEnd = ko.observable();
+    self.ThStart = ko.observable();
+    self.ThEnd = ko.observable();
+    self.FriStart = ko.observable();
+    self.FriEnd = ko.observable();
+    self.SatStart = ko.observable();
+    self.SatEnd = ko.observable();
+    self.SunStart = ko.observable();
+    self.SunEnd = ko.observable();
+
+
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
@@ -58,6 +74,20 @@ function ViewModel() {
         self.OpenHoursID(undefined);
         self.OpenHoursName("");
         self.OpenHoursType(undefined);
+        self.MonStart(undefined);
+        self.MonEnd(undefined);
+        self.TuStart(undefined);
+        self.TuEnd(undefined);
+        self.WenStart(undefined);
+        self.WenEnd(undefined);
+        self.ThStart(undefined);
+        self.ThEnd(undefined);
+        self.FriStart(undefined);
+        self.FriEnd(undefined);
+        self.SatStart(undefined);
+        self.SatEnd(undefined);
+        self.SunStart(undefined);
+        self.SunEnd(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -77,6 +107,20 @@ function ViewModel() {
         self.OpenHoursID(jsonData.openHoursId);
         self.OpenHoursName(jsonData.openHoursName);
         self.OpenHoursType(jsonData.openHoursType);
+        self.MonStart(jsonData.monStart);
+        self.MonEnd(jsonData.monEnd);
+        self.TuStart(jsonData.tuStart);
+        self.TuEnd(jsonData.tuEnd);
+        self.WenStart(jsonData.wenStart);
+        self.WenEnd(jsonData.wenEnd);
+        self.ThStart(jsonData.thStart);
+        self.ThEnd(jsonData.thEnd);
+        self.FriStart(jsonData.friStart);
+        self.FriEnd(jsonData.friEnd);
+        self.SatStart(jsonData.satStart);
+        self.SatEnd(jsonData.satEnd);
+        self.SunStart(jsonData.sunStart);
+        self.SunEnd(jsonData.sunEnd);
     };
 
 }

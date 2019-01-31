@@ -5,6 +5,26 @@
     <UserSecretsId>aspnet-PetVET-82CF803C-D104-4C75-B062-53D398109394</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\CategoryViewModels\**" />
+    <Compile Remove="Views\Category\**" />
+    <Content Remove="Models\CategoryViewModels\**" />
+    <Content Remove="Views\Category\**" />
+    <EmbeddedResource Remove="Models\CategoryViewModels\**" />
+    <EmbeddedResource Remove="Views\Category\**" />
+    <None Remove="Models\CategoryViewModels\**" />
+    <None Remove="Views\Category\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CategoryController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Invoice\HistoryInvoice.cshtml" />
+    <Content Remove="wwwroot\js\ViewModel\CategoryViewModel.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />

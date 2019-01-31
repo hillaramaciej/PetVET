@@ -15,8 +15,8 @@ namespace PetVET.Models.CategoryViewModels
         public int CategoryID { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "categoryName")]
-        public string CategoryName { get; set; }
+        [JsonProperty(PropertyName = "category")]
+        public string Category { get; set; }
 
 
 

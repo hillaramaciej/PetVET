@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRM Admin Panel</title>
     <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/images/ofe2b.png" type="image/x-icon">
     <!-- Start Global Mandatory Style
        =====================================================================-->
     <!-- jquery-ui css -->
@@ -460,14 +460,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a asp-area="" asp-controller="" asp-action="">
+                                <a asp-area="" asp-controller="HistoryInvoice" asp-action="HistoryInvoice">
                                     Historia płatności
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    @*<li class="treeview">
                         <a href="#">
                             <i class="fa fa-shopping-cart"></i>
                             <span>Marketing</span>
@@ -487,7 +487,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>*@
 
                     <li class="treeview">
                         <a href="#">
@@ -519,15 +519,19 @@
                                 </span>*@
                         </a>
                     </li>
-                    <li class="treeview">
+
+
+                    @*<li class="treeview">
                         <a asp-area="" asp-controller="Item" asp-action="AddItem">
                             <i class="fa fa-file-text"></i>
                             <span>Statystyki i raporty</span>
-                            @*<span class="pull-right-container">
+                            <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
-                                </span>*@
+                                </span>
                         </a>
-                    </li>
+                    </li>*@
+
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-shopping-cart"></i>
@@ -542,11 +546,7 @@
                                     Informacje ogólne
                                 </a>
                             </li>
-                            <li>
-                                <a asp-area="" asp-controller="Category" asp-action="Category">
-                                    Kategorie
-                                </a>
-                            </li>
+                         
                             <li>
                                 <a asp-area="" asp-controller="" asp-action="">
                                     Zdjęcia gabinetu

@@ -32,6 +32,26 @@ function ViewModel() {
         self.Item(value);
     }
 
+    self.Print = function () {
+        // do implementacji
+    }
+
+    self.Agreement1 = function () {
+        // do implementacji
+    }
+
+    self.Agreement2 = function () {
+        // do implementacji
+    }
+
+    self.Agreement3 = function () {
+        // do implementacji
+    }
+
+    self.CustomerList = function () {
+        // do implementacji
+    }
+
     self.Save = function () {
 
         var data = {

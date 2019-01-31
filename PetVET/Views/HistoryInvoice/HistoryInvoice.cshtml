@@ -1,0 +1,114 @@
+﻿@model PetVET.Models.HistoryInvoiceViewModels.HistoryInvoiceViewModel
+@{
+    ViewData["Title"] = "HistoryInvoice";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/HistoryInvoiceViewModel.js"></script>
+    <script type="text/javascript">
+    serviceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+            @*<a class="btn btn-add " href="clist.html">
+                <i class="fa fa-list"></i>  Przejdź na listę sprzętów
+            </a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+            <a data-bind="click: Save" class="btn btn-success">Save</a>*@
+      
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd ">
+                    
+                    <div class="panel-body">
+                        <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+                      
+                        <!-- ./Plugin content:powerpoint,txt,pdf,png,word,xl -->
+                        <div class="table-responsive">
+                            <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Invoices No.</th>
+                                        <th>Date</th>
+                                        <th>Account</th>
+                                        <th>Amount</th>
+                                        <th>Transaction Id</th>
+                                        <th>Credit</th>
+                                        <th>Balance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>INV 1595</td>
+                                        <td>05/06/2017</td>
+                                        <td>Eileen Gusikowski</td>
+                                        <td>$ 1,658.00</td>
+                                        <td>TRN 1595</td>
+                                        <td>$ 1,865.00</td>
+                                        <td>$ 1,445.00</td>
+                                        <td>
+                                            <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV 654</td>
+                                        <td>05/01/2017</td>
+                                        <td>Elen walker</td>
+                                        <td>$ 1,321.00</td>
+                                        <td>TRN 1654</td>
+                                        <td>$ 1,351.00</td>
+                                        <td>$ 1,974.00</td>
+                                        <td>
+                                            <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV 642</td>
+                                        <td>05/09/2017</td>
+                                        <td>joe alan</td>
+                                        <td>$ 1,135.00</td>
+                                        <td>TRN 654</td>
+                                        <td>$ 1,351.00</td>
+                                        <td>$ 1,465.00</td>
+                                        <td>
+                                            <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV 945</td>
+                                        <td>05/03/2017</td>
+                                        <td>joe Hart</td>
+                                        <td>$ 1,545.00</td>
+                                        <td>TRN 231</td>
+                                        <td>$ 1,654.00</td>
+                                        <td>$ 1,987.00</td>
+                                        <td>
+                                            <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -10,10 +10,21 @@ function ViewModel() {
     self.FB = ko.observable();
     self.Insta = ko.observable();
     self.WWW = ko.observable();
+    self.CategoryID = ko.observable();
+    self.Category = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
+    self.CategoryOptionData = [
+        { id: 1, name: "Kategoria 1" },
+        { id: 2, name: "KAT 2" },
+        { id: 3, name: "Kategoria 3" },
+    ];
+
+    self.SelectedValueCallback = function (value) {
+        self.Category(value);
+    }
 
 
     self.Save = function () {
@@ -71,6 +82,8 @@ function ViewModel() {
         self.FB(undefined);
         self.Insta(undefined);
         self.WWW(undefined);
+        self.CategoryID(undefined);
+        self.Category(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -94,6 +107,8 @@ function ViewModel() {
         self.FB(jsonData.fB);
         self.Insta(jsonData.insta);
         self.WWW(jsonData.wWW);
+        self.CategoryID(jsonData.categoryID);
+        self.Category(jsonData.category);
     };
 
 }

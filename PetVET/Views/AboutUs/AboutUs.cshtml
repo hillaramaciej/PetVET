@@ -17,9 +17,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <a class="btn btn-add " href="clist.html">
-                <i class="fa fa-list"></i>  Przejdź na listę usług
-            </a>
+          
             <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
             <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
 
@@ -28,11 +26,11 @@
         <section class="content">
             <div class="row">
                 <!-- Form controls -->
-                <div class="col-sm-12">
+                <div class="col-sm-7">
                     <div class="panel panel-bd ">
-                        
+
                         <div class="panel-body">
-                            <form class="col-sm-6">
+                            <form class="col-sm-12">
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Nazwa Firmy</label>
@@ -73,7 +71,61 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            <img src="~/images/ofe2b.png" alt="" class="col-sm-3" >
+                        
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="panel panel-bd ">
+                        @*<div class="panel-heading">
+                    <div class="btn-group">
+                        <a>Lista Sprzętów</a>
+                    </div>
+                </div>*@
+                        <div class="panel-body">
+                            <form class="col-sm-4">
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Hotel dla zwierząt</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Weterynarz</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Fryzjer dla zwierząt</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Trenerzy dla zwierząt</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">SPA dla zwierząt</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Behawiorysta</label>
+                                </div>
+                                <div class="i-check">
+                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                    <label for="minimal-checkbox-2">Klinika dla zwierząt</label>
+                                </div>
+
+                            </form>
+                            <form class="col-sm-8">
+                                <fieldset>
+                                    <tmpl-ddl params='{data: CategoryOptionData,
+                                        name:"Głowna kategoria",
+                                        selectedValue : Category,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                                </fieldset>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>

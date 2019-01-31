@@ -3,31 +3,23 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.CategoryID = ko.observable();
-    self.Category = ko.observable();
+    self.HistoryInvoiceID = ko.observable();
+    self.HistoryInvoiceName = ko.observable();
+    self.HistoryInvoiceType = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
-
-    self.CategoryOptionData = [
-        { id: 1, name: "Kategoria 1" },
-        { id: 2, name: "KAT 2" },
-        { id: 3, name: "Kategoria 3" },
-    ];
-
-    self.SelectedValueCallback = function (value) {
-        self.Category(value);
-    }
 
 
     self.Save = function () {
 
         var data = {
-            categoryId: self.CategoryID(),
-            category: self.Category(),
+            historyInvoiceId: self.HistoryInvoiceID(),
+            historyInvoiceName: self.HistoryInvoiceName(),
+            historyInvoiceType: self.HistoryInvoiceType(),
         }
 
-        self.Utilis.PostApi('api/CategoryApi', data, self.SaveSuccessfull, SaveFailed)
+        self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
 
     };
 
@@ -63,8 +55,9 @@ function ViewModel() {
     self.AddNew = function () {
         self.ClearInfoMessage();
 
-        self.CategoryID(undefined);
-        self.Category("");
+        self.HistoryInvoiceID(undefined);
+        self.HistoryInvoiceName("");
+        self.HistoryInvoiceType(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -81,8 +74,9 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.CategoryID(jsonData.categoryId);
-        self.Category(jsonData.category);
+        self.HistoryInvoiceID(jsonData.historyInvoiceId);
+        self.HistoryInvoiceName(jsonData.historyInvoiceName);
+        self.HistoryInvoiceType(jsonData.historyInvoiceType);
     };
 
 }
@@ -120,7 +114,7 @@ function ViewModel() {
 
 var components = new ComponentsRegistration();
 
-var categoryViewModel = new ViewModel();
-categoryViewModel.Utilis = new Utilis();
-ko.applyBindings(categoryViewModel);
+var historyInvoiceViewModel = new ViewModel();
+historyInvoiceViewModel.Utilis = new Utilis();
+ko.applyBindings(historyInvoiceViewModel);
 
