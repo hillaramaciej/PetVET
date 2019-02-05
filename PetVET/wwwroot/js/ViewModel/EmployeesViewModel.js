@@ -25,13 +25,7 @@ function ViewModel() {
         self.Permit(value);
     }
 
-
-    self.AddUser  = function () {
-
-    };
-
-
-    self.UserAdded = function () {
+    self.IsUserAdded = function () {
 
     };
 
@@ -48,11 +42,11 @@ function ViewModel() {
             permit: self.Permit(),
         }
 
-        self.Utilis.PostApi('api/EmployeesApi', data, self.SaveSuccessfull, SaveFailed)
+        self.Utilis.PostApi('api/EmployeesApi', data, self.SaveSuccessfull, self.SaveFailed)
 
     };
 
-    SaveSuccessfull = function (response, textStatus, xhr) {
+    self.SaveSuccessfull = function (response, textStatus, xhr) {
         window.setTimeout(function () {
             if (response.state) {
 
@@ -69,7 +63,7 @@ function ViewModel() {
         }, 1);
     };
 
-    SaveFailed = function (response, textStatus, xhr) {
+    self.SaveFailed = function (response, textStatus, xhr) {
         //self.Utils.Form.HideProgress();
         if (response.message) {
             //self.Utils.Form.ErrorDialog(response.message);

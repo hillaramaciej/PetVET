@@ -18,8 +18,8 @@ using PetVET.Repository.Core;
 
 namespace PetVET.Controllers
 {
-    [Authorize]
-    // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
+    //[Authorize]
+    //[ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class ServiceApiController : Controller
     {

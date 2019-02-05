@@ -2,6 +2,7 @@
 using PetVET.Database.Models;
 using PetVET.Models._Common;
 using PetVET.Models.CustomerViewModels;
+using PetVET.Models.EmployeesViewModels;
 using PetVET.Models.ItemViewModels;
 using PetVET.Models.PetViewModels;
 using PetVET.Models.ServiceViewModels;
@@ -71,6 +72,19 @@ namespace PetVET.Infrastructure
             //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Castrated)); 
 
 
+
+            CreateMap<EmployeesViewModel, Vet>();
+            //.ForMember(m => m., opt => opt.MapFrom(vm => vm.Address))
+            ////.ForMember(m => m.TreOdt, opt => opt.MapFrom(vm => vm.OfficeId))
+            ////.ForMember(m => m.TrePkwiu, opt => opt.MapFrom(vm => vm.ServiceType))
+            //////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Species))
+            ////.ForMember(m => m.CalTyp2, opt => opt.MapFrom(vm => vm.Race))
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Age))
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.ChipNumber))
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Weight))
+            //.ForMember(m => m.TreCost, opt => opt.MapFrom(vm => vm.ServiceCost));
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Coat));
+            ////.ForMember(m => m., opt => opt.MapFrom(vm => vm.Castrated)); 
         }
     }
 }

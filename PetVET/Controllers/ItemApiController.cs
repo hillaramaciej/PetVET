@@ -15,7 +15,8 @@ using PetVET.Repository;
 namespace PetVET.Controllers
 {
     // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
-    [Authorize]
+    //[Authorize]
+    //[ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class ItemApiController : Controller
     {
@@ -60,6 +61,7 @@ namespace PetVET.Controllers
         {
            // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", itemViewModel).Result;
            
+            if(!ModelState.IsValid)
 
             try
             {

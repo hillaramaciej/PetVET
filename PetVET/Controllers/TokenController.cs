@@ -39,8 +39,8 @@ namespace PetVET.Controllers
                 var creds = new SigningCredentials(key, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature);
 
                 var token = new JwtSecurityToken(
-                    issuer: "localhost",
-                    audience: "localhost",
+                    issuer: "http://localhost:44343/",
+                    audience: "http://localhost:44343/",
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: creds);

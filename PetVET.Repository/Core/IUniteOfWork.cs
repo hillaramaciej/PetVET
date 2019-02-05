@@ -18,6 +18,7 @@ namespace PetVET.Repository
         IPKWIURepository PKWIUR { get; }
         IInvoiceRepository Invoice { get; }
         IOfficeRepository Office { get; }
+        IEmployeesRepository Vet { get; }
         
 
         //IEquipmentRepository Equipment { get; }

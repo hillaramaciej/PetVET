@@ -5,43 +5,51 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using PetVET.Database.Models;
 using PetVET.Infrastructure;
 using PetVET.Models;
 using PetVET.Models.CustomerViewModels;
+using PetVET.Models.EmployeesViewModels;
 using PetVET.Repository;
 using PetVET.Repository.Core;
+using PetVET.Services.User;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PetVET.Controllers
 {
-    [ModelStateValidationFilter]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
+    //[Authorize]
+    //[ModelStateValidationFilter]
     [Route("api/[controller]")]
-    public class CustomerApiController : Controller
+    public class EmployeesApiController : Controller
     {
 
         IUnitOfWork _IUnitOfWork;
         IMapper _mapper;
-        IApplicationUserAccesor _applicationUserAccesor;
-        public CustomerApiController(IUnitOfWork IUnitOfWork,
+        IUserOperation _userOperation;
+        IApplicationUserAccesor _ApplicationUserAccesor;
+
+        public EmployeesApiController(IUnitOfWork IUnitOfWork,
                                      IMapper mapper,
-                                     IApplicationUserAccesor applicationUserAccesor)
+                                     IUserOperation userOperation,
+                                     IApplicationUserAccesor ApplicationUserAccesor)
         {
             _IUnitOfWork = IUnitOfWork;
             _mapper = mapper;
-            _applicationUserAccesor = applicationUserAccesor;
+            _userOperation = userOperation;
+            _ApplicationUserAccesor = ApplicationUserAccesor;
         }
 
         // GET: api/<controller>
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            var tt = _ApplicationUserAccesor.Get();
+            tt.FirstName = "asdadas";
+
             return new string[] { "value1", "value2" };
         }
 
@@ -50,55 +58,55 @@ namespace PetVET.Controllers
         public IActionResult Get(int id)
         {
 
-            var tt = _applicationUserAccesor.Get();
-            tt.FirstName = "asdadas";
-
-            Customer result = _IUnitOfWork.Customer.GetByID(id);
+            var ttt = _ApplicationUserAccesor.Get();
+            Vet result = _IUnitOfWork.Vet.GetByID(id);
 
             if (result == null)
             {
                 return NotFound("Klient nie istnieje w bazie danych");
             }
 
-            return Ok(_mapper.Map<Customer, CustomerViewModel>(result));
+            return Ok(result);
         }
 
         // POST api/<controller>
         [HttpPost]
-        [ValidateAntiForgeryToken]        
-        public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
+        //[ModelStateValidationFilter]
+        public IActionResult Post([FromBody]EmployeesViewModel employeesViewModel)
         {
-
-            Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
+            int id = 0;
+           
+            Vet c = _mapper.Map<EmployeesViewModel, Vet>(employeesViewModel);
             try
-            {             
-                if (_IUnitOfWork.Customer.Find(x => x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+            {
+
+                if (_IUnitOfWork.Vet.Find(x => x.VetEmail == employeesViewModel.Email).FirstOrDefault() != null)
                 {
-                    return new BadRequestObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
+                    return new ObjectResult($"Klient o podanym email : {employeesViewModel.Email}, istnieje juz w bazie klientów");
                 }
 
-                _IUnitOfWork.Customer.Add(c);
+                _IUnitOfWork.Vet.Add(c);
+                
+                if (!_userOperation.Create(new ApplicationUser(), Models.Enums.UserRoles.WETERYNARZ, User).Result)
+                {
+                    _IUnitOfWork.Vet.Remove(c);
+                    
+                }
                 _IUnitOfWork.Complete();
 
-                customerViewModel.UserID = _IUnitOfWork.Customer
-                                            .Find(x => x.CusEmail == customerViewModel.Mail
-                                            || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
-            }  
+                id = _IUnitOfWork.Vet.Find(x => x.VetEmail == employeesViewModel.Email).First().Rowid;
+            }
             catch (SqlException exc)
             {
                 throw new Exception("Internal servier error");
             }
-            catch (Exception ex)
-            {
-                var y = "";
-            }
 
-            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });         
+            return CreatedAtAction("Get", new { userID = id });
         }
 
         public async Task<IActionResult> GetAll()
         {
-            var contactList = await _IUnitOfWork.Customer.FindAsync(x => x.Rowid > 0);
+            var contactList = await _IUnitOfWork.Vet.FindAsync(x => x.Rowid > 0);
             return Ok(contactList);
         }
 
@@ -113,33 +121,15 @@ namespace PetVET.Controllers
         public void Delete(int id)
         {
         }
-
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPost("ss")]        
-        public IActionResult ss()
-        {
-            return Ok("adadsadaD");
-        }
-
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpGet("ss")]
-        public IActionResult sss()
-        {
-            return Ok("adadsadaD");
-        }
-
-
         [HttpPost("search")]
-        //[ValidateAntiForgeryToken]
         public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
-        {           
+        {
             IEnumerable<Customer> result = null;
-           
             int count = 0;
             try
             {
-                count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);               
-                result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);               
+                count = _IUnitOfWork.Customer.SearchCount(search.Search, search.Page, search.Step);
+                result = _IUnitOfWork.Customer.Search(search.Search, search.Page, search.Step);
 
 
             }
@@ -157,10 +147,10 @@ namespace PetVET.Controllers
             {
                 Result = CustomerViewModel,
                 Count = count,
-                PagesNumber = count % search.Step == 0 ? count/ search.Step : count / search.Step + 1
+                PagesNumber = count % search.Step == 0 ? count / search.Step : count / search.Step + 1
             };
 
             return Ok(DTO);
-       }
+        }
     }
 }

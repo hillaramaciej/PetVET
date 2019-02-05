@@ -27,6 +27,9 @@ using PetVET.Extentions;
 using PetVET.Infrastructure;
 using PetVET.Infrastructure.ErrorHandling;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using PetVET.Models.Mail;
+using PetVET.Services.User;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace PetVET
 {
@@ -49,47 +52,57 @@ namespace PetVET
             services.AddMvc();
 
 
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // configure jwt authentication
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => {
+                //Ustawinie ile czasu ma byc blokowany user jezeli wpsze zle haslo
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(5);
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddScoped<Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory<ApplicationUser>, AppClaimsPrincipalFactory>();
 
-            string privateSecretKey = "OfED+KgbZxtu4e4+JSQWdtSgTnuNixKy1nMVAEww8QL3IN33XusJhrz9HXmIrdyX2F41xJHG4uj5/2Dzv3xjYYvqxexm3X3X5TOf3WoM1VNloJ7UnbqUJOiEjgK8sRdJntgfomO4U8s67cpysk0h9rc0He4xRspEjOapFfDg+VG8igidcNgbNDSSaV4491Fo3sq2aGSCtYvekzs7JwXJnNAyvDSJjfK/7M8MpxSMnm1vMscBXyiYFXhGC4wqWlYBE828/5DNyw3QZW5EjD7hvDrY5OlYd4smCTa53helNnJz5NT9HQaDbE2sMwIDAQABAoIBAEs63TvT94njrPDP3A/sfCEXg1F2y0D/PjzUhM1aJGcRiOUXnGlYdViGhLnnJoNZTZm9qI1LT0NWcDA5NmBN6gcrk2EApyTt1D1i4AQ66rYoTF9iEC4Wye28v245BYESA6IIelgIxXGsVyllERsbTkaphzibbYfHmvwMxkn135Zfzd/NOXl/O32vYIomzrNEP+tN2WXhhG8c8+iZ8PErBV3CqrYogYy97d2CeQbXcpd5unPiU4TK0nnzeBAXdgeYuJHFC45YHl9UvShRoe6CHR47ceIGp6WMc5BTyyTkZpctuYJTwaChdj/QuRSkTYmn6jFL+MRfYQJ8VVwSVo5DbkECgYEA4/YIMKcwObYcSuHzgkMwH645CRDoy9M98eptAoNLdJBHYz23U5IbGL1+qHDDCPXxKs9ZG7EEqyWezq42eoFoebLA5O6/xrYXoaeIb094dbCF4D932hAkgAaAZkZVsSiWDCjYSV+JoWX4NVBcIL9yyHRhaaPVULTRbPsZQWq9+hMCgYEA48j4RGO7CaVpgUVobYasJnkGSdhkSCd1VwgvHH3vtuk7/JGUBRaZc0WZGcXkAJXnLh7QnDHOzWASdaxVgnuviaDi4CIkmTCfRqPesgDR2Iu35iQsH7P2/o1pzhpXQS/Ct6J7/GwJTqcXCvp4tfZDbFxS8oewzp4RstILj+pDyWECgYByQAbOy5xB8GGxrhjrOl1OI3V2c8EZFqA/NKy5y6/vlbgRpwbQnbNy7NYj+Y/mV80tFYqldEzQsiQrlei78Uu5YruGgZogL3ccj+izUPMgmP4f6+9XnSuN9rQ3jhy4k4zQP1BXRcim2YJSxhnGV+1hReLknTX2IwmrQxXfUW4xfQKBgAHZW8qSVK5bXWPjQFnDQhp92QM4cnfzegxe0KMWkp+VfRsrw1vXNx";
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(option =>
                 {
                     option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                     {
-                        //ValidateIssuer = true,
-                        //ValidateAudience = true,
-                        //ValidateLifetime = true,
-                        //ValidateIssuerSigningKey = true,
-                        //ValidIssuer = "localhost",
-                        //ValidAudience = "localhost",
-                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(privateSecretKey))
-                        ValidIssuer = Configuration["Tokens:Issuer"],
-                        ValidAudience = Configuration["Tokens:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "http://localhost:44343/",
+                        ValidAudience = "http://localhost:44343/",
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                        //ValidIssuer = Configuration["Tokens:Issuer"],
+                        //ValidAudience = Configuration["Tokens:Issuer"],
+                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
 
 
                     };
                 });
 
-            services.AddDistributedMemoryCache();
-
-            //services.AddSession(options =>
+            //services.AddAuthentication(option =>
             //{
-            //    // Set a short timeout for easy testing.
-            //    options.IdleTimeout = TimeSpan.FromMinutes(20);
-            //    options.Cookie.HttpOnly = true;
-            //});
+            //    option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
+            //}).AddCookie();
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -98,6 +111,9 @@ namespace PetVET
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICreateOrganization, CreateOrganization>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddTransient<IApplicationUserAccesor, ApplicationUserAccesor>();            
+            services.AddTransient<IUserOperation, UserOperation>();
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.AddScoped<ModelStateValidationFilter>();
             services.AddTransient(typeof(IStoreProcedureParser<>), typeof(StoreProcedureParser<>));
             services.AddTransient(typeof(IEntityCommandService<,,>), typeof(EntityCommandService<,,>));
@@ -131,10 +147,7 @@ namespace PetVET
 
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-
-
-
+            {                
                 if (!serviceScope.ServiceProvider.GetService<ApplicationDbContext>().AllMigrationsApplied())
                 {
                     serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
@@ -142,9 +155,18 @@ namespace PetVET
                 }
             }
 
-            app.UseAuthentication();
-            app.ConfigureCustomExceptionMiddleware();
-            // app.UseSession();
+            app.UseAuthentication();    
+             app.ConfigureCustomExceptionMiddleware();
+
+
+            //  app.UseSession();
+
+            //app.UseCors(x => x.Build().Origins.Add(
+            //);
+            //    //.AllowAnyOrigin()
+            //    //.AllowAnyMethod()
+            //    //.AllowAnyHeader());
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -161,6 +183,7 @@ namespace PetVET
         {
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                        
 
             var roleCheck = await roleManager.RoleExistsAsync("Manager");
             if (!roleCheck)
@@ -179,14 +202,14 @@ namespace PetVET
             if (!roleCheck)
                 await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
 
-
+            
             var mail = "petvet@gmail.com";
             var user = await UserManager.FindByEmailAsync(mail);
 
             if (user == null)
             {
                 int LastOrganizatioId = UserManager.Users.ToList().Max(x => x.OrganizationId);
-                user = new ApplicationUser { Email = mail, UserName = mail, LicenseCount = 10, OrganizationId = LastOrganizatioId + 1 };
+                user = new ApplicationUser { Email = mail, UserName = mail};
                 var result = await UserManager.CreateAsync(user, "Haslo1!");
                 
                 if (result.Succeeded)

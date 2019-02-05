@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace PetVET.Repository
 {
-    class PKWIURepository : Repository<VarPkwiu>, IPKWIURepository
+    class VetRepository : Repository<VarPkwiu>, IPKWIURepository
     {
         private DbSet<VarPkwiu> PKWIU;
-        public PKWIURepository(PetVetDbContext context) : base(context)
+        public VetRepository(PetVetDbContext context) : base(context)
         {
             PKWIU = context.VarPkwiu; 
         }
