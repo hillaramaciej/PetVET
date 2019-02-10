@@ -18,7 +18,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
           
-            <a data-bind="click: AddNew" class="btn btn-warning">Reset</a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Dodaj sprzęt</a>
             <a data-bind="click: Save" class="btn btn-success">Save</a>
       
     </section>
@@ -39,6 +39,14 @@
                                 <div class="form-group">
                                     <label>Nazwa Sprzętu</label>
                                     <input data-bind='value: EquipmentName' type="text" class="form-control" placeholder="Wpisz nazwę usługi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer seryjny</label>
+                                    <input data-bind='value: EquipmentSerieNumber' type="text" class="form-control" p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gwarancja do</label>
+                                    <input data-bind='value: Warranty' type="date" class="form-control" p>
                                 </div>
                                 <div class="form-group">
                                     <label>Opis</label>
