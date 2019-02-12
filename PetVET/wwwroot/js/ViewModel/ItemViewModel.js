@@ -10,6 +10,7 @@ function ViewModel() {
     self.ItemExpirationDate = ko.observable();
     self.ItemPurchaseDate = ko.observable();
     self.ItemKind = ko.observable();
+    self.ItemTax = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
@@ -34,6 +35,7 @@ function ViewModel() {
             itemExpirationDate: self.ItemExpirationDate(),
             itemPurchaseDate: self.ItemPurchaseDate(),
             itemKind: self.ItemKind(),
+            itemTax: self.ItemTax(),
         }
 
         self.Utilis.PostApi('api/ItemApi', data, self.SaveSuccessfull, SaveFailed)
@@ -79,6 +81,8 @@ function ViewModel() {
         self.ItemExpirationDate(undefined);
         self.ItemPurchaseDate("");
         self.ItemKind("");
+        self.ItemTax("");
+        
     };
 
     self.MapFromJson = function (jsonData) {
@@ -102,6 +106,8 @@ function ViewModel() {
         self.ItemExpirationDate(jsonData.itemExpirationDate);
         self.ItemPurchaseDate(jsonData.itemPurchaseDate);
         self.ItemKind(jsonData.itemKind);
+        self.ItemTax(jsonData.itemTax);
+        
     };
 
 }

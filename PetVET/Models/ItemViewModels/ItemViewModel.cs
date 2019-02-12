@@ -35,5 +35,8 @@ namespace PetVET.Models.ItemViewModels
 
         [JsonProperty(PropertyName = "itemKind")]
         public string ItemKind { get; set; }
+
+        [JsonProperty(PropertyName = "itemTax")]
+        public decimal ItemTax { get; set; }
     }
 }

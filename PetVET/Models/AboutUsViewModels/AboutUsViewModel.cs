@@ -20,7 +20,7 @@ namespace PetVET.Models.AboutUsViewModels
 
         [Required]
         [JsonProperty(PropertyName = "phone")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "desc")]

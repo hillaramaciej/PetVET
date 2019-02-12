@@ -38,5 +38,9 @@ namespace PetVET.Models.EmployeesViewModels
         [Required]
         [JsonProperty(PropertyName = "permit")]
         public string Permit { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "UserAdded")]
+        public string UserAdded { get; set; }
     }
 }

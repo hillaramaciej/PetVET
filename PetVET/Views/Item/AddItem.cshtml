@@ -11,7 +11,7 @@
     <script src="~/js/ViewModel/ItemViewModel.js"></script>
     <script type="text/javascript">
         itemViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
-        itemViewModel.Dll();
+        //itemViewModel.Dll();
     </script>
 }
 
@@ -40,37 +40,63 @@
                                     <label>Nazwa towaru</label>
                                     <input data-bind='value: ItemName' type="text" class="form-control" placeholder="Wpisz nazwę towaru" required>
                                 </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="col-sm-6">
+
+                            <fieldset>
+                                <tmpl-ddl params='{data: ItemKindOptionData,
+                                        name:"Rodzaj towaru ",
+                                        selectedValue : ItemKind,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
                                 <div class="form-group">
                                     <label>Cena zakupu</label>
                                     <input data-bind="value: ItemCost" type="number" class="form-control" placeholder="Wpisz">
                                 </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
                                 <div class="form-group">
                                     <label>Cena sprzedaży</label>
                                     <input data-bind="value: ItemPrice" type="number" class="form-control" placeholder="...">
                                 </div>
                             </fieldset>
                         </form>
+                        <form class="col-sm-2">
 
-                        <form class="col-sm-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Podatek</label>
+                                    <input data-bind="value: ItemTax" type="number" class="form-control" placeholder="...">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-3">
+
                             <fieldset>
                                 <div class="form-group">
                                     <label>Data zakupu</label>
                                     <input data-bind="value: ItemPurchaseDate" type="date" class="form-control" placeholder="...">
                                 </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-3">
+
+                            <fieldset>
                                 <div class="form-group">
                                     <label>Data ważności</label>
                                     <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
                                 </div>
-
-                                <tmpl-ddl params='{data: ItemKindOptionData,
-                                        name:"Rodzaj towaru ",
-                                        selectedValue : ItemKind,
-                                        caption: "Wybierz",
-                                        callback: SelectedValueCallback }'></tmpl-ddl>
-
-
                             </fieldset>
                         </form>
+
                     </div>
 
                 </div>
