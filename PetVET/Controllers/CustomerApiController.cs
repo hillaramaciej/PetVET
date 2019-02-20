@@ -72,7 +72,7 @@ namespace PetVET.Controllers
             Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
             try
             {             
-                if (_IUnitOfWork.Customer.Find(x => x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+                if (_IUnitOfWork.Customer.Find(x => x.CustMail == customerViewModel.Mail).FirstOrDefault() != null)
                 {
                     return new BadRequestObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
                 }
@@ -81,8 +81,8 @@ namespace PetVET.Controllers
                 _IUnitOfWork.Complete();
 
                 customerViewModel.UserID = _IUnitOfWork.Customer
-                                            .Find(x => x.CusEmail == customerViewModel.Mail
-                                            || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
+                                            .Find(x => x.CustMail == customerViewModel.Mail
+                                            || x.CustPhone == customerViewModel.PhonNumber).First().Rowid;
             }  
             catch (SqlException exc)
             {

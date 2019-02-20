@@ -11,33 +11,46 @@ namespace PetVET.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly PetVetDbContext _context;
+        private readonly DBVETContext _context;
 
-        public ICustomerRepository Customer { get; set; }
-        public IAssortmentRepository Assortment { get; set; }
-        public IOfficeDepartmentRepository OfficeDepartment { get; set; }
-        public ICustomerAnimalRepository CustomerAnimal { get; set; }
-        public IServiceRepository Treatment { get; set; }
-        public IEmployeesRepository Vet { get; set; }
-        public IPKWIURepository PKWIUR { get; }
-        public IInvoiceRepository Invoice { get; }
-        public IOfficeRepository Office { get; }
+       public IAnimalRepository Animal { get; set; }
+       public IAnimalRaceRepository AnimalRace { get; set; }
+       public IAnimalSpeciesRepository AnimalSpecies { get; set; }
+       public IAssortmentRepository Assortment { get; set; }
+       public IAssortPriceRepository AssortPrice { get; set; }
+       public IAssortTypeRepository AssortType { get; set; }
+       public ICompanyRepository Company { get; set; }
+       public ICustomerRepository Customer { get; set; }
+       public ICustomerAnimalRepository CustomerAnimal { get; set; }
+       public IEmployeesRepository Employee { get; set; }
+       public IEmployeeGroupRepository EmployeeGroup { get; set; }
+       public IEmployeeHolidayRepository EmployeeHoliday { get; set; }
+       public IEmployeeOpenHourRepository EmployeeOpenHour { get; set; }
+       public IEmployeeServiceRepository EmployeeService { get; set; }
+       public IEquipemntTypeRepository EquipemntType { get; set; }
+       public IInvoiceRepository Invoice { get; set; }
+       public IInvoiceAssortmentRepository InvoiceAssortment { get; set; }
+       public IInvoiceServiceRepository InvoiceService { get; set; }
+       public IMethodPayRepository MethodPay { get; set; }
+       public IOfficeRepository Office { get; set; }
+       public IOfficeCustomerRepository OfficeCustomer { get; set; }
+       public IOfficeHolidayRepository OfficeHoliday { get; set; }
+       public IOfficeOpenHourRepository OfficeOpenHour { get; set; }
+       public IReservationRepository Reservation { get; set; }
+       public IReservationServiceRepository ReservationService { get; set; }
+       public IServicRepository Servic { get; set; }
+       public IServiceTypeRepository ServiceType { get; set; }
+       public ITaxRepository Tax { get; set; }
+       public IVisitRepository Visit { get; set; }
 
 
 
-        PetVetDbContext IUnitOfWork.Context => _context;
+        DBVETContext IUnitOfWork.Context => _context;
 
-        public UnitOfWork(PetVetDbContext context)
+        public UnitOfWork(DBVETContext context)
         {
             _context = context;
-            Customer = new CustomerRepository(context);
-            Assortment = new AssortmentRepository(context);
-            OfficeDepartment = new OfficeDepartmentRepository(context);
-            CustomerAnimal = new CustomerAnimalRepository(context);
-            Treatment = new ServiceRepository(context);
-            Vet = new EmployeesRepository(context);
-            PKWIUR = new VetRepository(context);
-            //Equipment = new EquipmentRepository(context);
+            
         }
 
         public int Complete()

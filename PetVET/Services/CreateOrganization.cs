@@ -34,13 +34,13 @@ namespace PetVET.Services
 
         async public Task<bool> Create(string mail, int licenseCount)
         {
-            
+
             var user = await _userManager.FindByEmailAsync(mail);
-            if (user != null)            
-                return false;            
+            if (user != null)
+                return false;
 
             try
-            {               
+            {
                 int LastOrganizatioId = _userManager.Users.ToList().Max(x => x.OrganizationId);
                 user = new ApplicationUser { Email = mail, UserName = mail, LicenseCount = licenseCount, OrganizationId = LastOrganizatioId + 1 };
                 var result = await _userManager.CreateAsync(user, CreateRandomPassword());
@@ -54,8 +54,8 @@ namespace PetVET.Services
                     var host = _actionContextAccessor.ActionContext.HttpContext.Request.Host.Value;
                     var scheme = _actionContextAccessor.ActionContext.HttpContext.Request.Scheme;
 
-                            await _emailSender.SendEmailConfirmationAsync(mail, $"{scheme}://{host}/Manage/ChangePassword");
-                   
+                    await _emailSender.SendEmailConfirmationAsync(mail, $"{scheme}://{host}/Manage/ChangePassword");
+
                     return true;
                 }
                 else
@@ -71,7 +71,7 @@ namespace PetVET.Services
             {
                 user = await _userManager.FindByEmailAsync(mail);
                 if (user != null)
-                   await _userManager.DeleteAsync(user);
+                    await _userManager.DeleteAsync(user);
                 return false;
             }
         }

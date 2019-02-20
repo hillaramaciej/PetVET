@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetVET.Repository
 {
-    public interface IEquipmentRepository : IRepository<Treatment>
+    public interface IEquipmentRepository : IRepository<Equipemnt>
     {
       //  IEnumerable<Assortment> Search(string search);
 

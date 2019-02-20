@@ -7,40 +7,33 @@ namespace PetVET.Database.Models
     {
         public Office()
         {
-            OfficeDepartment = new HashSet<OfficeDepartment>();
-            OfficeDepartmentVet = new HashSet<OfficeDepartmentVet>();
+            AssortPrice = new HashSet<AssortPrice>();
+            Equipemnt = new HashSet<Equipemnt>();
+            OfficeCustomer = new HashSet<OfficeCustomer>();
+            OfficeHoliday = new HashSet<OfficeHoliday>();
+            OfficeOpenHour = new HashSet<OfficeOpenHour>();
         }
 
         public int Rowid { get; set; }
-        public string OffDescription { get; set; }
-        public string OffAddress { get; set; }
-        public string OffZipcode { get; set; }
-        public string OffCity { get; set; }
-        public string OffNip { get; set; }
-        public string OffImg01 { get; set; }
-        public string OffRegon { get; set; }
-        public string OffTxt01 { get; set; }
-        public string OffTxt02 { get; set; }
-        public string OffTxt03 { get; set; }
-        public string OffTxt04 { get; set; }
-        public string OffTxt05 { get; set; }
-        public DateTime? OffDtx01 { get; set; }
-        public DateTime? OffDtx02 { get; set; }
-        public DateTime? OffDtx03 { get; set; }
-        public DateTime? OffDtx04 { get; set; }
-        public DateTime? OffDtx05 { get; set; }
-        public decimal? OffNtx01 { get; set; }
-        public decimal? OffNtx02 { get; set; }
-        public decimal? OffNtx03 { get; set; }
-        public decimal? OffNtx04 { get; set; }
-        public decimal? OffNtx05 { get; set; }
-        public bool? OffNotused { get; set; }
-        public string OffCreuser { get; set; }
-        public DateTime? OffCredate { get; set; }
-        public string OffModuser { get; set; }
-        public DateTime? OffModdate { get; set; }
+        public int? OfficeCompanyid { get; set; }
+        public string OfficeStreet { get; set; }
+        public string OfficeHouse { get; set; }
+        public string OfficeFlat { get; set; }
+        public string OfficeCity { get; set; }
+        public string OfficeCitycode { get; set; }
+        public string OfficePhone { get; set; }
+        public string OfficeEmail { get; set; }
+        public bool? OfficeNotused { get; set; }
+        public DateTime? OfficeCreatedate { get; set; }
+        public string OfficeCreateby { get; set; }
+        public DateTime? OfficeUpdatedate { get; set; }
+        public string OfficeUpdateby { get; set; }
 
-        public ICollection<OfficeDepartment> OfficeDepartment { get; set; }
-        public ICollection<OfficeDepartmentVet> OfficeDepartmentVet { get; set; }
+        public Company OfficeCompany { get; set; }
+        public ICollection<AssortPrice> AssortPrice { get; set; }
+        public ICollection<Equipemnt> Equipemnt { get; set; }
+        public ICollection<OfficeCustomer> OfficeCustomer { get; set; }
+        public ICollection<OfficeHoliday> OfficeHoliday { get; set; }
+        public ICollection<OfficeOpenHour> OfficeOpenHour { get; set; }
     }
 }

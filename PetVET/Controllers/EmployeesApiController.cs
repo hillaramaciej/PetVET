@@ -59,7 +59,7 @@ namespace PetVET.Controllers
         {
 
             var ttt = _ApplicationUserAccesor.Get();
-            Vet result = _IUnitOfWork.Vet.GetByID(id);
+            Employee result = _IUnitOfWork.Employee.GetByID(id);
 
             if (result == null)
             {
@@ -75,26 +75,26 @@ namespace PetVET.Controllers
         public IActionResult Post([FromBody]EmployeesViewModel employeesViewModel)
         {
             int id = 0;
-           
-            Vet c = _mapper.Map<EmployeesViewModel, Vet>(employeesViewModel);
+
+            Employee c = _mapper.Map<EmployeesViewModel, Employee>(employeesViewModel);
             try
             {
 
-                if (_IUnitOfWork.Vet.Find(x => x.VetEmail == employeesViewModel.Email).FirstOrDefault() != null)
+                if (_IUnitOfWork.Employee.Find(x => x.EmplEmail == employeesViewModel.Email).FirstOrDefault() != null)
                 {
                     return new ObjectResult($"Klient o podanym email : {employeesViewModel.Email}, istnieje juz w bazie klientów");
                 }
 
-                _IUnitOfWork.Vet.Add(c);
+                _IUnitOfWork.Employee.Add(c);
                 
                 if (!_userOperation.Create(new ApplicationUser(), Models.Enums.UserRoles.WETERYNARZ, User).Result)
                 {
-                    _IUnitOfWork.Vet.Remove(c);
+                    _IUnitOfWork.Employee.Remove(c);
                     
                 }
                 _IUnitOfWork.Complete();
 
-                id = _IUnitOfWork.Vet.Find(x => x.VetEmail == employeesViewModel.Email).First().Rowid;
+                id = _IUnitOfWork.Employee.Find(x => x.EmplEmail == employeesViewModel.Email).First().Rowid;
             }
             catch (SqlException exc)
             {
@@ -106,7 +106,7 @@ namespace PetVET.Controllers
 
         public async Task<IActionResult> GetAll()
         {
-            var contactList = await _IUnitOfWork.Vet.FindAsync(x => x.Rowid > 0);
+            var contactList = await _IUnitOfWork.Employee.FindAsync(x => x.Rowid > 0);
             return Ok(contactList);
         }
 

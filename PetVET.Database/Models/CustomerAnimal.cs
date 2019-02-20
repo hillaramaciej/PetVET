@@ -7,31 +7,19 @@ namespace PetVET.Database.Models
     {
         public CustomerAnimal()
         {
-            Visit = new HashSet<Visit>();
+            Invoice = new HashSet<Invoice>();
         }
 
         public int Rowid { get; set; }
-        public int CalCustomerid { get; set; }
-        public int CalTyp1 { get; set; }
-        public int CalTyp2 { get; set; }
-        public string CalName { get; set; }
-        public string CalSex { get; set; }
-        public string CalColor { get; set; }
-        public DateTime? CalBirthdate { get; set; }
-        public bool? CalCastrated { get; set; }
-        public string CalDescription { get; set; }
-        public string CalImg01 { get; set; }
-        public string CalChip { get; set; }
-        public bool? CalDeath { get; set; }
-        public bool? CalNotused { get; set; }
-        public string CalCreuser { get; set; }
-        public DateTime? CalCredate { get; set; }
-        public string CalModuser { get; set; }
-        public DateTime? CalModdate { get; set; }
+        public int? CustanimAnimalid { get; set; }
+        public int? CustanimCustomerid { get; set; }
+        public DateTime? CustanimCreatedate { get; set; }
+        public string CustanimCreateby { get; set; }
+        public DateTime? CustanimUpdatedate { get; set; }
+        public string CustanimUpdateby { get; set; }
 
-        public Customer CalCustomer { get; set; }
-        public Typ1 CalTyp1Navigation { get; set; }
-        public Typ2 CalTyp2Navigation { get; set; }
-        public ICollection<Visit> Visit { get; set; }
+        public Animal CustanimAnimal { get; set; }
+        public Customer CustanimCustomer { get; set; }
+        public ICollection<Invoice> Invoice { get; set; }
     }
 }

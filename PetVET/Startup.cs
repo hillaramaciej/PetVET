@@ -46,7 +46,7 @@ namespace PetVET
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<PetVetDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PetVETDbConnection")))
+            services.AddDbContext<DBVETContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PetVETDbConnection")))
              ;//.AddUnitOfWork<GrommerContext>();
             services.AddAutoMapper();
             services.AddMvc();
@@ -107,7 +107,7 @@ namespace PetVET
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
-            services.AddTransient<DbContext, PetVetDbContext>();
+            services.AddTransient<DbContext, DBVETContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICreateOrganization, CreateOrganization>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

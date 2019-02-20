@@ -15,9 +15,9 @@ namespace PetVET.Repository
         private DbSet<TEntity> _entities;
         
 
-        protected readonly PetVetDbContext Context;
+        protected readonly DBVETContext Context;
 
-        public Repository(PetVetDbContext context)
+        public Repository(DBVETContext context)
         {         
              Context = context;
             _entities = Context.Set<TEntity>();
