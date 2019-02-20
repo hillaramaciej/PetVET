@@ -89,6 +89,8 @@
 
   <ItemGroup>
     <Folder Include="Authentication\" />
+    <Folder Include="Models\Common\" />
+    <Folder Include="Models\Customer\" />
   </ItemGroup>
 
 </Project>

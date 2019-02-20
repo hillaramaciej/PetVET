@@ -10,19 +10,37 @@ namespace PetVET.Repository
 {
     public interface IUnitOfWork
     {
-        ICustomerRepository Customer { get; }
+        IAnimalRepository Animal { get; }
+        IAnimalRaceRepository AnimalRace { get; }
+        IAnimalSpeciesRepository AnimalSpecies { get; }
         IAssortmentRepository Assortment { get; }
-        IOfficeDepartmentRepository OfficeDepartment { get; }
+        IAssortPriceRepository AssortPrice { get; }
+        IAssortTypeRepository AssortType { get; }
+        ICompanyRepository Company { get; }
+        ICustomerRepository Customer { get; }
         ICustomerAnimalRepository CustomerAnimal { get; }
-        IServiceRepository Treatment { get; }
-        IPKWIURepository PKWIUR { get; }
+        IEmployeesRepository Employee { get; }
+        IEmployeeGroupRepository EmployeeGroup { get; }
+        IEmployeeHolidayRepository EmployeeHoliday { get; }
+        IEmployeeOpenHourRepository EmployeeOpenHour { get; }
+        IEmployeeServiceRepository EmployeeService { get; }
+        IEquipemntTypeRepository EquipemntType { get; }
         IInvoiceRepository Invoice { get; }
+        IInvoiceAssortmentRepository InvoiceAssortment { get; }
+        IInvoiceServiceRepository InvoiceService { get; }
+        IMethodPayRepository MethodPay { get; }
         IOfficeRepository Office { get; }
-        
+        IOfficeCustomerRepository OfficeCustomer { get; }
+        IOfficeHolidayRepository OfficeHoliday { get; }
+        IOfficeOpenHourRepository OfficeOpenHour { get; }
+        IReservationRepository Reservation { get; }
+        IReservationServiceRepository ReservationService { get; }
+        IServicRepository Servic { get; }
+        IServiceTypeRepository ServiceType { get; }
+        ITaxRepository Tax { get; }
+        IVisitRepository Visit { get; }
 
-        //IEquipmentRepository Equipment { get; }
-
-        PetVetDbContext Context { get; }
+        DBVETContext Context { get; }
 
         int Complete();
     }

@@ -7,35 +7,22 @@ namespace PetVET.Database.Models
     {
         public Assortment()
         {
-            VisitMedicines = new HashSet<VisitMedicines>();
+            AssortPrice = new HashSet<AssortPrice>();
+            InvoiceAssortment = new HashSet<InvoiceAssortment>();
         }
 
         public int Rowid { get; set; }
-        public int AssOdtid { get; set; }
-        public string AssCode { get; set; }
-        public string AssDesc { get; set; }
-        public string AssTxt01 { get; set; }
-        public string AssTxt02 { get; set; }
-        public string AssTxt03 { get; set; }
-        public string AssTxt04 { get; set; }
-        public string AssTxt05 { get; set; }
-        public DateTime? AssDtx01 { get; set; }
-        public DateTime? AssDtx02 { get; set; }
-        public DateTime? AssDtx03 { get; set; }
-        public DateTime? AssDtx04 { get; set; }
-        public DateTime? AssDtx05 { get; set; }
-        public decimal? AssNtx01 { get; set; }
-        public decimal? AssNtx02 { get; set; }
-        public decimal? AssNtx03 { get; set; }
-        public decimal? AssNtx04 { get; set; }
-        public decimal? AssNtx05 { get; set; }
-        public bool? AssNotused { get; set; }
-        public string AssCreuser { get; set; }
-        public DateTime? AssCredate { get; set; }
-        public string AssModuser { get; set; }
-        public DateTime? AssModdate { get; set; }
+        public string AssortName { get; set; }
+        public string AssortDesc { get; set; }
+        public byte? AssortPrescription { get; set; }
+        public int? AssortTypid { get; set; }
+        public DateTime? AssortCreatedate { get; set; }
+        public string AssortCreateby { get; set; }
+        public DateTime? AssortUpdatedate { get; set; }
+        public string AssortUpdateby { get; set; }
 
-        public OfficeDepartment AssOdt { get; set; }
-        public ICollection<VisitMedicines> VisitMedicines { get; set; }
+        public AssortType AssortTyp { get; set; }
+        public ICollection<AssortPrice> AssortPrice { get; set; }
+        public ICollection<InvoiceAssortment> InvoiceAssortment { get; set; }
     }
 }

@@ -20,8 +20,8 @@ using PetVET.Services;
 
 namespace PetVET.Controllers
 {
-    [Authorize(Roles ="SuperAdmin")]
-    // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
+    //[Authorize(Roles ="SuperAdmin")]   
+    //[ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class SuperAdminApiController : Controller
     {
@@ -41,39 +41,14 @@ namespace PetVET.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Treatment> dto = null;
-            try
-            {
-                dto =  _IUnitOfWork.Treatment.GetAll().ToList();
-                var result = _mapper.Map<List<Treatment>, List<DllDTO>>(dto);
-                return Ok(result);
-            }
-            catch (SqlException exc)
-            {
-                throw new Exception("Internal servier error");
-            }
-            catch (Exception ex)
-            {
-               
-            }
-
-            return NotFound("Klient nie istnieje w bazie danych");
-            
-
+            return Ok();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
-        {
-            Treatment result = _IUnitOfWork.Treatment.GetByID(id);  //baza danych
-
-            if (result == null)
-            {
-                return NotFound("Klient nie istnieje w bazie danych");
-            }
-
-            return Ok(result);
+        {           
+            return Ok();
         }
 
         // POST api/<controller>
@@ -88,7 +63,7 @@ namespace PetVET.Controllers
 
                 if (!result)
                 {
-                    return Ok("nie udało sie zpisać");
+                    return new BadRequestObjectResult("nie udało sie dodać nowej organizacji prosimy spróbawać ponowanie");
                 }
 
             }
@@ -98,19 +73,15 @@ namespace PetVET.Controllers
             }
             catch(Exception ex)
             {
-               
+                throw new Exception("Internal servier error, please conntact with Administration");
             }
 
             return Ok("Poprawnie dodano nowe konto");
-
-
-            //return CreatedAtAction("Get", new { id = serviceViewModel.ServiceID });         
         }
 
-        public async Task<IActionResult> GetAll()
-        {
-            var contactList = await _IUnitOfWork.Treatment.FindAsync(x => x.Rowid > 0);  //baza danych
-            return Ok(contactList);
+        public IActionResult GetAll()
+        {           
+            return Ok();
         }
 
         // PUT api/<controller>/5

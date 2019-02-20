@@ -5,19 +5,31 @@ namespace PetVET.Database.Models
 {
     public partial class Invoice
     {
-        public int Rowid { get; set; }
-        public string InvCode { get; set; }
-        public int InvVisit { get; set; }
-        public DateTime? InvDate { get; set; }
-        public DateTime? InvSelldate { get; set; }
-        public int? InvTypid { get; set; }
-        public bool? InvNotused { get; set; }
-        public string InvCreuser { get; set; }
-        public DateTime? InvCredate { get; set; }
-        public string InvModuser { get; set; }
-        public DateTime? InvModdate { get; set; }
+        public Invoice()
+        {
+            InvoiceAssortment = new HashSet<InvoiceAssortment>();
+            InvoiceService = new HashSet<InvoiceService>();
+        }
 
-        public VarTypOfPay InvTyp { get; set; }
-        public Visit InvVisitNavigation { get; set; }
+        public int Rowid { get; set; }
+        public int? InvOfficeid { get; set; }
+        public string InvCode { get; set; }
+        public byte? InvStatus { get; set; }
+        public decimal? InvCost { get; set; }
+        public int? InvEmpid { get; set; }
+        public int? InvCustomeranimalid { get; set; }
+        public int? InvMethodpayid { get; set; }
+        public int? InvVisitid { get; set; }
+        public DateTime? InvCreatedate { get; set; }
+        public string InvCreateby { get; set; }
+        public DateTime? InvUpdatedate { get; set; }
+        public string InvUpdateby { get; set; }
+
+        public CustomerAnimal InvCustomeranimal { get; set; }
+        public Employee InvEmp { get; set; }
+        public MethodPay InvMethodpay { get; set; }
+        public Visit InvVisit { get; set; }
+        public ICollection<InvoiceAssortment> InvoiceAssortment { get; set; }
+        public ICollection<InvoiceService> InvoiceService { get; set; }
     }
 }

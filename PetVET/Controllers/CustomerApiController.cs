@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Filters;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetVET.Database.Models;
+using PetVET.Infrastructure;
 using PetVET.Models;
 using PetVET.Models.CustomerViewModels;
 using PetVET.Repository;
@@ -16,23 +19,23 @@ using PetVET.Repository.Core;
 
 namespace PetVET.Controllers
 {
-    [Authorize]
-    // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
+    [ModelStateValidationFilter]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [Route("api/[controller]")]
     public class CustomerApiController : Controller
     {
 
         IUnitOfWork _IUnitOfWork;
         IMapper _mapper;
-        IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> _entityCommandService;
-
+        IApplicationUserAccesor _applicationUserAccesor;
         public CustomerApiController(IUnitOfWork IUnitOfWork,
                                      IMapper mapper,
-                                     IEntityCommandService<CustomerViewModel, Test, ErrorViewModel> customerViewModel)
+                                     IApplicationUserAccesor applicationUserAccesor)
         {
             _IUnitOfWork = IUnitOfWork;
             _mapper = mapper;
-            _entityCommandService = customerViewModel;
+            _applicationUserAccesor = applicationUserAccesor;
         }
 
         // GET: api/<controller>
@@ -46,6 +49,10 @@ namespace PetVET.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+
+            var tt = _applicationUserAccesor.Get();
+            tt.FirstName = "asdadas";
+
             Customer result = _IUnitOfWork.Customer.GetByID(id);
 
             if (result == null)
@@ -53,33 +60,37 @@ namespace PetVET.Controllers
                 return NotFound("Klient nie istnieje w bazie danych");
             }
 
-            return Ok(result);
+            return Ok(_mapper.Map<Customer, CustomerViewModel>(result));
         }
 
         // POST api/<controller>
         [HttpPost]
+        [ValidateAntiForgeryToken]        
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
-           // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", customerViewModel).Result;
 
             Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
             try
-            {
-                if (_IUnitOfWork.Customer.Find(x => x.CusEmail == customerViewModel.Mail).FirstOrDefault() != null)
+            {             
+                if (_IUnitOfWork.Customer.Find(x => x.CustMail == customerViewModel.Mail).FirstOrDefault() != null)
                 {
-                    return new ObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
+                    return new BadRequestObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
                 }
 
                 _IUnitOfWork.Customer.Add(c);
                 _IUnitOfWork.Complete();
 
                 customerViewModel.UserID = _IUnitOfWork.Customer
-                                            .Find(x => x.CusEmail == customerViewModel.Mail
-                                            || x.CusPhone == customerViewModel.PhonNumber).First().Rowid;
-            }
+                                            .Find(x => x.CustMail == customerViewModel.Mail
+                                            || x.CustPhone == customerViewModel.PhonNumber).First().Rowid;
+            }  
             catch (SqlException exc)
             {
                 throw new Exception("Internal servier error");
+            }
+            catch (Exception ex)
+            {
+                var y = "";
             }
 
             return CreatedAtAction("Get", new { userID = customerViewModel.UserID });         
@@ -102,10 +113,28 @@ namespace PetVET.Controllers
         public void Delete(int id)
         {
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost("ss")]        
+        public IActionResult ss()
+        {
+            return Ok("adadsadaD");
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("ss")]
+        public IActionResult sss()
+        {
+            return Ok("adadsadaD");
+        }
+
+
         [HttpPost("search")]
+        //[ValidateAntiForgeryToken]
         public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
         {           
             IEnumerable<Customer> result = null;
+           
             int count = 0;
             try
             {

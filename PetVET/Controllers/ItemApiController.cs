@@ -15,7 +15,8 @@ using PetVET.Repository;
 namespace PetVET.Controllers
 {
     // [ServiceFilter(typeof(ModelStateValidationFilter),Order =3)]
-    [Authorize]
+    //[Authorize]
+    //[ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class ItemApiController : Controller
     {
@@ -60,25 +61,26 @@ namespace PetVET.Controllers
         {
            // ProcedureResult<Test, ErrorViewModel> result =  _entityCommandService.ExecuteStoredProc("Test", itemViewModel).Result;
            
+            if(!ModelState.IsValid)
 
             try
             {
-                OfficeDepartment od = _IUnitOfWork.OfficeDepartment.Find(x => x.Rowid == 1).First();
+                    Office od = _IUnitOfWork.Office.Find(x => x.Rowid == 1).First();
 
-                Assortment c = _mapper.Map<ItemViewModel, Assortment>(itemViewModel);
+                    Equipemnt c = _mapper.Map<ItemViewModel, Equipemnt>(itemViewModel);
                 
-                if (_IUnitOfWork.Assortment.Find(x => x.AssDesc == itemViewModel.ItemName).FirstOrDefault() != null)
+                if (_IUnitOfWork.Assortment.Find(x => x.AssortDesc == itemViewModel.ItemName).FirstOrDefault() != null)
                 {
                     return new ObjectResult($"Klient o podanym email : {itemViewModel.ItemName}, istnieje juz w bazie klientów");
                 }
 
-                od.Assortment.Add(c);
+                od.Equipemnt.Add(c);
 
                 //_IUnitOfWork.Assortment(c);
                 _IUnitOfWork.Complete();
 
                 itemViewModel.ItemID = _IUnitOfWork.Assortment
-                                            .Find(x => x.AssDesc == itemViewModel.ItemName).First().Rowid;
+                                            .Find(x => x.AssortDesc == itemViewModel.ItemName).First().Rowid;
                                             
             }
             catch (SqlException exc)

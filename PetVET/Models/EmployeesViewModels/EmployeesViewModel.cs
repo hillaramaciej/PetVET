@@ -12,6 +12,7 @@ namespace PetVET.Models.EmployeesViewModels
 {
     public class EmployeesViewModel : Profile , IViewModel
     {
+        [Required]
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 

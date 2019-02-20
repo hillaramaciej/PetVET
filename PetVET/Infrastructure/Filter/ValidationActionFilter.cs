@@ -20,10 +20,11 @@ namespace System.Web.Http.Filters
                 //list.AddRange(from modelState in context.ModelState.Values from error in modelState.Errors select error.ErrorMessage.ToString());
 
                 context.Result = new BadRequestObjectResult(list);
-                
+
             }
             base.OnActionExecuting(context);
-            
+
         }
     }
+
 }

@@ -63,10 +63,10 @@
                                         <div class="form-check">
                                             <label>Posiada konto ?</label><br>
                                             <label class="radio-inline">
-                                                <input data-bind="checked: UserAdded" type="radio" name="status" value="1">Tak
+                                                <input data-bind="checked: IsUserAdded" type="radio" name="status" value="1">Tak
                                             </label>
                                             <label class="radio-inline">
-                                                <input data-bind="checked: UserAdded" type="radio" name="status" value="0" checked="checked">Nie
+                                                <input data-bind="checked: IsUserAdded" type="radio" name="status" value="0" checked="checked">Nie
                                             </label>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                                             callback: SelectedValueCallback }'></tmpl-ddl>
                                         <div>
                                             <label>Utwórz konto</label><br />
-                                            <a data-bind="click: AddUser" class="btn btn-warning">Utwórz konto</a>
+                                            <a data-bind="click: Save" class="btn btn-warning">Utwórz konto</a>
                                         </div>
                                     </div>
                                 </div>

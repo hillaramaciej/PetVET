@@ -74,6 +74,7 @@ function ViewModel () {
                 street: self.Street(),
                 houseNumber: self.HouseNumber(),
                 flatNumber: self.FlatNumber(),
+                city: self.City(),
                 cityCode: self.CityCode(),
                 dateOfBirth: self.DateOfBirth(),
                 agreement1: self.Agreement1() === 1 ? true : false,
@@ -81,11 +82,11 @@ function ViewModel () {
                 agreement3: self.Agreement3() === 1 ? true : false,
             }
 
-            self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, SaveFailed)
+            self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, self.SaveFailed)
 
         };
 
-        SaveSuccessfull = function (response, textStatus, xhr) {
+        self.SaveSuccessfull = function (response, textStatus, xhr) {
             window.setTimeout(function () {
                 if (response.state) {
 
@@ -102,7 +103,7 @@ function ViewModel () {
             }, 1);
         };
 
-        SaveFailed = function (response, textStatus, xhr) {
+        self.SaveFailed = function (response, textStatus, xhr) {
             //self.Utils.Form.HideProgress();
             if (response.message) {
                 //self.Utils.Form.ErrorDialog(response.message);
