@@ -72,17 +72,17 @@ namespace PetVET.Controllers
             Customer c = _mapper.Map<CustomerViewModel, Customer>(customerViewModel);           
             try
             {             
-                if (_IUnitOfWork.Customer.Find(x => x.CustMail == customerViewModel.Mail).FirstOrDefault() != null)
+                if (_IUnitOfWork.Customer.Find(x => x.CustMail == customerViewModel.CustMail).FirstOrDefault() != null)
                 {
-                    return new BadRequestObjectResult($"Klient o podanym email : {customerViewModel.Mail}, istnieje juz w bazie klientów");
+                    return new BadRequestObjectResult($"Klient o podanym email : {customerViewModel.CustMail}, istnieje juz w bazie klientów");
                 }
 
                 _IUnitOfWork.Customer.Add(c);
                 _IUnitOfWork.Complete();
 
-                customerViewModel.UserID = _IUnitOfWork.Customer
-                                            .Find(x => x.CustMail == customerViewModel.Mail
-                                            || x.CustPhone == customerViewModel.PhonNumber).First().Rowid;
+                customerViewModel.Rowid = _IUnitOfWork.Customer
+                                            .Find(x => x.CustMail == customerViewModel.CustMail
+                                            || x.CustPhone == customerViewModel.CustPhone).First().Rowid;
             }  
             catch (SqlException exc)
             {
@@ -93,7 +93,7 @@ namespace PetVET.Controllers
                 var y = "";
             }
 
-            return CreatedAtAction("Get", new { userID = customerViewModel.UserID });         
+            return CreatedAtAction("Get", new { userID = customerViewModel.Rowid });         
         }
 
         public async Task<IActionResult> GetAll()
