@@ -140,12 +140,12 @@
                                 <tbody data-bind="foreach: CustomerList">
                                     <tr>
                                         <td data-bind="text: $data.FullName()"></td>
-                                        <td data-bind="text: $data.PhonNumber"></td>
-                                        <td data-bind="text: $data.Mail"></td>
-                                        <td data-bind="text: $data.City"></td>
+                                        <td data-bind="text: $data.CustPhone"></td>
+                                        <td data-bind="text: $data.CustMail"></td>
+                                        <td data-bind="text: $data.CustCity"></td>
                                         <td><span class="label-custom label label-default">Active</span> </td>
                                         <td>
-                                            <a href="#" data-url="Customer/CustomerProfile/id=0" data-bind="attr: { 'href' : $parent.GotoProfile($element, UserID) }"
+                                            <a href="#" data-url="Customer/CustomerProfile/id=0" data-bind="attr: { 'href' : $parent.GotoProfile($element, Rowid) }"
                                                class="btn btn-add btn-sm">
                                                 <i class="fa fa-pencil"></i>
                                             </a>

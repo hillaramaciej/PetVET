@@ -11,32 +11,31 @@ namespace PetVET.Models.ServiceViewModels
 {
     public class ServiceViewModel : Profile
     {
-        [JsonProperty(PropertyName = "serviceId")]
-        public int ServiceID { get; set; }
+        [JsonProperty(PropertyName = "rowid")]
+        public int Rowid { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceName")]
-        public string ServiceName { get; set; }
+        [JsonProperty(PropertyName = "servicName")]
+        public string ServicName { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceType")]
-        public string ServiceType { get; set; }
+        [JsonProperty(PropertyName = "servicTypeid")]
+        public string ServicTypeid { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceCost")]
-        public int ServiceCost { get; set; }
+        [JsonProperty(PropertyName = "servicCost")]
+        public int ServicCost { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceTax")]
-        public int ServiceTax { get; set; }
+        [JsonProperty(PropertyName = "servicTaxid")]
+        public int ServicTaxid { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "serviceDuration")]
-        public int ServiceDuration { get; set; }
-
+        [JsonProperty(PropertyName = "servicDuration")]
+        public int ServicDuration { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "officeId")]
-        public int OfficeId { get; set; }
+        [JsonProperty(PropertyName = "servicOfficeid")]
+        public int ServicOfficeid { get; set; }
     }
 }

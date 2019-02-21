@@ -5,21 +5,22 @@ function ViewModel () {
 
        //FORM 
         
-        self.UserID = ko.observable();
-        self.FirstName = ko.observable();//.extend({ required: true }).extend({ minLength: 3 });
-        self.PhonNumber = ko.observable();
-        self.LastName = ko.observable();
-        self.Mail = ko.observable();
-        self.City = ko.observable();
-        self.IsNewCustomer = ko.observable();
-        self.Street = ko.observable();
-        self.HouseNumber = ko.observable();
-        self.FlatNumber = ko.observable();
-        self.CityCode = ko.observable();
-        self.DateOfBirth = ko.observable();
-        self.Agreement1 = ko.observable();
-        self.Agreement2 = ko.observable();
-        self.Agreement3 = ko.observable();
+    self.Rowid = ko.observable();
+    self.CustFirstname = ko.observable();//.extend({ required: true }).extend({ minLength: 3 });
+    self.CustLastname = ko.observable();
+    self.CustPhone = ko.observable();
+    self.CustMail = ko.observable();
+    self.CustNotused = ko.observable();
+    self.CustStreet = ko.observable();
+    self.CustHouse = ko.observable();
+    self.CustFlat = ko.observable();
+    self.CustCity = ko.observable();
+    self.CustCitycode = ko.observable();
+    self.CustBirthdate = ko.observable();
+    self.CustNotused = ko.observable();
+    self.CustAgree1 = ko.observable();
+    self.CustAgree2 = ko.observable();
+    self.CustAgree3 = ko.observable();
 
         self.SelectedValue = ko.observable(); 
         //END FORM 
@@ -31,20 +32,21 @@ function ViewModel () {
                 self.SerchTrigger = true;
             else {
                 self.SerchTrigger = false;
-                self.UserID = ko.observable(undefined);
-                self.FirstName = ko.observable(undefined)
-                self.PhonNumber = ko.observable(undefined);
-                self.LastName = ko.observable(undefined);
-                self.Mail = ko.observable(undefined);
-                self.City = ko.observable(undefined);
-                self.Street = ko.observable(undefined);
-                self.HouseNumber = ko.observable(undefined);
-                self.FlatNumber = ko.observable(undefined);
-                self.CityCode = ko.observable(undefined);
-                self.DateOfBirth = ko.observable(undefined);
-                self.Agreement1 = ko.observable(undefined);
-                self.Agreement2 = ko.observable(undefined);
-                self.Agreement3 = ko.observable(undefined);
+                self.Rowid = ko.observable(undefined);
+                self.CustFirstname = ko.observable(undefined)
+                self.CustLastname = ko.observable(undefined);
+                self.CustPhone = ko.observable(undefined);
+                self.CustMail = ko.observable(undefined);
+                self.CustStreet = ko.observable(undefined);
+                self.CustHouse = ko.observable(undefined);
+                self.CustFlat = ko.observable(undefined);
+                self.CustCity = ko.observable(undefined);
+                self.CustCitycode = ko.observable(undefined);
+                self.CustBirthdate = ko.observable(undefined);
+                self.CustNotused = ko.observable(undefined);
+                self.CustAgree1 = ko.observable(undefined);
+                self.CustAgree2 = ko.observable(undefined);
+                self.CustAgree3 = ko.observable(undefined);
             }
         }; 
         //END Search Trigger
@@ -65,21 +67,21 @@ function ViewModel () {
         self.Save = function () {
 
             var data = {
-                userId: self.UserID(),
-                firstName: self.FirstName(),
-                phonNumber: self.PhonNumber(),
-                lastName: self.LastName(),
-                mail: self.Mail(),
-                isNewCustomer: self.IsNewCustomer() === 1 ? true : false,
-                street: self.Street(),
-                houseNumber: self.HouseNumber(),
-                flatNumber: self.FlatNumber(),
-                city: self.City(),
-                cityCode: self.CityCode(),
-                dateOfBirth: self.DateOfBirth(),
-                agreement1: self.Agreement1() === 1 ? true : false,
-                agreement2: self.Agreement2() === 1 ? true : false,
-                agreement3: self.Agreement3() === 1 ? true : false,
+                rowid: self.Rowid(),
+                custFirstname: self.CustFirstname(),
+                custLastname: self.CustLastname(),
+                custPhone: self.CustPhone(),
+                custMail: self.CustMail(),
+                custStreet: self.CustStreet(),
+                custHouse: self.CustHouse(),
+                custFlat: self.CustFlat(),
+                custCity: self.CustCity(),
+                custCitycode: self.CustCitycode(),
+                custBirthdate: self.CustBirthdate(),
+                custNotused: self.CustNotused() === 1 ? true : false,
+                custAgree1: self.CustAgree1() === 1 ? true : false,
+                custAgree2: self.CustAgree2() === 1 ? true : false,
+                custAgree3: self.CustAgree3() === 1 ? true : false,
             }
 
             self.Utilis.PostApi('api/CustomerApi', data, self.SaveSuccessfull, self.SaveFailed)
@@ -123,20 +125,21 @@ function ViewModel () {
             var ttt = self.SelectedValue()
             self.ClearInfoMessage();
 
-            self.UserID(undefined);
-            self.FirstName("");
-            self.PhonNumber(null);
-            self.LastName("");
-            self.Mail("");
-            self.IsNewCustomer(false);
-            self.Street("");
-            self.HouseNumber(null);
-            self.FlatNumber(null);
-            self.CityCode(null);
-            self.DateOfBirth(null);
-            self.Agreement1(false);
-            self.Agreement2(false);
-            self.Agreement3(false);
+            self.Rowid(undefined);
+            self.CustFirstname("");
+            self.CustLastname("");
+            self.CustPhone(null);
+            self.CustMail("");
+            self.CustStreet("");
+            self.CustHouse(null);
+            self.CustFlat(null);
+            self.CustCity(null);
+            self.CustCitycode(null);
+            self.CustBirthdate(null);
+            self.CustNotused(false);
+            self.CustAgree1(false);
+            self.CustAgree2(false);
+            self.CustAgree3(false);
         };
 
         self.MapFromJson = function (jsonData) {
@@ -153,20 +156,21 @@ function ViewModel () {
             if (window.console)
                 console.log('MapFromJsonInternal');
 
-            self.UserID(jsonData.userID)
-            self.FirstName(jsonData.firstName);
-            self.PhonNumber(jsonData.phonNumber);
-            self.LastName(jsonData.lastName);
-            self.Mail(jsonData.mail);
-            self.IsNewCustomer(jsonData.isNewCustomer);
-            self.Street(jsonData.street);
-            self.HouseNumber(jsonData.houseNumber);
-            self.FlatNumber(jsonData.flatNumber);
-            self.CityCode(jsonData.cityCode);
-            self.DateOfBirth(jsonData.dateOfBirth);
-            self.Agreement1(jsonData.agreement1);
-            self.Agreement2(jsonData.agreement2);
-            self.Agreement3(jsonData.agreement3);
+            self.Rowid(jsonData.rowid)
+            self.CustFirstname(jsonData.custFirstname);
+            self.CustLastname(jsonData.custLastname);
+            self.CustPhone(jsonData.custPhone);
+            self.CustMail(jsonData.custMail);
+            self.CustStreet(jsonData.custStreet);
+            self.CustHouse(jsonData.custHouse);
+            self.CustFlat(jsonData.custFlat);
+            self.CustCity(jsonData.custCity);
+            self.CustCitycode(jsonData.custCitycode);
+            self.CustBirthdate(jsonData.custBirthdate);
+            self.CustNotused(jsonData.custNotused);
+            self.CustAgree1(jsonData.custAgree1);
+            self.CustAgree2(jsonData.custAgree2);
+            self.CustAgree3(jsonData.custAgree3);
         };
 
     }
