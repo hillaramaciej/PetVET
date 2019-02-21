@@ -4,12 +4,12 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.UserID = ko.observable();
-    self.FirstName = ko.observable("").extend({ required: true }).extend({ minLength: 3 });
-    self.PhonNumber = ko.observable("");
-    self.LastName = ko.observable("");
-    self.Mail = ko.observable("");
-    self.IsNewCustomer = ko.observable(true);
+    self.Rowid = ko.observable();
+    self.CustFirstname = ko.observable("").extend({ required: true }).extend({ minLength: 3 });
+    self.CustPhone = ko.observable("");
+    self.CustLastname = ko.observable("");
+    self.CustMail = ko.observable("");
+    self.CustNotused = ko.observable(true);
     self.SearchType = ko.observable("Wyszukiwanie zaawansowane");
     self.QuickSearch = ko.observable("");
     //END FORM
@@ -88,15 +88,15 @@ function ViewModel() {
     self.Customer = function () {
         var selfC = this;
 
-        selfC.UserID = ko.observable();
-        selfC.FirstName = ko.observable("")
-        selfC.PhonNumber = ko.observable("");
-        selfC.LastName = ko.observable("");
-        selfC.Mail = ko.observable("");
-        selfC.City = ko.observable("");
+        selfC.Rowid = ko.observable();
+        selfC.CustFirstname = ko.observable("")
+        selfC.CustPhone = ko.observable("");
+        selfC.CustLastname = ko.observable("");
+        selfC.CustMail = ko.observable("");
+        selfC.CustCity = ko.observable("");
 
         selfC.FullName = ko.computed(function () {
-            return selfC.FirstName() + " " + selfC.LastName();
+            return selfC.CustFirstname() + " " + selfC.CustLastname();
         }, selfC);
     }
 
@@ -105,10 +105,10 @@ function ViewModel() {
     self.Init = function () {
         debugger;
         var data = {
-            //firstName: self.FirstName(),
-            //phonNumber: self.PhonNumber(),
-            //lastName: self.LastName(),
-            //mail: self.Mail(),
+            //custFirstname: self.CustFirstname(),
+            //custPhone: self.CustPhone(),
+            //custLastname: self.CustLastname(),
+            //custMail: self.CustMail(),
             page: self.Page(),
             step: self.Step(),
             search: self.QuickSearch(),
@@ -121,10 +121,10 @@ function ViewModel() {
     ko.computed(function () {
 
         quickSearchObject = {
-            //FirstName : ko.observable(self.FirstName),
-            //LastName: ko.observable(self.LastName),
-            //PhonNumber: ko.observable(self.PhonNumber),
-            //Mail: ko.observable(self.Mail),
+            //CustFirstname : ko.observable(self.CustFirstname),
+            //CustLastname: ko.observable(self.CustLastname),
+            //CustPhone: ko.observable(self.CustPhone),
+            //CustMail: ko.observable(self.CustMail),
 
             QuickSearch: ko.observable(self.QuickSearch),
         }
@@ -137,10 +137,10 @@ function ViewModel() {
             //self.Step(5);
 
             var data = {
-                //firstName: self.FirstName(),
-                //phonNumber: self.PhonNumber(),
-                //lastName: self.LastName(),
-                //mail: self.Mail(),
+                //custFirstname: self.CustFirstname(),
+                //custPhone: self.CustPhone(),
+                //custLastname: self.CustLastname(),
+                //custMail: self.CustMail(),
                 page: self.Page(),
                 step: self.Step(),
                 search: self.QuickSearch(),
@@ -161,12 +161,12 @@ function ViewModel() {
         for (var i = 0; i < response.result.length; i++) {
 
             var c = new self.Customer();
-            c.LastName(response.result[i].lastName);
-            c.FirstName(response.result[i].firstName);
-            c.PhonNumber(response.result[i].phonNumber);
-            c.Mail(response.result[i].mail);
-            c.UserID(response.result[i].userId);
-            c.City(response.result[i].city);
+            c.CustLastname(response.result[i].custLastname);
+            c.CustFirstname(response.result[i].custFirstname);
+            c.CustPhone(response.result[i].custPhone);
+            c.CustMail(response.result[i].custMail);
+            c.Rowid(response.result[i].rowid);
+            c.CustCity(response.result[i].custCity);
 
             self.CustomerList.push(c);
         }
@@ -184,12 +184,12 @@ function ViewModel() {
     };
 
     self.ClearSearch = function () {
-        self.UserID("");
-        self.FirstName("")
-        self.PhonNumber("")
-        self.LastName("")
-        self.Mail("")
-        self.IsNewCustomer("")
+        self.Rowid("");
+        self.CustFirstname("")
+        self.CustPhone("")
+        self.CustLastname("")
+        self.CustMail("")
+        self.CustNotused("")
         self.QuickSearch("")
     };
 

@@ -3,12 +3,13 @@ function ViewModel() {
     var self = this;
 
     //FORM 
-    self.ServiceID = ko.observable();
-    self.ServiceName = ko.observable();
-    self.ServiceType = ko.observable();
-    self.ServiceCost = ko.observable();
-    self.ServiceTax = ko.observable();
-    self.ServiceDuration = ko.observable();
+    self.Rowid = ko.observable();
+    self.ServicName = ko.observable();
+    self.ServicTypeid = ko.observable();
+    self.ServicCost = ko.observable();
+    self.ServicTaxid = ko.observable();
+    self.ServicDuration = ko.observable();
+    self.ServicOfficeid = ko.observable();
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
@@ -17,12 +18,13 @@ function ViewModel() {
     self.Save = function () {
 
         var data = {
-            serviceId: self.ServiceID(),
-            serviceName: self.ServiceName(),
-            ServiceType: self.ServiceType(),
-            serviceCost: self.ServiceCost(),
-            serviceTax: self.ServiceTax(),
-            ServiceDuration: self.ServiceDuration(),
+            rowid: self.Rowid(),
+            servicName: self.ServicName(),
+            servicTypeid: self.ServicTypeid(),
+            servicCost: self.ServicCost(),
+            servicTaxid: self.ServicTaxid(),
+            servicDuration: self.ServicDuration(),
+            servicOfficeid: self.ServicOfficeid(),
         }
 
         self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
@@ -61,12 +63,13 @@ function ViewModel() {
     self.AddNew = function () {
         self.ClearInfoMessage();
 
-        self.ServiceID(undefined);
-        self.ServiceName("");
-        self.ServiceType(undefined);
-        self.ServiceCost(undefined);
-        self.ServiceTax(undefined);
-        self.ServiceDuration(undefined);
+        self.Rowid(undefined);
+        self.ServicName("");
+        self.ServicTypeid(undefined);
+        self.ServicCost(undefined);
+        self.ServicTaxid(undefined);
+        self.ServicDuration(undefined);
+        self.ServicOfficeid(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -83,12 +86,13 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.ServiceID(jsonData.serviceId);
-        self.ServiceName(jsonData.serviceName);
-        self.ServiceType(jsonData.serviceType);
-        self.ServiceCost(jsonData.serviceCost);
-        self.ServiceTax(jsonData.serviceTax);
-        self.ServiceDuration(jsonData.serviceDuration);
+        self.Rowid(jsonData.rowid);
+        self.ServicName(jsonData.servicName);
+        self.ServicTypeid(jsonData.servicTypeid);
+        self.ServicCost(jsonData.servicCost);
+        self.ServicTaxid(jsonData.servicTaxid);
+        self.ServicDuration(jsonData.servicDuration);
+        self.ServicOfficeid(jsonData.servicOfficeid);
     };
 
 }

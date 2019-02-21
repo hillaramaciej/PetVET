@@ -50,24 +50,24 @@
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Imie</label>
-                                        <input data-bind='value: FirstName' type="text" class="form-control" placeholder="Imie">
+                                        <input data-bind='value: CustFirstname' type="text" class="form-control" placeholder="Imie">
                                     </div>
                                     <div class="form-group">
                                         <label>Nazwisko</label>
-                                        <input data-bind="value: LastName" type="text" class="form-control" placeholder="Nazwisko">
+                                        <input data-bind="value: CustLastname" type="text" class="form-control" placeholder="Nazwisko">
                                     </div>
                                     <div class="form-group">
                                         <label>E-mail</label>
-                                        <input data-bind="value: Mail" type="email" class="form-control" placeholder="Email">
+                                        <input data-bind="value: CustMail" type="email" class="form-control" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <label>Numer telefonu</label>
-                                        <input data-bind="value: PhonNumber" type="number" class="form-control" placeholder="Numer telefonu">
+                                        <input data-bind="value: CustPhone" type="number" class="form-control" placeholder="Numer telefonu">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Data urodzenia</label>
-                                        <input data-bind="value: DateOfBirth" type="datetime" class="form-control" placeholder="Data urodzenia">
+                                        <input data-bind="value: CustBirthdate" type="datetime" class="form-control" placeholder="Data urodzenia">
                                     </div>
                                     <div>
                                         <label>Przypisz pacjentów</label><br />
@@ -79,23 +79,23 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Ulica</label>
-                                    <input data-bind="value: Street" type="text" class="form-control" placeholder="Ulica">
+                                    <input data-bind="value: CustStreet" type="text" class="form-control" placeholder="Ulica">
                                 </div>
                                 <div class="form-group">
                                     <label>Numer domu</label>
-                                    <input data-bind="value: HouseNumber" type="text" class="form-control" placeholder="Numer domu">
+                                    <input data-bind="value: CustHouse" type="text" class="form-control" placeholder="Numer domu">
                                 </div>
                                 <div class="form-group">
                                     <label>Numer lokalu</label>
-                                    <input data-bind="value: FlatNumber" type="text" class="form-control" placeholder="Numer lokalu">
+                                    <input data-bind="value: CustFlat" type="text" class="form-control" placeholder="Numer lokalu">
                                 </div>
                                 <div class="form-group">
                                     <label>Miasto</label>
-                                    <input data-bind="value: City" type="text" class="form-control" placeholder="Miasto">
+                                    <input data-bind="value: CustCity" type="text" class="form-control" placeholder="Miasto">
                                 </div>
                                 <div class="form-group">
                                     <label>Kod pocztowy</label>
-                                    <input data-bind="value: CityCode" type="number" class="form-control" placeholder="Kod pocztowy">
+                                    <input data-bind="value: CustCitycode" type="number" class="form-control" placeholder="Kod pocztowy">
                                 </div>
                                 <div class="form-group">
                                     <label>Zdjecie</label>
@@ -121,11 +121,11 @@
                                 <div class="form-check">
                                     <br />
                                     <label class="radio-inline">
-                                        <input data-bind="checked: Agreement1" type="checkbox" name="agreement1" value="1" checked="checked">
+                                        <input data-bind="checked: CustAgree1" type="checkbox" name="agreement1" value="1" checked="checked">
                                         <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
-                                        <input data-bind="checked: Agreement2" type="checkbox" name="agreement2" value="2" checked="checked">
+                                        <input data-bind="checked: CustAgree2" type="checkbox" name="agreement2" value="2" checked="checked">
                                         <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
-                                        <input data-bind="checked: Agreement3" type="checkbox" name="agreement3" value="3" checked="checked">
+                                        <input data-bind="checked: CustAgree3" type="checkbox" name="agreement3" value="3" checked="checked">
                                         <p>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z ( np. realizacją zgłoszenia). Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem /am poinformowany / Administratorem danych osobowych jest [pełna nazwa firmy] z siedzibą [adres firmy]. </p>
                                         <br />
                                         <a data-bind="click: Print" class="btn btn-success">Drukuj zgody</a>

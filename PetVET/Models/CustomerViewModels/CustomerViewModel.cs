@@ -12,59 +12,63 @@ namespace PetVET.Models.CustomerViewModels
     public class CustomerViewModel :  IViewModel
     {      
 
-        [JsonProperty(PropertyName ="userId")]
-        public int UserID { get; set; }
+        [JsonProperty(PropertyName = "rowid")]
+        public int Rowid { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName= "firstName")]
-        public string FirstName { get; set; }
+        [JsonProperty(PropertyName= "custFirstname")]
+        public string CustFirstname { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "lastName")]
-        public string LastName { get; set; }
+        [JsonProperty(PropertyName = "custLastname")]
+        public string CustLastname { get; set; }
 
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Invalid email format.")]
-        [JsonProperty(PropertyName = "mail")]
-        public string Mail { get; set; }
+        [JsonProperty(PropertyName = "custMail")]
+        public string CustMail { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "phonNumber")]
-        public string PhonNumber { get; set; }
+        [JsonProperty(PropertyName = "custPhone")]
+        public string CustPhone { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "street")]
-        public string Street { get; set; }
+        [JsonProperty(PropertyName = "custBirthdate")]
+        public string CustBirthdate { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "houseNumber")]
-        public string HouseNumber { get; set; }
+        [JsonProperty(PropertyName = "custStreet")]
+        public string CustStreet { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "flatNumber")]
-        public string FlatNumber { get; set; }
+        [JsonProperty(PropertyName = "custHouse")]
+        public string CustHouse { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "city")]
-        public string City { get; set; }
+        [JsonProperty(PropertyName = "custFlat")]
+        public string CustFlat { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "cityCode")]
-        public int CityCode { get; set; }
+        [JsonProperty(PropertyName = "custCity")]
+        public string CustCity { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "custCitycode")]
+        public int CustCitycode { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "dateOfBirth")]
         public DateTime DateOfBirth { get; set; }
 
-        [JsonProperty(PropertyName = "isNewCustomer")]
-        bool IsNew { get; set; }
+        [JsonProperty(PropertyName = "custNotused")]
+        bool CustNotused { get; set; }
 
-        [JsonProperty(PropertyName = "agreement1")]
-        bool Agreement1 { get; set; }
+        [JsonProperty(PropertyName = "custAgree1")]
+        bool CustAgree1 { get; set; }
 
-        [JsonProperty(PropertyName = "agreement2")]
-        bool Agreement2 { get; set; }
+        [JsonProperty(PropertyName = "CustAgree2")]
+        bool CustAgree2 { get; set; }
 
-        [JsonProperty(PropertyName = "agreement3")]
-        bool Agreement3 { get; set; }
+        [JsonProperty(PropertyName = "CustAgree3")]
+        bool CustAgree3 { get; set; }
     }
 }
