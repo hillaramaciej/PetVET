@@ -60,15 +60,15 @@ namespace PetVET.Models.CustomerViewModels
         public DateTime DateOfBirth { get; set; }
 
         [JsonProperty(PropertyName = "custNotused")]
-        bool CustNotused { get; set; }
+        public bool ? CustNotused { get; set; }
 
         [JsonProperty(PropertyName = "custAgree1")]
-        bool CustAgree1 { get; set; }
+        public  bool ? CustAgree1 { get; set; }
 
         [JsonProperty(PropertyName = "CustAgree2")]
-        bool CustAgree2 { get; set; }
+        public bool ? CustAgree2 { get; set; }
 
         [JsonProperty(PropertyName = "CustAgree3")]
-        bool CustAgree3 { get; set; }
+        public bool ? CustAgree3 { get; set; }
     }
 }
