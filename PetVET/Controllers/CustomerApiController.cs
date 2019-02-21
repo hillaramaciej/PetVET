@@ -20,8 +20,8 @@ using PetVET.Repository.Core;
 namespace PetVET.Controllers
 {
     [ModelStateValidationFilter]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize]
     [Route("api/[controller]")]
     public class CustomerApiController : Controller
     {
