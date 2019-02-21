@@ -50,7 +50,36 @@ namespace PetVET.Repository
         public UnitOfWork(DBVETContext context)
         {
             _context = context;
-            
+            Animal = new AnimalRepository(context);
+            AnimalRace = new AnimalRaceRepository(context);
+            AnimalSpecies = new AnimalSpeciesRepository(context);
+            Assortment = new AssortmentRepository(context);
+            AssortPrice = new AssortPriceRepository(context);
+            AssortType = new AssortTypeRepository(context);
+            Company = new CompanyRepository(context);
+            Customer = new CustomerRepository(context);
+            CustomerAnimal = new CustomerAnimalRepository(context);
+            Employee = new EmployeesRepository(context);
+            EmployeeGroup = new EmployeeGroupRepository(context);
+            EmployeeHoliday = new EmployeeHolidayRepository(context);
+            EmployeeOpenHour = new EmployeeOpenHourRepository(context);
+            EmployeeService = new EmployeeServiceRepository(context);
+            EquipemntType = new EquipemntTypeRepository(context);
+            Invoice = new InvoiceRepository(context);
+            InvoiceAssortment = new InvoiceAssortmentRepository(context);
+            InvoiceService = new InvoiceServiceRepository(context);
+            MethodPay = new MethodPayRepository(context);
+            Office = new OfficeRepository(context);
+            OfficeCustomer = new OfficeCustomerRepository(context);
+            OfficeHoliday = new OfficeHolidayRepository(context);
+            OfficeOpenHour = new OfficeOpenHourRepository(context);
+            Reservation = new ReservationRepository(context);
+            ReservationService = new ReservationServiceRepository(context);
+            Servic = new ServicRepository(context);
+            ServiceType = new ServiceTypeRepository(context);
+            Tax = new TaxRepository(context);
+            Visit = new VisitRepository(context);
+
         }
 
         public int Complete()
