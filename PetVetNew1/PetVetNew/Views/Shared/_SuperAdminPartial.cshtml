@@ -1,0 +1,25 @@
+@using Microsoft.AspNetCore.Identity
+@using PetVET.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("SuperAdmin"))
+{
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Panel Super Admina</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a asp-area="" asp-controller="SuperAdmin" asp-action="AddOrganization">
+                    Dodaj Now¹ firmê
+                </a>
+            </li>
+        </ul>
+    </li>
+}

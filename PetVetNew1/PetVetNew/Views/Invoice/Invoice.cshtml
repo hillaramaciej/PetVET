@@ -1,0 +1,227 @@
+﻿@model PetVET.Models.InvoiceViewModels.InvoiceViewModel
+@{
+    ViewData["Title"] = "Invoice";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/InvoiceViewModel.js"></script>
+    <script type="text/javascript">
+    invoiceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <a class="btn btn-add " href="clist.html">
+            <i class="fa fa-list"></i>  Przejdź na listę rachunków
+        </a>
+        <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+        <a data-bind="click: Save" class="btn btn-success">Wystaw rachunek</a>
+        <a data-bind="click: Save" class="btn btn-success">Wystaw Fakture VAT</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie i nazwisko klienta</b></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie Pacjenta</b>(to powinna być dropdown lista zeby można było zmienić zwierzę)</a>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-8">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <form class="col-sm-8">
+                            <fieldset>
+                                <tmpl-ddl params='{data: ServiceOptionData,
+                                        name:"Usługa",
+                                        selectedValue : Service,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                                <div class="form-group">
+                                    <label>Wywiad lekarski</label>
+                                    <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-4">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Ilość</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Waga</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Rabat %</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <form class="col-sm-12">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Numer Rachunku</label>
+                                    <input data-bind='value: InvoiceID' type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Data</label>
+                                    <input data-bind="value: InvoiceTyp" type="datetime-local" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Lekarz prowadzący</label>
+                                    <input data-bind="value: InvoiceTyp" type="text" class="form-control">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <form class="col-sm-8">
+                            <fieldset>
+                                <tmpl-ddl params='{data: ItemOptionData,
+                                        name:"Lek",
+                                        selectedValue : Item,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                                <div class="form-group">
+                                    <label>Opis leczenia</label>
+                                    <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Ilość</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Co ile godzin</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Rabat %</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Dawka</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ile dni stosować</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <br />
+                                    <a data-bind="click: Print" class="btn btn-success">Dodaj lek do listy</a>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <form class="col-sm-12">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Koszt wizyty</label>
+                                    <input data-bind='value: InvoiceID' type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Do zapłaty</label>
+                                    <input data-bind="value: InvoiceTyp" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Zapłacono</label>
+                                    <input data-bind="value: InvoiceTyp" type="number" class="form-control">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        <div class="col-sm-8">
+            <div class="panel panel-bd ">
+                <div class="panel-body">
+                    <form class="col-sm-6">
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Notatka wewnętrzna</label>
+                                <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form class="col-sm-6">
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Informacja dla klienta</label>
+                                <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <input data-bind="checked: Agreement1" type="checkbox" name="agreement1" value="0" > Wysłać rachunek klientowi ?
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-bd ">
+                <div class="panel-body">
+                    <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th>Lek</th>
+                                <th>Ilość</th>
+                                <th>Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: CustomerList">
+                            <tr>
+                                <td data-bind="text: $data.FullName()">Lek 1</td>
+                                <td data-bind="text: $data.PhonNumber">1</td>
+                                <td data-bind="text: $data.Mail">25,45</td>
+                            </tr>
+                            <tr>
+                                <td data-bind="text: $data.FullName()">Lek 2</td>
+                                <td data-bind="text: $data.PhonNumber">2</td>
+                                <td data-bind="text: $data.Mail">33,87</td>
+                            </tr>
+                            <tr>
+                                <td data-bind="text: $data.FullName()">Lek 3</td>
+                                <td data-bind="text: $data.PhonNumber">1</td>
+                                <td data-bind="text: $data.Mail">133,87</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
