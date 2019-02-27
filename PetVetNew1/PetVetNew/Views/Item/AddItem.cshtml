@@ -1,0 +1,199 @@
+﻿@model PetVET.Models.ItemViewModels.ItemViewModel
+@{
+    ViewData["Title"] = "AddItem";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/ItemViewModel.js"></script>
+    <script type="text/javascript">
+        itemViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+        //itemViewModel.Dll();
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      
+        <a data-bind="click: AddNew" class="btn btn-warning">Dodaj towar</a>
+        <a data-bind="click: Save" class="btn btn-success">Save</a>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-12">
+                <div class="panel panel-bd ">
+                    @*<div class="panel-heading">
+                <div class="btn-group">
+                    <a>Dodaj towar</a>
+                </div>
+                </div>*@
+                    <div class="panel-body">
+                        <form class="col-sm-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Nazwa towaru</label>
+                                    <input data-bind='value: ItemName' type="text" class="form-control" placeholder="Wpisz nazwę towaru" required>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <form class="col-sm-6">
+
+                            <fieldset>
+                                <tmpl-ddl params='{data: ItemKindOptionData,
+                                        name:"Rodzaj towaru ",
+                                        selectedValue : ItemKind,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Cena zakupu</label>
+                                    <input data-bind="value: ItemCost" type="number" class="form-control" placeholder="Wpisz">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Cena sprzedaży</label>
+                                    <input data-bind="value: ItemPrice" type="number" class="form-control" placeholder="...">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-2">
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Podatek</label>
+                                    <input data-bind="value: ItemTax" type="number" class="form-control" placeholder="...">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-3">
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Data zakupu</label>
+                                    <input data-bind="value: ItemPurchaseDate" type="date" class="form-control" placeholder="...">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-3">
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Data ważności</label>
+                                    <input data-bind="value: ItemExpirationDate" type="date" class="form-control" placeholder="...">
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-bd ">
+                        @*<div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Notice Board</h4>
+                        </div>
+                    </div>*@
+                        <div class="panel-body">
+                            <div class="Workslist">
+                                <div class="worklistdate">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Imię i nazwisko</th>
+                                                <th>E-mail</th>
+                                                <th>Numer PWZ</th>
+                                                <th>Adres</th>
+                                                <th>Telefon</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="info">
+                                                <td>new notice</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th April 2017</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. Jahir</td>
+                                                <td>26th june 2017</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. leo</td>
+                                                <td>3rd june 2017</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Notice</td>
+                                                <td>Mr. Karim</td>
+                                                <td>3rd July 2017</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

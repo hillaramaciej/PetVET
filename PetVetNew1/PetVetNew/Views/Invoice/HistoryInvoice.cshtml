@@ -1,0 +1,96 @@
+﻿@model PetVET.Models.HistoryInvoiceViewModels.HistoryInvoiceViewModel
+@{
+    ViewData["Title"] = "HistoryInvoice";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/HistoryInvoiceViewModel.js"></script>
+    <script type="text/javascript">
+    historyInvoiceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <a class="btn btn-add " href="clist.html">
+            <i class="fa fa-list"></i>  Przejdź na listę rachunków
+        </a>
+        <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+        <a data-bind="click: Save" class="btn btn-success">Wystaw rachunek</a>
+        <a data-bind="click: Save" class="btn btn-success">Wystaw Fakture VAT</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie i nazwisko klienta</b></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie Pacjenta</b>(to powinna być dropdown lista zeby można było zmienić zwierzę)</a>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="panel panel-bd lobidisable">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Upcoming Events</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="work-touchpoint">
+                            <div class="work-touchpoint-date">
+                                <span class="day">28</span>
+                                <span class="month">Apr</span>
+                            </div>
+                        </div>
+                        <div class="detailswork">
+                            <span class="label-custom label label-default pull-right">Email</span>
+                            <a href="#" title="headings">Marketing policy</a>
+                            <br>
+                            <p>Green Road - Dhaka,Bangladesh</p>
+                        </div>
+                        <div class="work-touchpoint">
+                            <div class="work-touchpoint-date">
+                                <span class="day">2</span>
+                                <span class="month">Apr</span>
+                            </div>
+                        </div>
+                        <div class="detailswork">
+                            <span class="label-custom label label-default pull-right">skype</span>
+                            <a href="#" title="headings">Accounting policy</a>
+                            <br>
+                            <p>Kolkata, India</p>
+                        </div>
+                        <div class="work-touchpoint">
+                            <div class="work-touchpoint-date2">
+                                <span class="day">17</span>
+                                <span class="month">Mrc</span>
+                            </div>
+                        </div>
+                        <div class="detailswork">
+                            <span class="label-custom label label-default pull-right">phone</span>
+                            <a href="#" title="headings">Marketing policy</a>
+                            <br>
+                            <p>Madrid - spain</p>
+                        </div>
+                        <div class="work-touchpoint">
+                            <div class="work-touchpoint-date2">
+                                <span class="day">3</span>
+                                <span class="month">jan</span>
+                            </div>
+                        </div>
+                        <div class="detailswork">
+                            <span class="label-custom label label-default pull-right">Mobile</span>
+                            <a href="#" title="headings">Finance policy</a>
+                            <br>
+                            <p>south Australia - Australia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

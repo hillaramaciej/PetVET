@@ -1,0 +1,147 @@
+﻿@model PetVET.Models.EquipmentViewModels.EquipmentViewModel
+@{
+    ViewData["Title"] = "Equipment";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/EquipmentViewModel.js"></script>
+    <script type="text/javascript">
+    serviceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+          
+            <a data-bind="click: AddNew" class="btn btn-warning">Dodaj sprzęt</a>
+            <a data-bind="click: Save" class="btn btn-success">Save</a>
+      
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-5">
+                <div class="panel panel-bd ">
+                    @*<div class="panel-heading">
+                    <div class="btn-group">
+                        <a>Lista Sprzętów</a>
+                    </div>
+                </div>*@
+                    <div class="panel-body">
+                        <form class="col-sm-12">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Nazwa Sprzętu</label>
+                                    <input data-bind='value: EquipmentName' type="text" class="form-control" placeholder="Wpisz nazwę usługi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Numer seryjny</label>
+                                    <input data-bind='value: EquipmentSerieNumber' type="text" class="form-control" p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gwarancja do</label>
+                                    <input data-bind='value: Warranty' type="date" class="form-control" p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Typ</label>
+                                    <input data-bind='value: EquipmentType' type="text" class="form-control" p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Opis</label>
+                                    <textarea data-bind="value: EquipmentDesc" type="text" class="form-control" placeholder="Wybierz kategorie"></textarea>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-bd ">
+                        @*<div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Notice Board</h4>
+                        </div>
+                    </div>*@
+                        <div class="panel-body">
+                            <div class="Workslist">
+                                <div class="worklistdate">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Notice</th>
+                                                <th>Published By</th>
+                                                <th>Date Added</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="info">
+                                                <td>new notice</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th April 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. Alrazy</td>
+                                                <td>20th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. Jahir</td>
+                                                <td>26th june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Urgent notice</td>
+                                                <td>Mr. leo</td>
+                                                <td>3rd june 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Notice</td>
+                                                <td>Mr. Karim</td>
+                                                <td>3rd July 2017</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

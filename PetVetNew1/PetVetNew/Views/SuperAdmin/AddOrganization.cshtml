@@ -1,0 +1,57 @@
+﻿@model PetVET.Models.SuperAdmin.AddOrganizationViewModel
+
+@{
+    Layout = "_LayoutVET";
+}
+
+
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/ViewModel/SuperAdmin/AddOrganizationViewModel.js"></script>
+    <script type="text/javascript">
+    addOrganizationViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+}
+
+<div class="content-wrapper">
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <!-- Site wrapper -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">       
+        <a data-bind="click: AddNew" class="btn btn-warning">Wyczysc</a>
+        <a data-bind="click: Save" class="btn btn-success">Zapisz</a>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!--preloader-->
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-12">
+                <div class="panel panel-bd ">               
+                    <div class="panel-body">
+                        <form class="col-sm-4">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Mail</label>
+                                    <input data-bind='value: Mail' type="text" class="form-control" placeholder="Mail">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ilość Licencji</label>
+                                    <input data-bind="value: LicenseCount" type="number" class="form-control" placeholder="ilość Licencji">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

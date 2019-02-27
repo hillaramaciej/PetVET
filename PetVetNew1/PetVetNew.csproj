@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-PetVetNew-0EAC2385-93F8-483B-BCC4-4E6EBC129E30</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Infrastructure - Copy\**" />
+    <Compile Remove="Middleware - Copy\**" />
+    <Content Remove="Infrastructure - Copy\**" />
+    <Content Remove="Middleware - Copy\**" />
+    <EmbeddedResource Remove="Infrastructure - Copy\**" />
+    <EmbeddedResource Remove="Middleware - Copy\**" />
+    <None Remove="Infrastructure - Copy\**" />
+    <None Remove="Middleware - Copy\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\PetVET.Database\PetVET.Database.csproj" />
+    <ProjectReference Include="..\PetVet.JwtAuthenticationHelper\JwtAuthenticationHelper.csproj" />
+    <ProjectReference Include="..\PetVET.Repository\PetVET.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
