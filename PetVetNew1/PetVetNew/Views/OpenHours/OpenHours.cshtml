@@ -35,9 +35,13 @@
                     </div>*@
                     <div class="panel-body">
                         <form>
+                            <script id="tableRow" type="text/html">
+                                <tr>
+                                    <td><input data-bind='value: odTime' type="time" class="form-control"></td>
+                                    <td><input data-bind='value: doTime' type="time" class="form-control"></td>
+                                </tr>
 
-
-
+                            </script>
                             <fieldset class="test" style="width:14% ; background: aliceblue;">
                                 <div class="i-check">
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
@@ -48,23 +52,24 @@
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
-                                                </td>
-
-                                            </tr>
-
+                                        <tbody data-bind="template:{name:'tableRow', foreach: PN}">
                                         </tbody>
-
-
-
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PN')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PN')">
+                                                        -
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -74,28 +79,28 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Wtorek</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: WT}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'WT')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'WT')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -105,28 +110,28 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Środa</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: SR}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SR')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SR')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -136,28 +141,28 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Czwartek</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: CZ}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'CZ')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'CZ')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -167,28 +172,28 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Piątek</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: PT}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PT')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PT')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -198,28 +203,28 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Sobota</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: SO}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SO')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SO')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
 
                                 </div>
@@ -229,30 +234,29 @@
                                     <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
                                     <label for="minimal-checkbox-2">Niedziela</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline border">
                                     <table class="table">
 
                                         <thead>
                                             <tr>
-                                                <th scope="col"><label>Od</label></th>
-                                                <th scope="col"><label>Od</label></th>
+                                                <th><label>Od</label></th>
+                                                <th><label>Od</label></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="template:{name:'tableRow', foreach: ND}"></tbody>
+                                        <tfoot>
                                             <tr>
-                                                <th scope="row"><input data-bind='value: SatStart' type="time" class="form-control" value=""></th>
-                                                <td>
-                                                    <input data-bind='value: SatEnd' type="time" class="form-control" value="">
+                                                <td colspan="4">
+                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'ND')">
+                                                        +
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'ND')">
+                                                        -
+                                                    </button>
                                                 </td>
-
                                             </tr>
-
-                                        </tbody>
-
-
-
+                                        </tfoot>
                                     </table>
-
                                 </div>
                             </fieldset>
                         </form>

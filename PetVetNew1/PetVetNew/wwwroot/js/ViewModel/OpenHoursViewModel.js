@@ -1,41 +1,89 @@
-﻿
+﻿function tableRow(odTime, doTime, scope) {
+    this.odTime = ko.observable(odTime);
+    this.doTime = ko.observable(doTime);   
+
+};
 function ViewModel() {
     var self = this;
 
     //FORM 
-    self.OpenHoursID = ko.observable();
-    self.OpenHoursName = ko.observable();
-    self.OpenHoursType = ko.observable();
-    self.MonStart = ko.observable();
-    self.MonEnd = ko.observable();
-    self.TuStart = ko.observable();
-    self.TuEnd = ko.observable();
-    self.WenStart = ko.observable();
-    self.WenEnd = ko.observable();
-    self.ThStart = ko.observable();
-    self.ThEnd = ko.observable();
-    self.FriStart = ko.observable();
-    self.FriEnd = ko.observable();
-    self.SatStart = ko.observable();
-    self.SatEnd = ko.observable();
-    self.SunStart = ko.observable();
-    self.SunEnd = ko.observable();
+    //self.OpenHoursID = ko.observable();
+    //self.OpenHoursName = ko.observable();
+    //self.OpenHoursType = ko.observable();
+    //self.MonStart = ko.observable();
+    //self.MonEnd = ko.observable();
+    //self.TuStart = ko.observable();
+    //self.TuEnd = ko.observable();
+    //self.WenStart = ko.observable();
+    //self.WenEnd = ko.observable();
+    //self.ThStart = ko.observable();
+    //self.ThEnd = ko.observable();
+    //self.FriStart = ko.observable();
+    //self.FriEnd = ko.observable();
+    //self.SatStart = ko.observable();
+    //self.SatEnd = ko.observable();
+    //self.SunStart = ko.observable();
+    //self.SunEnd = ko.observable();
 
 
     //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
+    
+   
+    self.PN = ko.observableArray([]);
+    self.WT = ko.observableArray([]);
+    self.SR = ko.observableArray([]);
+    self.CZ = ko.observableArray([]);
+    self.PT = ko.observableArray([]);
+    self.SO = ko.observableArray([]);
+    self.ND = ko.observableArray([]);
+
+    self.Add = function (day) {
+        self[day].push(new tableRow("00:00", "00:00", self));
+    };
+
+    self.Remove = function (day) {
+        self[day].pop();
+    };
+
+    //self.Add('PN');
+    //self.Add('WT');
+    //self.Add('SR');
+    //self.Add('CZ');
+    //self.Add('PT');
+    //self.Add('SO');
+    //self.Add('ND');
+
+    ////dependentObservable to represent the last row's value
+    //self.lastRowValue = ko.computed(function () {
+    //    var rows = self.tableRows();
+    //    return rows.length ? rows[rows.length - 1].number() : null;
+    //});
+
+    ////subscribe to changes to the last row
+    //self.lastRowValue.subscribe(function (newValue) {
+    //    if (newValue) {
+    //        self.tableRows.push(new tableRow('', self));
+    //    }
+    //});
+
+
+
+
+
 
     self.Save = function () {
+        console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-        var data = {
-            openHoursId: self.OpenHoursID(),
-            openHoursName: self.OpenHoursName(),
-            openHoursType: self.OpenHoursType(),
-        }
+        //var data = {
+        //    openHoursId: self.OpenHoursID(),
+        //    openHoursName: self.OpenHoursName(),
+        //    openHoursType: self.OpenHoursType(),
+        //};
 
-        self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed)
+        //self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed);
 
     };
 
@@ -43,7 +91,7 @@ function ViewModel() {
         window.setTimeout(function () {
             if (response.state) {
 
-               
+
 
                 if (response.message) {
                     //   self.Utils.Form.InfoPanel(response.message, 2000);
@@ -66,28 +114,6 @@ function ViewModel() {
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
-    }
-
-    self.AddNew = function () {
-        self.ClearInfoMessage();
-
-        self.OpenHoursID(undefined);
-        self.OpenHoursName("");
-        self.OpenHoursType(undefined);
-        self.MonStart(undefined);
-        self.MonEnd(undefined);
-        self.TuStart(undefined);
-        self.TuEnd(undefined);
-        self.WenStart(undefined);
-        self.WenEnd(undefined);
-        self.ThStart(undefined);
-        self.ThEnd(undefined);
-        self.FriStart(undefined);
-        self.FriEnd(undefined);
-        self.SatStart(undefined);
-        self.SatEnd(undefined);
-        self.SunStart(undefined);
-        self.SunEnd(undefined);
     };
 
     self.MapFromJson = function (jsonData) {
@@ -104,23 +130,7 @@ function ViewModel() {
         if (window.console)
             console.log('MapFromJsonInternal');
 
-        self.OpenHoursID(jsonData.openHoursId);
-        self.OpenHoursName(jsonData.openHoursName);
-        self.OpenHoursType(jsonData.openHoursType);
-        self.MonStart(jsonData.monStart);
-        self.MonEnd(jsonData.monEnd);
-        self.TuStart(jsonData.tuStart);
-        self.TuEnd(jsonData.tuEnd);
-        self.WenStart(jsonData.wenStart);
-        self.WenEnd(jsonData.wenEnd);
-        self.ThStart(jsonData.thStart);
-        self.ThEnd(jsonData.thEnd);
-        self.FriStart(jsonData.friStart);
-        self.FriEnd(jsonData.friEnd);
-        self.SatStart(jsonData.satStart);
-        self.SatEnd(jsonData.satEnd);
-        self.SunStart(jsonData.sunStart);
-        self.SunEnd(jsonData.sunEnd);
+        console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     };
 
 }
