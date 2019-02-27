@@ -71,7 +71,9 @@ function ViewModel() {
 
 
 
+    self.Reset = function () {
 
+    };
 
 
     self.Save = function () {
