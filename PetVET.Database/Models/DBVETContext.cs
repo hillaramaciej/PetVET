@@ -6,18 +6,28 @@ namespace PetVET.Database.Models
 {
     public partial class DBVETContext : DbContext
     {
+        public DBVETContext()
+        {
+        }
+
+        public DBVETContext(DbContextOptions<DBVETContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<Animal> Animal { get; set; }
         public virtual DbSet<AnimalRace> AnimalRace { get; set; }
         public virtual DbSet<AnimalSpecies> AnimalSpecies { get; set; }
-        public virtual DbSet<Assortment> Assortment { get; set; }
         public virtual DbSet<AssortPrice> AssortPrice { get; set; }
         public virtual DbSet<AssortType> AssortType { get; set; }
+        public virtual DbSet<Assortment> Assortment { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<CustomerAnimal> CustomerAnimal { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeGroup> EmployeeGroup { get; set; }
         public virtual DbSet<EmployeeHoliday> EmployeeHoliday { get; set; }
+        public virtual DbSet<EmployeeOffice> EmployeeOffice { get; set; }
         public virtual DbSet<EmployeeOpenHour> EmployeeOpenHour { get; set; }
         public virtual DbSet<EmployeeService> EmployeeService { get; set; }
         public virtual DbSet<Equipemnt> Equipemnt { get; set; }
@@ -36,19 +46,16 @@ namespace PetVET.Database.Models
         public virtual DbSet<ServiceType> ServiceType { get; set; }
         public virtual DbSet<Tax> Tax { get; set; }
         public virtual DbSet<Visit> Visit { get; set; }
-
-
-        public DBVETContext(DbContextOptions<DBVETContext> options)
-: base(options)
-        { }
-
-
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+
             modelBuilder.Entity<Animal>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Animal__97BD02EBEEC24E68");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -109,7 +116,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<AnimalRace>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__AnimalRa__97BD02EB331B1782");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -148,7 +156,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<AnimalSpecies>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__AnimalSp__97BD02EBCBDC6B70");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -183,49 +192,10 @@ namespace PetVET.Database.Models
                     .HasColumnType("datetime");
             });
 
-            modelBuilder.Entity<Assortment>(entity =>
-            {
-                entity.HasKey(e => e.Rowid);
-
-                entity.Property(e => e.Rowid).HasColumnName("ROWID");
-
-                entity.Property(e => e.AssortCreateby)
-                    .HasColumnName("ASSORT_CREATEBY")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.AssortCreatedate)
-                    .HasColumnName("ASSORT_CREATEDATE")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.AssortDesc)
-                    .HasColumnName("ASSORT_DESC")
-                    .HasMaxLength(500);
-
-                entity.Property(e => e.AssortName)
-                    .HasColumnName("ASSORT_NAME")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.AssortPrescription).HasColumnName("ASSORT_PRESCRIPTION");
-
-                entity.Property(e => e.AssortTypid).HasColumnName("ASSORT_TYPID");
-
-                entity.Property(e => e.AssortUpdateby)
-                    .HasColumnName("ASSORT_UPDATEBY")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.AssortUpdatedate)
-                    .HasColumnName("ASSORT_UPDATEDATE")
-                    .HasColumnType("datetime");
-
-                entity.HasOne(d => d.AssortTyp)
-                    .WithMany(p => p.Assortment)
-                    .HasForeignKey(d => d.AssortTypid)
-                    .HasConstraintName("FK_Assort_TypeId_02");
-            });
-
             modelBuilder.Entity<AssortPrice>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__AssortPr__97BD02EBE7CE2047");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -274,7 +244,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<AssortType>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__AssortTy__97BD02EB03BD6BE3");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -305,9 +276,51 @@ namespace PetVET.Database.Models
                     .HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<Assortment>(entity =>
+            {
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Assortme__97BD02EB65FCA3D6");
+
+                entity.Property(e => e.Rowid).HasColumnName("ROWID");
+
+                entity.Property(e => e.AssortCreateby)
+                    .HasColumnName("ASSORT_CREATEBY")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.AssortCreatedate)
+                    .HasColumnName("ASSORT_CREATEDATE")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.AssortDesc)
+                    .HasColumnName("ASSORT_DESC")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.AssortName)
+                    .HasColumnName("ASSORT_NAME")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.AssortPrescription).HasColumnName("ASSORT_PRESCRIPTION");
+
+                entity.Property(e => e.AssortTypid).HasColumnName("ASSORT_TYPID");
+
+                entity.Property(e => e.AssortUpdateby)
+                    .HasColumnName("ASSORT_UPDATEBY")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.AssortUpdatedate)
+                    .HasColumnName("ASSORT_UPDATEDATE")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AssortTyp)
+                    .WithMany(p => p.Assortment)
+                    .HasForeignKey(d => d.AssortTypid)
+                    .HasConstraintName("FK_Assort_TypeId_02");
+            });
+
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Company__97BD02EBE3C0BE0F");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -384,7 +397,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Customer__97BD02EBF465DC5A");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -459,7 +473,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<CustomerAnimal>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Customer__97BD02EBAF9E7965");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -496,7 +511,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EBB5DCF592");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -560,7 +576,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<EmployeeGroup>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EBB59C27A0");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -593,7 +610,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<EmployeeHoliday>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EBAFA187C1");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -627,9 +645,58 @@ namespace PetVET.Database.Models
                     .HasConstraintName("FK_Emp_Holiday_01");
             });
 
+            modelBuilder.Entity<EmployeeOffice>(entity =>
+            {
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EB0F0A28C4");
+
+                entity.Property(e => e.Rowid).HasColumnName("ROWID");
+
+                entity.Property(e => e.EmpofficeBegindate)
+                    .HasColumnName("EMPOFFICE_BEGINDATE")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.EmpofficeCreateby)
+                    .HasColumnName("EMPOFFICE_CREATEBY")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.EmpofficeCreatedate)
+                    .HasColumnName("EMPOFFICE_CREATEDATE")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.EmpofficeEmpid).HasColumnName("EMPOFFICE_EMPID");
+
+                entity.Property(e => e.EmpofficeEnddate)
+                    .HasColumnName("EMPOFFICE_ENDDATE")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.EmpofficeNotused).HasColumnName("EMPOFFICE_NOTUSED");
+
+                entity.Property(e => e.EmpofficeOfficeid).HasColumnName("EMPOFFICE_OFFICEID");
+
+                entity.Property(e => e.EmpofficeUpdateby)
+                    .HasColumnName("EMPOFFICE_UPDATEBY")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.EmpofficeUpdatedate)
+                    .HasColumnName("EMPOFFICE_UPDATEDATE")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.EmpofficeEmp)
+                    .WithMany(p => p.EmployeeOffice)
+                    .HasForeignKey(d => d.EmpofficeEmpid)
+                    .HasConstraintName("FK_EmployeeOffice_EMPID_01");
+
+                entity.HasOne(d => d.EmpofficeOffice)
+                    .WithMany(p => p.EmployeeOffice)
+                    .HasForeignKey(d => d.EmpofficeOfficeid)
+                    .HasConstraintName("FK_EmployeeOffice_OFFICEID_01");
+            });
+
             modelBuilder.Entity<EmployeeOpenHour>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EB493BE12B");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -671,7 +738,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<EmployeeService>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Employee__97BD02EBF04D7A8D");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -710,7 +778,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Equipemnt>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Equipemn__97BD02EB647ABC7D");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -763,7 +832,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<EquipemntType>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Equipemn__97BD02EB01D291F4");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -796,7 +866,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Invoice>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Invoice__97BD02EB23F4F080");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -859,7 +930,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<InvoiceAssortment>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__InvoiceA__97BD02EBDD4C4715");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -912,7 +984,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<InvoiceService>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__InvoiceS__97BD02EBBBCEBBE7");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -952,7 +1025,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<MethodPay>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__MethodPa__97BD02EB4E2EEBA5");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -983,7 +1057,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Office>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Office__97BD02EBE6BD5054");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1043,7 +1118,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<OfficeCustomer>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__OfficeCu__97BD02EBCA0133EB");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1082,7 +1158,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<OfficeHoliday>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__OfficeHo__97BD02EBFE7DABC3");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1118,7 +1195,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<OfficeOpenHour>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__OfficeOp__97BD02EB0BCC8D99");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1162,7 +1240,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Reservation>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Reservat__97BD02EB169A7E70");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1201,7 +1280,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<ReservationService>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Reservat__97BD02EB00BAF5D8");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1235,7 +1315,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Servic>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Servic__97BD02EB5287B434");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1287,7 +1368,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<ServiceType>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__ServiceT__97BD02EB659D82F1");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1320,7 +1402,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Tax>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Tax__97BD02EB79D5205E");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 
@@ -1353,7 +1436,8 @@ namespace PetVET.Database.Models
 
             modelBuilder.Entity<Visit>(entity =>
             {
-                entity.HasKey(e => e.Rowid);
+                entity.HasKey(e => e.Rowid)
+                    .HasName("PK__Visit__97BD02EB5C018E57");
 
                 entity.Property(e => e.Rowid).HasColumnName("ROWID");
 

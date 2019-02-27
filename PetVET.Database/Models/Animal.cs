@@ -25,8 +25,8 @@ namespace PetVET.Database.Models
         public DateTime? AnimUpdatedate { get; set; }
         public string AnimUpdateby { get; set; }
 
-        public AnimalRace AnimRace { get; set; }
-        public AnimalSpecies AnimSpecies { get; set; }
-        public ICollection<CustomerAnimal> CustomerAnimal { get; set; }
+        public virtual AnimalRace AnimRace { get; set; }
+        public virtual AnimalSpecies AnimSpecies { get; set; }
+        public virtual ICollection<CustomerAnimal> CustomerAnimal { get; set; }
     }
 }

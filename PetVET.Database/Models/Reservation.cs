@@ -22,6 +22,6 @@ namespace PetVET.Database.Models
         public DateTime? ReservUpdatedate { get; set; }
         public string ReservUpdateby { get; set; }
 
-        public ICollection<ReservationService> ReservationService { get; set; }
+        public virtual ICollection<ReservationService> ReservationService { get; set; }
     }
 }

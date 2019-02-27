@@ -35,6 +35,6 @@ namespace PetVET.Database.Models
         public DateTime? CompUpdatedate { get; set; }
         public string CompUpdateby { get; set; }
 
-        public ICollection<Office> Office { get; set; }
+        public virtual ICollection<Office> Office { get; set; }
     }
 }

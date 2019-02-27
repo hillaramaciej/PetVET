@@ -17,7 +17,7 @@ namespace PetVET.Database.Models
         public DateTime? EquipUpdatedate { get; set; }
         public string EquipUpdateby { get; set; }
 
-        public Office EquipOffice { get; set; }
-        public EquipemntType EquipType { get; set; }
+        public virtual Office EquipOffice { get; set; }
+        public virtual EquipemntType EquipType { get; set; }
     }
 }

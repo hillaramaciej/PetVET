@@ -16,6 +16,6 @@ namespace PetVET.Database.Models
         public DateTime? InvserviceUpdatedate { get; set; }
         public string InvserviceUpdateby { get; set; }
 
-        public Invoice InvserviceInvoice { get; set; }
+        public virtual Invoice InvserviceInvoice { get; set; }
     }
 }

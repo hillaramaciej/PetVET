@@ -18,8 +18,8 @@ namespace PetVET.Database.Models
         public DateTime? CustanimUpdatedate { get; set; }
         public string CustanimUpdateby { get; set; }
 
-        public Animal CustanimAnimal { get; set; }
-        public Customer CustanimCustomer { get; set; }
-        public ICollection<Invoice> Invoice { get; set; }
+        public virtual Animal CustanimAnimal { get; set; }
+        public virtual Customer CustanimCustomer { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }
