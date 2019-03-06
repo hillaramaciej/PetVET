@@ -14,6 +14,6 @@ namespace PetVET.Database.Models
         public DateTime? EmpholiUpdatedate { get; set; }
         public string EmpholiUpdateby { get; set; }
 
-        public Employee EmpholiEmp { get; set; }
+        public virtual Employee EmpholiEmp { get; set; }
     }
 }

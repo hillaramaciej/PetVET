@@ -19,6 +19,6 @@ namespace PetVET.Database.Models
         public DateTime? EquiptypeUpdatedate { get; set; }
         public string EquiptypeUpdateby { get; set; }
 
-        public ICollection<Equipemnt> Equipemnt { get; set; }
+        public virtual ICollection<Equipemnt> Equipemnt { get; set; }
     }
 }

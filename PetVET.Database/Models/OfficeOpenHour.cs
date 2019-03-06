@@ -17,6 +17,6 @@ namespace PetVET.Database.Models
         public DateTime? OffopenUpdatedate { get; set; }
         public string OffopenUpdateby { get; set; }
 
-        public Office OffopenOffice { get; set; }
+        public virtual Office OffopenOffice { get; set; }
     }
 }

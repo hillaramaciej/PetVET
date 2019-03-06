@@ -19,7 +19,7 @@ namespace PetVET.Database.Models
         public DateTime? InvassortUpdatedate { get; set; }
         public string InvassortUpdateby { get; set; }
 
-        public Assortment InvassortAssort { get; set; }
-        public Invoice InvassortInvoice { get; set; }
+        public virtual Assortment InvassortAssort { get; set; }
+        public virtual Invoice InvassortInvoice { get; set; }
     }
 }

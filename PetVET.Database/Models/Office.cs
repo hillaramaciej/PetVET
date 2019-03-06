@@ -8,6 +8,7 @@ namespace PetVET.Database.Models
         public Office()
         {
             AssortPrice = new HashSet<AssortPrice>();
+            EmployeeOffice = new HashSet<EmployeeOffice>();
             Equipemnt = new HashSet<Equipemnt>();
             OfficeCustomer = new HashSet<OfficeCustomer>();
             OfficeHoliday = new HashSet<OfficeHoliday>();
@@ -29,11 +30,12 @@ namespace PetVET.Database.Models
         public DateTime? OfficeUpdatedate { get; set; }
         public string OfficeUpdateby { get; set; }
 
-        public Company OfficeCompany { get; set; }
-        public ICollection<AssortPrice> AssortPrice { get; set; }
-        public ICollection<Equipemnt> Equipemnt { get; set; }
-        public ICollection<OfficeCustomer> OfficeCustomer { get; set; }
-        public ICollection<OfficeHoliday> OfficeHoliday { get; set; }
-        public ICollection<OfficeOpenHour> OfficeOpenHour { get; set; }
+        public virtual Company OfficeCompany { get; set; }
+        public virtual ICollection<AssortPrice> AssortPrice { get; set; }
+        public virtual ICollection<EmployeeOffice> EmployeeOffice { get; set; }
+        public virtual ICollection<Equipemnt> Equipemnt { get; set; }
+        public virtual ICollection<OfficeCustomer> OfficeCustomer { get; set; }
+        public virtual ICollection<OfficeHoliday> OfficeHoliday { get; set; }
+        public virtual ICollection<OfficeOpenHour> OfficeOpenHour { get; set; }
     }
 }

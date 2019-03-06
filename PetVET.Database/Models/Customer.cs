@@ -33,7 +33,7 @@ namespace PetVET.Database.Models
         public DateTime? CustUpdatedate { get; set; }
         public string CustUpdateby { get; set; }
 
-        public ICollection<CustomerAnimal> CustomerAnimal { get; set; }
-        public ICollection<OfficeCustomer> OfficeCustomer { get; set; }
+        public virtual ICollection<CustomerAnimal> CustomerAnimal { get; set; }
+        public virtual ICollection<OfficeCustomer> OfficeCustomer { get; set; }
     }
 }

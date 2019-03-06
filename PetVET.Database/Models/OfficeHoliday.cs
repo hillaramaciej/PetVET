@@ -14,6 +14,6 @@ namespace PetVET.Database.Models
         public DateTime? OffholiUpdatedate { get; set; }
         public string OffholiUpdateby { get; set; }
 
-        public Office OffholiOffice { get; set; }
+        public virtual Office OffholiOffice { get; set; }
     }
 }

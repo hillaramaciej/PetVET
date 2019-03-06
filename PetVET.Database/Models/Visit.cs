@@ -22,6 +22,6 @@ namespace PetVET.Database.Models
         public DateTime? VisUpdatedate { get; set; }
         public string VisUpdateby { get; set; }
 
-        public ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }

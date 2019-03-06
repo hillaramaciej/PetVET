@@ -19,6 +19,6 @@ namespace PetVET.Database.Models
         public DateTime? AsstypeUpdatedate { get; set; }
         public string AsstypeUpdateby { get; set; }
 
-        public ICollection<Assortment> Assortment { get; set; }
+        public virtual ICollection<Assortment> Assortment { get; set; }
     }
 }

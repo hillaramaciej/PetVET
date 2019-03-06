@@ -1,0 +1,285 @@
+﻿@{
+    Layout = "_LayoutVET";
+}
+@section Scripts
+    {
+    <script src="~/js/Components/tmpl-ddl.js"></script>
+    <script src="~/js/Utilis.js"></script>
+    <script src="~/js/PaginationUtilis.js"></script>
+    <script src="~/js/ViewModel/customerListViewModel.js"></script>
+    <script type="text/javascript">    
+    </script>
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <!-- Site wrapper -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <a class="btn btn-add" asp-area="" asp-controller="customer" asp-action="Customer">
+            <i class="fa fa-plus"></i>   Dodaj Klienta
+        </a>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!--preloader-->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd ">
+                    <div class="panel-heading">
+                        <div class="btn-group">
+                            <a> Lista klientów </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div id="quickSearch" class="col-sm-12 collapse in">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <input data-bind="value: QuickSearch, valueUpdate: 'afterkeydown'" }" type="text" class="form-control" placeholder="Szukaj" required>
+                                </div>
+                                @*<div class="form-group col-md-3">
+                                        <label>Nazwisko </label>
+                                        <input data-bind="value: LastName, valueUpdate: 'afterkeydown'"}" type="text" class="form-control" placeholder="Wpisz Nazwisko" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>E-mail </label>
+                                        <input data-bind="value: Mail, valueUpdate: 'afterkeydown'"}" type="email" class="form-control" placeholder="Wpisz E-mail" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Telefon</label>
+                                        <input data-bind="value: PhonNumber, valueUpdate: 'afterkeydown'"}" type="tel" class="form-control" placeholder="Wpisz numer telefonu" required>
+                                    </div>*@
+
+                            </div>
+                            <div class="btn-group">
+                                <div class="buttonexport" id="buttonlist">
+                                    <a class="btn btn-add" href="add-customer.html">
+                                        Szukaj
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="fullSearch" class="col-sm-12 collapse">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Imię</label>
+                                    <input type="text" class="form-control" placeholder="Wpisz Imię" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Nazwisko </label>
+                                    <input type="text" class="form-control" placeholder="Wpisz Nazwisko" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>E-mail </label>
+                                    <input type="email" class="form-control" placeholder="Wpisz E-mail" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Telefon</label>
+                                    <input type="tel" class="form-control" placeholder="Wpisz numer telefonu" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Telefon</label>
+                                    <input type="tel" class="form-control" placeholder="Wpisz numer telefonu" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Miasto</label>
+                                    <input type="text" class="form-control" placeholder="Wpisz Miasto" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Miasto</label>
+                                    <input type="text" class="form-control" placeholder="Wpisz Miasto" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Miasto</label>
+                                    <input type="text" class="form-control" placeholder="Wpisz Miasto" required>
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <div class="buttonexport" id="buttonlist">
+                                    <a class="btn btn-add" href="add-customer.html">
+                                        Szukaj
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+
+                            <!-- searchbar-->
+                            @*<a href="#search">
+                                    <span class="pe-7s-search"></span>
+                                </a>*@
+
+                            @*<a href="#search1" data-toggle="collapse"> Wyszukiwanie zaawansowane</a>*@
+                            <a href="" data-bind="click: CollapseSearch, text:SearchType"></a>
+
+
+                        </div>
+                        <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+                        <div class="table-responsive" data-bind="visible: CustomerListVisible()">
+                            <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Imię i Nazwisko</th>
+                                        <th>Telefon</th>
+                                        <th>E-mail</th>
+                                        <th>Miasto</th>
+                                        <th>Status</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: CustomerList">
+                                    <tr>
+                                        <td data-bind="text: $data.FullName()"></td>
+                                        <td data-bind="text: $data.CustPhone"></td>
+                                        <td data-bind="text: $data.CustMail"></td>
+                                        <td data-bind="text: $data.CustCity"></td>
+                                        <td><span class="label-custom label label-default">Active</span> </td>
+                                        <td>
+                                            <a href="#" data-url="Customer/CustomerProfile/id=0" data-bind="attr: { 'href' : $parent.GotoProfile($element, Rowid) }"
+                                               class="btn btn-add btn-sm">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            @*<button type="button" data-bind="click: $parent.GotoProfile.bind(this,$data.UserID)" class="btn btn-add btn-sm">
+                                                    @*data-toggle="modal" data-target="#customer1">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>*@
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- ko if: PaginnationArray().length > 0 -->
+                            <div class="btn-group pull-right">
+                                <button data-bind="click: Previous   ,    text: PaginnationArray()[0].Page, visible :PaginnationArray()[0].Visable"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[1].Page) ,        text: PaginnationArray()[1].Page, visible :PaginnationArray()[1].Visable ,  css: {'selected-paggination' :  PaginnationArray()[1].Selected()}"></button>
+                                <!-- ko if:  Page() >= 4 -->
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- /ko -->
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[2].Page) ,        text: PaginnationArray()[2].Page, visible :PaginnationArray()[2].Visable,  css: {'selected-paggination' :  PaginnationArray()[2].Selected()  }"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[3].Page) ,        text: PaginnationArray()[3].Page, visible :PaginnationArray()[3].Visable ,  css: {'selected-paggination' :  PaginnationArray()[3].Selected()  }"></button>
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[4].Page) ,        text: PaginnationArray()[4].Page, visible :PaginnationArray()[4].Visable,  css: {'selected-paggination' :  PaginnationArray()[4].Selected() }"></button>
+                                <!-- ko if:  (Page() + 1 !=  AllPages()) ||(Page() !=  AllPages())  -->
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- /ko -->
+                                <button data-bind="click: NextBy.bind(this,PaginnationArray()[5].Page) ,        text: PaginnationArray()[5].Page, visible :PaginnationArray()[5].Visable,  css: {'selected-paggination' :  PaginnationArray()[5].Selected() }"></button>
+                                <button data-bind="click: Next   ,        text: PaginnationArray()[6].Page, visible :PaginnationArray()[6].Visable"></button>
+                            </div>
+                            <!-- /ko -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- customer Modal1 -->
+        <div class="modal fade" id="customer1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>
+                            <i class="fa fa-user m-r-5"></i> Update Customer
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <!-- Text input-->
+                                        <div class="col-md-4 form-group">
+                                            <label class="control-label">Customer Name:</label>
+                                            <input type="text" placeholder="Customer Name" class="form-control">
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="col-md-4 form-group">
+                                            <label class="control-label">Email:</label>
+                                            <input type="email" placeholder="Email" class="form-control">
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="col-md-4 form-group">
+                                            <label class="control-label">Mobile</label>
+                                            <input type="number" placeholder="Mobile" class="form-control">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Address</label>
+                                            <br>
+                                            <textarea name="address" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">type</label>
+                                            <input type="text" placeholder="type" class="form-control">
+                                        </div>
+                                        <div class="col-md-12 form-group user-form-group">
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                                <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!-- Modal -->
+        <!-- Customer Modal2 -->
+        <div class="modal fade" id="customer2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>
+                            <i class="fa fa-user m-r-5"></i> Delete Customer
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <div class="col-md-12 form-group user-form-group">
+                                            <label class="control-label">Delete Customer</label>
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

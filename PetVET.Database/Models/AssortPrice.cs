@@ -17,7 +17,7 @@ namespace PetVET.Database.Models
         public DateTime? AsspriceUpdatedate { get; set; }
         public string AsspriceUpdateby { get; set; }
 
-        public Assortment AsspriceAssort { get; set; }
-        public Office AsspriceOffice { get; set; }
+        public virtual Assortment AsspriceAssort { get; set; }
+        public virtual Office AsspriceOffice { get; set; }
     }
 }

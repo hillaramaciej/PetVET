@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Test";
+    Layout = "~/Views/Shared/_LayoutVET.cshtml";
+}
+
+
+@*<script src="Vendor/knockout/build/output/knockout-latest.js" type="text/javascript"></script>
+    <script src="Vendor/knockout.validation/dist/knockout.validation.min.js" type="text/javascript"></script>
+    <script src="Vendor/knockout-mapping/dist/knockout.mapping.min.js" type="text/javascript"></script>*@
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="header-icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <div class="header-title">
+            <h1>Add Customer</h1>
+            <small>Customer list s</small>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- Form controls -->
+            <div class="col-sm-12">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <div class="btn-group" id="buttonlist">
+                            <a class="btn btn-add " href="clist.html">
+                                <i class="fa fa-list"></i>  Customer List
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form class="col-sm-6">
+
+                            <h1>Some Article</h1>
+                            <p>
+                                By <span data-bind="text: authorName"></span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script type="text/javascript">
+        var viewModel = {
+            authorName: 'Steve Smith'
+        };
+        ko.applyBindings(viewModel);
+    </script>
+

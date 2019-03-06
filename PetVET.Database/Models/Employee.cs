@@ -8,6 +8,7 @@ namespace PetVET.Database.Models
         public Employee()
         {
             EmployeeHoliday = new HashSet<EmployeeHoliday>();
+            EmployeeOffice = new HashSet<EmployeeOffice>();
             EmployeeOpenHour = new HashSet<EmployeeOpenHour>();
             EmployeeService = new HashSet<EmployeeService>();
             Invoice = new HashSet<Invoice>();
@@ -30,10 +31,11 @@ namespace PetVET.Database.Models
         public DateTime? EmplUpdatedate { get; set; }
         public string EmplUpdateby { get; set; }
 
-        public EmployeeGroup EmplGroup { get; set; }
-        public ICollection<EmployeeHoliday> EmployeeHoliday { get; set; }
-        public ICollection<EmployeeOpenHour> EmployeeOpenHour { get; set; }
-        public ICollection<EmployeeService> EmployeeService { get; set; }
-        public ICollection<Invoice> Invoice { get; set; }
+        public virtual EmployeeGroup EmplGroup { get; set; }
+        public virtual ICollection<EmployeeHoliday> EmployeeHoliday { get; set; }
+        public virtual ICollection<EmployeeOffice> EmployeeOffice { get; set; }
+        public virtual ICollection<EmployeeOpenHour> EmployeeOpenHour { get; set; }
+        public virtual ICollection<EmployeeService> EmployeeService { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }

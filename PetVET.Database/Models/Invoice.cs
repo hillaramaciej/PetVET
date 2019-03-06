@@ -25,11 +25,11 @@ namespace PetVET.Database.Models
         public DateTime? InvUpdatedate { get; set; }
         public string InvUpdateby { get; set; }
 
-        public CustomerAnimal InvCustomeranimal { get; set; }
-        public Employee InvEmp { get; set; }
-        public MethodPay InvMethodpay { get; set; }
-        public Visit InvVisit { get; set; }
-        public ICollection<InvoiceAssortment> InvoiceAssortment { get; set; }
-        public ICollection<InvoiceService> InvoiceService { get; set; }
+        public virtual CustomerAnimal InvCustomeranimal { get; set; }
+        public virtual Employee InvEmp { get; set; }
+        public virtual MethodPay InvMethodpay { get; set; }
+        public virtual Visit InvVisit { get; set; }
+        public virtual ICollection<InvoiceAssortment> InvoiceAssortment { get; set; }
+        public virtual ICollection<InvoiceService> InvoiceService { get; set; }
     }
 }

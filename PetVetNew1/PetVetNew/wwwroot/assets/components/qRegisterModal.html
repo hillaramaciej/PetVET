@@ -1,0 +1,136 @@
+<template id='q-register-modal'>
+<div class="modal fade" id="addEvent" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>
+                    <i class="fa fa-user m-r-5"></i> Wizyta</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form">
+                            <fieldset>
+                                <!-- Text input-->
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Imię</label>
+                                    <input type="text" placeholder="Imię" class="form-control">
+                                </div>
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Nazwisko</label>
+                                    <input type="text" placeholder="Nazwisko" class="form-control">
+                                </div>
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Numer telefonu</label>
+                                    <input type="text" placeholder="Numer telefonu" class="form-control" id="addEventName">
+                                </div>
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Imię Zwierzęcia</label>
+                                    <input type="text" placeholder="Numer telefonu" class="form-control" id="addEventName">
+                                </div>
+
+
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Gatunek</label>
+                                    <select class="form-control" tabindex="-1" aria-hidden="true">
+                                        <option value="">Wybierz</option>
+                                        <option value="1">Pies</option>
+                                        <option value="1">Kot</option>
+                                        <option value="1">Chomik</option>
+                                        <option value="1">Papuga</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-xs-4 form-group">
+                                    <label class="control-label">Rasa</label>
+                                    <select class="form-control" tabindex="-1" aria-hidden="true">
+                                        <option value="">Wybierz</option>
+                                        <option value="1">Owczarek</option>
+                                        <option value="1">Wilczur</option>
+                                        <option value="1">Dodo</option>
+                                    </select>
+                                </div>
+
+                                <!-- Text input-->
+
+                                <div class="col-xs-12 form-group">
+                                    <label class="control-label">Dodatkowe informacje</label>
+                                    <textarea type="text" placeholder="Opis" class="form-control"></textarea>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="panel panel-bd lobidisable">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <h4>Wynik wyszukiwania</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="Workslist">
+                                        <div class="worklistdate">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Imię i Nazwisko</th>
+                                                        <th>Numer telefonu</th>
+                                                        <th>Adres</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="info">
+
+                                                        <td>Jr. Developer Alrazy</td>
+                                                        <td>+48 602 200 002</td>
+                                                        <td>Jowisza 4/3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jr. Developer Alrazy</td>
+                                                        <td>+48 602 200 002</td>
+                                                        <td>Jowisza 4/3</td>
+                                                    </tr>
+                                                    <tr class="info">
+
+                                                        <td>Jr. Developer Alrazy</td>
+                                                        <td>+48 602 200 002</td>
+                                                        <td>Jowisza 4/3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jr. Developer Alrazy</td>
+                                                        <td>+48 602 200 002</td>
+                                                        <td>Jowisza 4/3</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <div class="pull-right">
+
+                    <button type="button" class="btn btn-danger btn-sm">Usuń</button>
+                    <button type="submit" class="btn btn-add btn-sm">Zapisz</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+</template>

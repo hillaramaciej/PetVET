@@ -19,6 +19,6 @@ namespace PetVET.Database.Models
         public DateTime? MetpayUpdatedate { get; set; }
         public string MetpayUpdateby { get; set; }
 
-        public ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }
