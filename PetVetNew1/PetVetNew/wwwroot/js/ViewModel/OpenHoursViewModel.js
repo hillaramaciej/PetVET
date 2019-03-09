@@ -1,37 +1,143 @@
-﻿function tableRow(odTime, doTime, scope) {
-    this.odTime = ko.observable(odTime);
-    this.doTime = ko.observable(doTime);   
+﻿ko.bindingHandlers['modal'] = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
 
+        var allBindings = allBindingsAccessor();
+        var $element = $(element);
+        // $element.addClass('hide modal');
+
+        if (allBindings.modal) {
+
+            debugger;
+            $('#modalSave').on('click', function () {
+                // modalSave $('#holidayModal').on('hidden.bs.modal', function () {
+                debugger;
+                var value = ko.utils.unwrapObservable(valueAccessor());
+
+
+                let obj = {
+                    Id: 1,
+                    HolidayName: "Test",
+                    DateFrom: '1985-02-04',
+                    DateTo: '1985-02-04'
+                };
+
+                value.self.Utilis.PostApi('api/EmployeesHoldayApi', obj,
+                    function (x, y, z) {
+                        debugger;
+                    },
+                    function (x, y, z) {
+                        debugger;
+                    });
+
+                return null; //allBindings.modal.beforeClose(value);
+            });
+        }
+    },
+    update: function (element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+
+        if (value) {
+            // $(#holidayModal).addClass('in');
+            $('#holidayModal').modal('show');
+        } else {
+            //  $(element).removeClass('in');
+            $("#holidayModal").modal('hide');
+        }
+    }
 };
+
+
+
+function tableRow(odTime, doTime, scope) {
+    this.odTime = ko.observable(odTime);
+    this.doTime = ko.observable(doTime);
+
+}
+
+function HolidayRow(id, eventName, startDate, endDate, scope) {
+    this.self = scope;
+    this.Id = id;
+    this.HolidayName = ko.observable(ko.utils.unwrapObservable(eventName));
+    this.DateFrom = ko.observable(ko.utils.unwrapObservable(startDate));
+    this.DateTo = ko.observable(ko.utils.unwrapObservable(endDate));
+}
+
+
 function ViewModel() {
     var self = this;
 
-    //FORM 
-    //self.OpenHoursID = ko.observable();
-    //self.OpenHoursName = ko.observable();
-    //self.OpenHoursType = ko.observable();
-    //self.MonStart = ko.observable();
-    //self.MonEnd = ko.observable();
-    //self.TuStart = ko.observable();
-    //self.TuEnd = ko.observable();
-    //self.WenStart = ko.observable();
-    //self.WenEnd = ko.observable();
-    //self.ThStart = ko.observable();
-    //self.ThEnd = ko.observable();
-    //self.FriStart = ko.observable();
-    //self.FriEnd = ko.observable();
-    //self.SatStart = ko.observable();
-    //self.SatEnd = ko.observable();
-    //self.SunStart = ko.observable();
-    //self.SunEnd = ko.observable();
-
-
-    //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    
-   
+    self.Test = ko.observable("dupa");
+
+
+    self.HolidayList = ko.observableArray([]);
+    self.HolidayBeingEdited = ko.observable();
+
+
+    self.EditHoliday = function (id) {
+
+        var match = ko.utils.arrayFirst(self.HolidayList(), function (item) {
+            return item.Id === id;
+        });
+
+        if (match !== null) {
+            self.HolidayBeingEdited(match);
+        }
+
+
+    };
+    self.RemoveHoliday = function (id) {
+
+    };
+    self.AddHoliday = function () {
+
+    };
+
+    self.SaveHoliday = function () {
+        debugger;
+    };
+
+
+    self.OnMonthClick = function (month) {
+
+        for (var i = 0; i < self.items.length; i++) {
+            self.items[i].isActive(false);
+        }
+
+        self.items[month - 1].isActive(true);
+
+        self.HolidayList([]);
+
+        self.HolidayList.push(new HolidayRow(1, "Swięto", "2013-01-08", "2013-01-08", self));
+        self.HolidayList.push(new HolidayRow(2, "Swięto1", "2013-01-08", "2013-01-08", self));
+        self.HolidayList.push(new HolidayRow(3, "Swięto12", "2013-01-08", "2013-01-08", self));
+    };
+
+
+
+    self.items = [
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) }
+    ];
+
+    //holidays
+
+
+    //END holidays
+
+    //hours
     self.PN = ko.observableArray([]);
     self.WT = ko.observableArray([]);
     self.SR = ko.observableArray([]);
@@ -41,6 +147,7 @@ function ViewModel() {
     self.ND = ko.observableArray([]);
 
     self.Add = function (day) {
+
         self[day].push(new tableRow("00:00", "00:00", self));
     };
 
@@ -48,33 +155,18 @@ function ViewModel() {
         self[day].pop();
     };
 
-    //self.Add('PN');
-    //self.Add('WT');
-    //self.Add('SR');
-    //self.Add('CZ');
-    //self.Add('PT');
-    //self.Add('SO');
-    //self.Add('ND');
 
-    ////dependentObservable to represent the last row's value
-    //self.lastRowValue = ko.computed(function () {
-    //    var rows = self.tableRows();
-    //    return rows.length ? rows[rows.length - 1].number() : null;
-    //});
+    self.PNCheck = ko.observable(false);
+    self.PNCheck.subscribe(function (newValue) {
+        if (newValue === false) {
+            self.PN([]);
+        }
 
-    ////subscribe to changes to the last row
-    //self.lastRowValue.subscribe(function (newValue) {
-    //    if (newValue) {
-    //        self.tableRows.push(new tableRow('', self));
-    //    }
-    //});
-
-
+    });
 
     self.Reset = function () {
 
     };
-
 
     self.Save = function () {
         console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -84,8 +176,21 @@ function ViewModel() {
         //    openHoursName: self.OpenHoursName(),
         //    openHoursType: self.OpenHoursType(),
         //};
+        debugger;
+        let obj = {
+            Id: 1,
+            HolidayName: "Test",
+            DateFrom: '12-12-1985',
+            DateTo: '12-12-1985'
+        };
 
-        //self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed);
+        self.Utilis.PostApi('api/EmployeesHoldayApi', obj,
+            function (x, y, z) {
+                debugger;
+            },
+            function (x, y, z) {
+                debugger;
+            });
 
     };
 
@@ -112,6 +217,8 @@ function ViewModel() {
             //self.Utils.Form.ErrorDialog(response.message);
         }
     };
+    //End hours
+
 
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
@@ -135,38 +242,10 @@ function ViewModel() {
         console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     };
 
+    self.OnMonthClick(1);
+
 }
 
-
-//ko.components.register("tmpl-ddl", {
-//    viewModel: function (params) {
-//        var self = this;
-//        self.parent = params.$raw;
-//        self._data = params.data;
-//        self._name = params.name;
-//        self.Callback = params.callback;
-//        self._caption = params.caption;
-
-//        self._selectedValue = ko.observable(ko.utils.unwrapObservable(params.selectedValue()));
-//        self._selectedValue.subscribe(function (newval) {
-//            self._selectedValue(newval);
-//            self.Callback(newval);
-//        });
-//    },
-//    template: '<div class="form-group">\
-//                 <label data-bind="text:_name">Bład nie ma ddlName!!!!</label>\
-//                 <select class="form-control" data-bind="options: _data ,optionsText: \'name\', optionsValue: \'id\', value: _selectedValue, optionsCaption: _caption "></select>\
-//               </div>'
-//});
-
-//ko.validation.configure = {
-//    decorateElement: true,
-//    registerExtenders: true,
-//    messagesOnModified: true,
-//    insertMessages: true,
-//    parseInputAttributes: true,
-//    messageTemplate: null
-//};
 
 var components = new ComponentsRegistration();
 
