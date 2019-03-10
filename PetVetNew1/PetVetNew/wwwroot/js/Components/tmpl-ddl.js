@@ -15,9 +15,11 @@
                 self.Callback(newval);
             });
         },
-        template: '<div class="form-group">\
+        template: '<div class="form-group" >\
+                  <!-- ko if: _name != null -->\
                  <label data-bind="text:_name">Bład nie ma ddlName!!!!</label>\
-                 <select class="form-control" data-bind="options: _data ,optionsText: \'name\', optionsValue: \'id\', value: _selectedValue, optionsCaption: _caption "></select>\
+                  <!-- /ko -->\
+                 <select class="form-control js-example-basic-single" data-bind="options: _data ,optionsText: \'name\', optionsValue: \'id\', value: _selectedValue, optionsCaption: _caption "></select>\
                </div>'
     });
 };

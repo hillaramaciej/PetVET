@@ -22,7 +22,7 @@ using PetVetNew.Models.OpenHoursViewModels;
 namespace PetVET.Controllers
 {
     [Authorize]
-    //[ModelStateValidationFilter]
+    [ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class EmployeesHoldayApiController : Controller
     {

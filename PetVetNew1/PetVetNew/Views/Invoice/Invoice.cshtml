@@ -12,20 +12,46 @@
     <script type="text/javascript">
     invoiceViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
     </script>
+    <link href="~/js/Select/css/select2.css" rel="stylesheet" />
+    <script src="~/js/Select/js/select2.js"></script>
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <a class="btn btn-add " href="clist.html">
-            <i class="fa fa-list"></i>  Przejdź na listę rachunków
-        </a>
-        <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
-        <a data-bind="click: Save" class="btn btn-success">Wystaw rachunek</a>
-        <a data-bind="click: Save" class="btn btn-success">Wystaw Fakture VAT</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie i nazwisko klienta</b></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><b>Imie Pacjenta</b>(to powinna być dropdown lista zeby można było zmienić zwierzę)</a>
+        <div class="form-inline ">
 
+            <a class="btn btn-add " href="clist.html">
+                <i class="fa fa-list"></i>  Przejdź na listę rachunków
+            </a>
+            <a data-bind="click: AddNew" class="btn btn-warning">Wyczyść</a>
+            <a data-bind="click: Save" class="btn btn-success">Wystaw rachunek</a>
+            <a data-bind="click: Save" class="btn btn-success">Wystaw Fakture VAT</a>
+            <br class="hidden-sm hidden-lg" />
+
+            <span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+            <br class="hidden-sm hidden-lg" />
+            <a><b style="white-space:nowrap">Imie i nazwisko klienta</b></a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <br class="hidden-sm  hidden-lg" />
+            <br class="hidden-sm  hidden-lg" />
+
+
+
+            <a style="white-space:nowrap">
+
+
+                <b>Imie Pacjenta</b>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <tmpl-ddl params='{data: ItemOptionData,
+                                        name:null,
+                                        selectedValue : Item,
+                                        caption: "Wybierz",
+                                        callback: SelectedValueCallback }'></tmpl-ddl>
+            </a>
+
+        </div>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -163,63 +189,63 @@
             </div>
 
 
-        
-        <div class="col-sm-8">
-            <div class="panel panel-bd ">
-                <div class="panel-body">
-                    <form class="col-sm-6">
-                        <fieldset>
-                            <div class="form-group">
-                                <label>Notatka wewnętrzna</label>
-                                <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
-                            </div>
-                        </fieldset>
-                    </form>
-                    <form class="col-sm-6">
-                        <fieldset>
-                            <div class="form-group">
-                                <label>Informacja dla klienta</label>
-                                <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
-                            </div>
-                        </fieldset>
-                    </form>
-                    <input data-bind="checked: Agreement1" type="checkbox" name="agreement1" value="0" > Wysłać rachunek klientowi ?
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-4">
-            <div class="panel panel-bd ">
-                <div class="panel-body">
-                    <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr class="info">
-                                <th>Lek</th>
-                                <th>Ilość</th>
-                                <th>Cena</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: CustomerList">
-                            <tr>
-                                <td data-bind="text: $data.FullName()">Lek 1</td>
-                                <td data-bind="text: $data.PhonNumber">1</td>
-                                <td data-bind="text: $data.Mail">25,45</td>
-                            </tr>
-                            <tr>
-                                <td data-bind="text: $data.FullName()">Lek 2</td>
-                                <td data-bind="text: $data.PhonNumber">2</td>
-                                <td data-bind="text: $data.Mail">33,87</td>
-                            </tr>
-                            <tr>
-                                <td data-bind="text: $data.FullName()">Lek 3</td>
-                                <td data-bind="text: $data.PhonNumber">1</td>
-                                <td data-bind="text: $data.Mail">133,87</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-sm-8">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <form class="col-sm-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Notatka wewnętrzna</label>
+                                    <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="col-sm-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Informacja dla klienta</label>
+                                    <textarea data-bind='value: InvoiceID' type="text" class="form-control" rows="5"></textarea>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <input data-bind="checked: Agreement1" type="checkbox" name="agreement1" value="0"> Wysłać rachunek klientowi ?
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="col-sm-4">
+                <div class="panel panel-bd ">
+                    <div class="panel-body">
+                        <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr class="info">
+                                    <th>Lek</th>
+                                    <th>Ilość</th>
+                                    <th>Cena</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: CustomerList">
+                                <tr>
+                                    <td data-bind="text: $data.FullName()">Lek 1</td>
+                                    <td data-bind="text: $data.PhonNumber">1</td>
+                                    <td data-bind="text: $data.Mail">25,45</td>
+                                </tr>
+                                <tr>
+                                    <td data-bind="text: $data.FullName()">Lek 2</td>
+                                    <td data-bind="text: $data.PhonNumber">2</td>
+                                    <td data-bind="text: $data.Mail">33,87</td>
+                                </tr>
+                                <tr>
+                                    <td data-bind="text: $data.FullName()">Lek 3</td>
+                                    <td data-bind="text: $data.PhonNumber">1</td>
+                                    <td data-bind="text: $data.Mail">133,87</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- /.content -->

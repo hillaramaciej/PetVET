@@ -9,16 +9,22 @@
     <script src="~/js/Components/tmpl-ddl.js"></script>
     <script src="~/js/Utilis.js"></script>
     <script src="~/js/ViewModel/ItemViewModel.js"></script>
+    <link href="~/js/Select/css/select2.css" rel="stylesheet" />
+    <script src="~/js/Select/js/select2.js"></script>
     <script type="text/javascript">
         itemViewModel.MapFromJson(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
         //itemViewModel.Dll();
+
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
     </script>
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      
+
         <a data-bind="click: AddNew" class="btn btn-warning">Dodaj towar</a>
         <a data-bind="click: Save" class="btn btn-success">Save</a>
     </section>
@@ -29,10 +35,10 @@
             <div class="col-sm-12">
                 <div class="panel panel-bd ">
                     @*<div class="panel-heading">
-                <div class="btn-group">
-                    <a>Dodaj towar</a>
-                </div>
-                </div>*@
+                        <div class="btn-group">
+                            <a>Dodaj towar</a>
+                        </div>
+                        </div>*@
                     <div class="panel-body">
                         <form class="col-sm-6">
                             <fieldset>
@@ -105,10 +111,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="panel panel-bd ">
                         @*<div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Notice Board</h4>
-                        </div>
-                    </div>*@
+                                <div class="panel-title">
+                                    <h4>Notice Board</h4>
+                                </div>
+                            </div>*@
                         <div class="panel-body">
                             <div class="Workslist">
                                 <div class="worklistdate">

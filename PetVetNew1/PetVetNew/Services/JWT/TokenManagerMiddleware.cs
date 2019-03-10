@@ -97,7 +97,7 @@ namespace TokenManager.Api.Services
                     var to = token.Claims.ToList();
 
                     var mail = to.Find(x => x.Type == ClaimTypes.Name).Value;
-                    if ((token.ValidTo.AddHours(1) - dt).TotalSeconds   > 0  && (token.ValidTo.AddHours(1) - dt).TotalSeconds < 15 ){
+                    if ((token.ValidTo.AddHours(1) - dt).TotalSeconds   > 0  && (token.ValidTo.AddHours(1) - dt).TotalSeconds < 300 ){
 
                         var accessTokenResult = tokenGenerator.GenerateAccessTokenWithClaimsPrincipal(
                         mail,

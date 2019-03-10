@@ -21,7 +21,7 @@ using PetVET.Services.User;
 namespace PetVET.Controllers
 {
     [Authorize]
-    //[ModelStateValidationFilter]
+    [ModelStateValidationFilter]
     [Route("api/[controller]")]
     public class EmployeesApiController : Controller
     {
