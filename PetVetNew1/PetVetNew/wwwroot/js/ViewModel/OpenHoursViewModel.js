@@ -1,37 +1,276 @@
-﻿function tableRow(odTime, doTime, scope) {
-    this.odTime = ko.observable(odTime);
-    this.doTime = ko.observable(doTime);   
+﻿ko.bindingHandlers['modal'] = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var allBindings = allBindingsAccessor();
+        var $element = $(element);
+        // $element.addClass('hide modal');
+       
+        if (allBindings.modal) {
+            
 
+            $('#modalAlert').hide();
+            $('#modalSave').on('click', function () {
+                // modalSave $('#holidayModal').on('hidden.bs.modal', function () {
+                var value = ko.utils.unwrapObservable(valueAccessor());
+                let obj = {};
+                for (property in value) {
+                    if (value.hasOwnProperty(property) && property !== "self") {
+
+                        if (typeof value[property] === "function")
+                            obj[property] = value[property]();
+                        else
+                            obj[property] = value[property];
+                    }
+                }
+
+                value.self.Utilis.PostApi('api/EmployeesHoldayApi', obj,
+                    function (x, y, z) {
+                        
+
+                        var match = ko.utils.arrayFirst(this.scope.HolidayList(), function (item) {
+                            return item.Id() === x['id'];
+                        });
+                        if (match) {
+                            for (property in x) {
+                                for (prop in match) {
+                                    if (prop.toLowerCase() === property.toLowerCase()) {
+                                        match[prop](x[property]);
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            var _new = new HolidayRow(x['id'], x['holidayName'], x['dateFrom'], x['dateTo'], value.self);
+                            value.self.HolidayList.push(_new);
+                        }
+                 
+                        this.scope.HolidayBeingEdited(undefined);
+                    },
+                    function (x, y, z) {
+                        $('#modalAlert').text(x.responseText);
+                        $('#modalAlert').show();
+                    }, value.self);
+
+                // allBindings.modal.beforeClose(value);
+            });
+
+            $('#holidayModal').on('click', function () {
+               
+                $('#modalAlert').hide();
+            });
+
+        }
+    },
+    update: function (element, valueAccessor) {
+        
+        var value = ko.utils.unwrapObservable(valueAccessor());
+
+        if (value) {
+            // $(#holidayModal).addClass('in');
+            $('#holidayModal').modal('show');
+        } else {
+            //  $(element).removeClass('in');
+            $("#holidayModal").modal('hide');
+        }
+    }
 };
+
+ko.bindingHandlers['modalDelete'] = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var allBindings = allBindingsAccessor();
+        var $element = $(element);
+        // $element.addClass('hide modal');
+        
+        if (allBindings.modalDelete) {
+            
+
+            $('#modalAlertDelete').hide();
+            $('#modalDelete').on('click', function () {
+                // modalSave $('#holidayModal').on('hidden.bs.modal', function () {
+                var value = ko.utils.unwrapObservable(valueAccessor());
+          
+
+                value.self.Utilis.DeleteApi('api/EmployeesHoldayApi/' + value.Id(),
+                    function (x, y, z) {
+
+                        var _new = [];
+
+                        for (var i = 0; i < value.self.HolidayList().length; i++) {
+                            if (value.self.HolidayList()[i].Id() !== x) {
+                                _new.push(value.self.HolidayList()[i]);
+                            }
+                        }
+
+                        value.self.HolidayList([]);
+
+                        for (var j = 0; j < _new.length; j++) {
+                            value.self.HolidayList.push(_new[j]);
+                        }
+
+                      //  value.self.RemoveHoliday(x);
+
+                        value.self.HolidayBeingDelete(undefined);
+                    },
+                    function (x, y, z) {
+                        $('#modalAlertDelete').text(x.responseText);
+                        $('#modalAlertDelete').show();
+                    });
+
+                // allBindings.modal.beforeClose(value);
+            });
+
+            $('#holidayModalDelete').on('click', function () {
+
+                $('#modalAlertDelete').hide();
+            });
+
+        }
+    },
+    update: function (element, valueAccessor) {
+
+        var value = ko.utils.unwrapObservable(valueAccessor());
+
+        if (value) {
+            // $(#holidayModal).addClass('in');
+            $('#holidayModalDelete').modal('show');
+        } else {
+            //  $(element).removeClass('in');
+            $("#holidayModalDelete").modal('hide');
+        }
+    }
+};
+
+
+function tableRow(odTime, doTime, scope) {
+    this.odTime = ko.observable(odTime);
+    this.doTime = ko.observable(doTime);
+
+}
+
+function HolidayRow(id, eventName, startDate, endDate, scope) {
+    this.self = scope;
+    this.Id = ko.observable(ko.utils.unwrapObservable(id));
+    this.HolidayName = ko.observable(ko.utils.unwrapObservable(eventName));
+    this.DateFrom = ko.observable(ko.utils.unwrapObservable(startDate));
+    this.DateTo = ko.observable(ko.utils.unwrapObservable(endDate));    
+}
+
+
 function ViewModel() {
     var self = this;
 
-    //FORM 
-    //self.OpenHoursID = ko.observable();
-    //self.OpenHoursName = ko.observable();
-    //self.OpenHoursType = ko.observable();
-    //self.MonStart = ko.observable();
-    //self.MonEnd = ko.observable();
-    //self.TuStart = ko.observable();
-    //self.TuEnd = ko.observable();
-    //self.WenStart = ko.observable();
-    //self.WenEnd = ko.observable();
-    //self.ThStart = ko.observable();
-    //self.ThEnd = ko.observable();
-    //self.FriStart = ko.observable();
-    //self.FriEnd = ko.observable();
-    //self.SatStart = ko.observable();
-    //self.SatEnd = ko.observable();
-    //self.SunStart = ko.observable();
-    //self.SunEnd = ko.observable();
-
-
-    //END FORM 
     self.InfoMessage = ko.observable("");
     self.IsInfoMessage = ko.observable(false);
 
-    
-   
+    self.Test = ko.observable("dupa");
+
+
+    self.HolidayList = ko.observableArray([]);
+    self.HolidayBeingEdited = ko.observable();
+    self.HolidayBeingDelete = ko.observable();
+    self.SelectedMonth = null;
+
+    self.EditHoliday = function (id) {
+        var match = ko.utils.arrayFirst(self.HolidayList(), function (item) {
+            return item.Id() === id;
+        });
+
+        var _new = new HolidayRow(match.Id(), match.HolidayName(), match.DateFrom, match.DateTo, self);
+
+        if (match !== null) {
+            //  self.HolidayBeingEdited(ko.utils.unwrapObservable(match));
+            self.HolidayBeingEdited(ko.utils.unwrapObservable(_new));
+        }
+
+
+    };
+
+
+    self.AddHoliday = function () {      
+        debugger;
+        var _new = new HolidayRow(0, "", "2019-01-01", "2019-01-01", self);
+
+        
+            //  self.HolidayBeingEdited(ko.utils.unwrapObservable(match));
+            self.HolidayBeingEdited(ko.utils.unwrapObservable(_new));
+        
+
+
+    };
+
+
+    self.HolidayDelete = function (id) {
+        
+        var match = ko.utils.arrayFirst(self.HolidayList(), function (item) {
+            return item.Id() === id;
+        });
+
+        var _new = new HolidayRow(match.Id(), match.HolidayName(), match.DateFrom, match.DateTo, self);
+
+        if (match !== null) {
+            //  self.HolidayBeingEdited(ko.utils.unwrapObservable(match));
+            self.HolidayBeingDelete(ko.utils.unwrapObservable(_new));
+        }
+    };
+
+    self.RemoveHoliday = function (id) {
+        var match = ko.utils.arrayFirst(self.HolidayList(), function (item) {
+            return item.Id() === id;
+        });
+        ko.utils.arrayRemoveItem(self.HolidayList(), match);
+        self.HolidayList([]);
+    };
+ 
+    self.OnMonthClick = function (month) {
+        self.SelectedMonth = month;
+        for (var i = 0; i < self.items.length; i++) {
+            self.items[i].isActive(false);
+        }
+        self.items[month - 1].isActive(true);
+
+        self.HolidayList([]);
+        self.Utilis.GetApi('api/EmployeesHoldayApi/' + month, null,
+            function (x, y, z) {
+                
+
+                for (var i = 0; i < x.length; i++) {
+                    self.HolidayList.push(new HolidayRow(x[i].id, x[i].holidayName,x[i].dateFrom ,x[i].dateTo, self));
+                }               
+            },
+            function (x, y, z) {
+                
+
+            });
+
+        //self.HolidayList([]);
+
+        //self.HolidayList.push(new HolidayRow(1, "Swięto", "2013-01-08", "2013-01-08", self));
+        //self.HolidayList.push(new HolidayRow(2, "Swięto1", "2013-01-08", "2013-01-08", self));
+        //self.HolidayList.push(new HolidayRow(3, "Swięto12", "2013-01-08", "2013-01-08", self));
+    };
+
+
+
+    self.items = [
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) },
+        { isActive: ko.observable(false) }
+    ];
+
+    //holidays
+
+
+    //END holidays
+
+    //hours
     self.PN = ko.observableArray([]);
     self.WT = ko.observableArray([]);
     self.SR = ko.observableArray([]);
@@ -41,6 +280,7 @@ function ViewModel() {
     self.ND = ko.observableArray([]);
 
     self.Add = function (day) {
+
         self[day].push(new tableRow("00:00", "00:00", self));
     };
 
@@ -48,44 +288,42 @@ function ViewModel() {
         self[day].pop();
     };
 
-    //self.Add('PN');
-    //self.Add('WT');
-    //self.Add('SR');
-    //self.Add('CZ');
-    //self.Add('PT');
-    //self.Add('SO');
-    //self.Add('ND');
 
-    ////dependentObservable to represent the last row's value
-    //self.lastRowValue = ko.computed(function () {
-    //    var rows = self.tableRows();
-    //    return rows.length ? rows[rows.length - 1].number() : null;
-    //});
+    self.PNCheck = ko.observable(false);
+    self.PNCheck.subscribe(function (newValue) {
+        if (newValue === false) {
+            self.PN([]);
+        }
 
-    ////subscribe to changes to the last row
-    //self.lastRowValue.subscribe(function (newValue) {
-    //    if (newValue) {
-    //        self.tableRows.push(new tableRow('', self));
-    //    }
-    //});
-
-
+    });
 
     self.Reset = function () {
 
     };
 
-
     self.Save = function () {
-        console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log("do impementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         //var data = {
         //    openHoursId: self.OpenHoursID(),
         //    openHoursName: self.OpenHoursName(),
         //    openHoursType: self.OpenHoursType(),
         //};
+        
+        let obj = {
+            Id: 1,
+            HolidayName: "Test",
+            DateFrom: '12-12-1985',
+            DateTo: '12-12-1985'
+        };
 
-        //self.Utilis.PostApi('api/ServiceApi', data, self.SaveSuccessfull, SaveFailed);
+        self.Utilis.PostApi('api/EmployeesHoldayApi', obj,
+            function (x, y, z) {
+                
+            },
+            function (x, y, z) {
+                
+            });
 
     };
 
@@ -112,6 +350,8 @@ function ViewModel() {
             //self.Utils.Form.ErrorDialog(response.message);
         }
     };
+    //End hours
+
 
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
@@ -135,42 +375,18 @@ function ViewModel() {
         console.log("doimpementacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     };
 
+    self.Init = function (month) {
+        self.OnMonthClick(1);
+    };
+    
+
 }
 
-
-//ko.components.register("tmpl-ddl", {
-//    viewModel: function (params) {
-//        var self = this;
-//        self.parent = params.$raw;
-//        self._data = params.data;
-//        self._name = params.name;
-//        self.Callback = params.callback;
-//        self._caption = params.caption;
-
-//        self._selectedValue = ko.observable(ko.utils.unwrapObservable(params.selectedValue()));
-//        self._selectedValue.subscribe(function (newval) {
-//            self._selectedValue(newval);
-//            self.Callback(newval);
-//        });
-//    },
-//    template: '<div class="form-group">\
-//                 <label data-bind="text:_name">Bład nie ma ddlName!!!!</label>\
-//                 <select class="form-control" data-bind="options: _data ,optionsText: \'name\', optionsValue: \'id\', value: _selectedValue, optionsCaption: _caption "></select>\
-//               </div>'
-//});
-
-//ko.validation.configure = {
-//    decorateElement: true,
-//    registerExtenders: true,
-//    messagesOnModified: true,
-//    insertMessages: true,
-//    parseInputAttributes: true,
-//    messageTemplate: null
-//};
 
 var components = new ComponentsRegistration();
 
 var openHoursViewModel = new ViewModel();
 openHoursViewModel.Utilis = new Utilis();
+openHoursViewModel.Init(1);
 ko.applyBindings(openHoursViewModel);
 

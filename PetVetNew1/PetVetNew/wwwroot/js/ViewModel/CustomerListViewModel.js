@@ -103,7 +103,6 @@ function ViewModel() {
     //SUBSCRIBE
 
     self.Init = function () {
-        debugger;
         var data = {
             //custFirstname: self.CustFirstname(),
             //custPhone: self.CustPhone(),
@@ -127,7 +126,7 @@ function ViewModel() {
             //CustMail: ko.observable(self.CustMail),
 
             QuickSearch: ko.observable(self.QuickSearch),
-        }
+        };
 
         return ko.toJSON(quickSearchObject);
     }).subscribe(function () {
@@ -185,12 +184,12 @@ function ViewModel() {
 
     self.ClearSearch = function () {
         self.Rowid("");
-        self.CustFirstname("")
-        self.CustPhone("")
-        self.CustLastname("")
-        self.CustMail("")
-        self.CustNotused("")
-        self.QuickSearch("")
+        self.CustFirstname("");
+        self.CustPhone("");
+        self.CustLastname("");
+        self.CustMail("");
+        self.CustNotused("");
+        self.QuickSearch("");
     };
 
     self.CustomerListVisible = ko.computed(function () {
@@ -205,18 +204,18 @@ function ViewModel() {
     self.optionData = [
         { id: 1, name: "red" },
         { id: 2, name: "green" },
-        { id: 3, name: "blue" },
+        { id: 3, name: "blue" }
     ];
 
     self.SelectedValue = ko.observable();
     self.SelectedValueCallback = function (value) {
         self.SelectedValue(value);
-    }
+    };
 
     self.ClearInfoMessage = function () {
         self.InfoMessage = ko.observable("");
         self.IsInfoMessage = ko.observable(false);
-    }
+    };
 
     self.CollapseSearch = function () {
         self.CustomerList([]);
@@ -225,11 +224,11 @@ function ViewModel() {
 
         $('#quickSearch').collapse('toggle');
         $('#fullSearch').collapse('toggle');
-        if (self.SearchType() == "Wyszukiwanie zaawansowane")
+        if (self.SearchType() === "Wyszukiwanie zaawansowane")
             self.SearchType("Wszukiwanie szybkie");
         else
             self.SearchType("Wyszukiwanie zaawansowane");
-    }
+    };
 }
 
 ko.validation.configure = {

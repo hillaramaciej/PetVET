@@ -14,760 +14,447 @@
     </script>
 }
 
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-            
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
             <a data-bind="click: Reset" class="btn btn-warning">Reset</a>
             <a data-bind="click: Save" class="btn btn-success">Save</a>
-      
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <div class="row ">
+
+        </section>
+        <!-- Main content -->
+        <section class="content">
+
             <!-- Form controls -->
-            <div class="col-sm-12 ">
-                <div class="panel panel-bd ">
-                    @*<div class="panel-heading">
-                        <div class="btn-group">
-                            <a>Lista Sprzętów</a>
-                        </div>
-                    </div>*@
-                    <div class="panel-body">
-                        <form>
-                            <script id="tableRow" type="text/html">
-                                <tr>
-                                    <td><input data-bind='value: odTime' type="time" class="form-control"></td>
-                                    <td><input data-bind='value: doTime' type="time" class="form-control"></td>
-                                </tr>
 
-                            </script>
-                            <fieldset class="test" style="width:14% ; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Poniedziałek</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
+            <div class="panel panel-bd ">
 
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: PN}">
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PN')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PN')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Wtorek</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: WT}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'WT')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'WT')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Środa</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: SR}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SR')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SR')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Czwartek</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: CZ}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'CZ')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'CZ')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Piątek</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: PT}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PT')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PT')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Sobota</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: SO}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SO')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SO')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                            </fieldset>
-                            <fieldset class="test" style="width:14%; background: aliceblue;">
-                                <div class="i-check">
-                                    <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
-                                    <label for="minimal-checkbox-2">Niedziela</label>
-                                </div>
-                                <div class="form-inline border">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th><label>Od</label></th>
-                                                <th><label>Od</label></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="template:{name:'tableRow', foreach: ND}"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'ND')">
-                                                        +
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'ND')">
-                                                        -
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </fieldset>
-                        </form>
-
+                @*<div class="panel-heading">
+                    <div class="btn-group">
+                        <a>Lista Sprzętów</a>
                     </div>
+                </div>*@
+                <div class="panel-body">
+                    <form>
+                        <script id="tableRow" type="text/html">
+                            <tr>
+                                <td><input data-bind='value: odTime' type="time" class="form-control"></td>
+                                <td>:</td>
+                                <td><input data-bind='value: doTime' type="time" class="form-control"></td>
+                            </tr>
+
+                        </script>
+
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" data-bind="checked : PNCheck" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Poniedziałek</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: PN().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: PN}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PN')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PN')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Wtorek</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: WT().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: WT}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'WT')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'WT')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Środa</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: SR().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: SR}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SR')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SR')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class=" col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Czwartek</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: CZ().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: CZ}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'CZ')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'CZ')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <br class="hidden-xs" />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Piątek</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: PT().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: PT}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'PT')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'PT')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Sobota</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: SO().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: SO}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'SO')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'SO')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-3  col-md-4 col-sm-6">
+                                <fieldset>
+                                    <div class="i-check" style="background: #d9edf7;">
+                                        <input tabindex="6" type="checkbox" id="minimal-checkbox-2">
+                                        <label for="minimal-checkbox-2">Niedziela</label>
+                                    </div>
+                                    <div class="form-inline border">
+                                        <table class="table">
+
+                                            <thead data-bind="visible: ND().length > 0">
+                                                <tr>
+                                                    <th><label>Od</label></th>
+                                                    <th></th>
+                                                    <th><label>Do</label></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="template:{name:'tableRow', foreach: ND}"></tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <button type="button" class="btn btn-success" data-bind="click: Add.bind(this, 'ND')">
+                                                            +
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-bind="click: Remove.bind(this, 'ND')">
+                                                            -
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-bd ">
-                    <div class="panel-heading">
-                        <div class="btn-group" id="buttonexport">
-                            <a href="#">
-                                <h4>Dni wolne</h4>
-                            </a>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd ">
+                        <div class="panel-heading">
+                            <div class="btn-group" id="buttonexport">
+                                <a href="#">
+                                    <h4>Dni wolne</h4>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-sm-4">
-                            <ul class="nav nav-tabs tabs-left holiday-month">
-                                <li class="active"><a href="#tab1" data-toggle="tab"><i class=" ti-calendar "></i> January</a></li>
-                                <li><a href="#tab2" data-toggle="tab"><i class=" ti-calendar "></i> February</a></li>
-                                <li><a href="#tab3" data-toggle="tab"><i class=" ti-calendar "></i> March</a></li>
-                                <li><a href="#tab3" data-toggle="tab"><i class=" ti-calendar "></i> April</a></li>
-                                <li><a href="#tab5" data-toggle="tab"><i class=" ti-calendar "></i> May</a></li>
-                                <li><a href="#tab6" data-toggle="tab"><i class=" ti-calendar "></i> June</a></li>
-                                <li><a href="#tab7" data-toggle="tab"><i class=" ti-calendar "></i> July</a></li>
-                                <li><a href="#tab8" data-toggle="tab"><i class=" ti-calendar "></i> August</a></li>
-                                <li><a href="#tab9" data-toggle="tab"><i class=" ti-calendar "></i> September</a></li>
-                                <li><a href="#tab10" data-toggle="tab"><i class=" ti-calendar "></i> October</a></li>
-                                <li><a href="#tab11" data-toggle="tab"><i class=" ti-calendar "></i> November</a></li>
-                                <li><a href="#tab12" data-toggle="tab"><i class=" ti-calendar "></i> December</a></li>
-                            </ul>
-                        </div>
-                        <!-- Tab panels -->
-                        <div class="tab-content col-sm-8">
-                            <div class="tab-pane fade in active" id="tab1">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class="ti-calendar"></i> <strong>January</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                        <div class="panel-body">
+                            <div class="col-sm-4">
+                                <ul class="nav nav-tabs tabs-left holiday-month">
+                                    <li data-bind="css : {active :  items[0].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,1)"><i class=" ti-calendar "></i> January</a></li>
+                                    <li data-bind="css : {active :  items[1].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,2)"><i class=" ti-calendar "></i> February</a></li>
+                                    <li data-bind="css : {active :  items[2].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,3)"><i class=" ti-calendar "></i> March</a></li>
+                                    <li data-bind="css : {active :  items[3].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,4)"><i class=" ti-calendar "></i> April</a></li>
+                                    <li data-bind="css : {active :  items[4].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,5)"><i class=" ti-calendar "></i> May</a></li>
+                                    <li data-bind="css : {active :  items[5].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,6)"><i class=" ti-calendar "></i> June</a></li>
+                                    <li data-bind="css : {active :  items[6].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,7)"><i class=" ti-calendar "></i> July</a></li>
+                                    <li data-bind="css : {active :  items[7].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,8)"><i class=" ti-calendar "></i> August</a></li>
+                                    <li data-bind="css : {active :  items[8].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,9)"><i class=" ti-calendar "></i> September</a></li>
+                                    <li data-bind="css : {active :  items[9].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,10)"><i class=" ti-calendar "></i> October</a></li>
+                                    <li data-bind="css : {active :  items[10].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,11)"><i class=" ti-calendar "></i> November</a></li>
+                                    <li data-bind="css : {active :  items[11].isActive()}"><a href="#" data-bind="click : OnMonthClick.bind(this,12)"><i class=" ti-calendar "></i> December</a></li>
+                                </ul>
                             </div>
-                            <div class="tab-pane fade in" id="tab2">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" id="btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>February</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <!-- Tab panels -->
+
+                            <div class="tab-content col-sm-8">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <div class="panel-body">
+                                        <a href="#" data-bind="click : AddHoliday" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class="ti-calendar"></i> <strong >Dodaj</strong></a>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover">
+                                                <thead>
+                                                    <tr class="info">
+                                                        <th>Event Name</th>
+                                                        <th>start date</th>
+                                                        <th>End date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody data-bind="foreach: HolidayList">
+                                                    <tr>
+                                                        <td data-bind="text: $data.HolidayName()"></td>
+                                                        <td data-bind="text: $data.DateFrom()"></td>
+                                                        <td data-bind="text: $data.DateTo()"></td>
+                                                        <td class="text-center">
+                                                            <button data-bind="click : $parent.EditHoliday.bind(this,$data.Id())" type="button" class="btn btn-add btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </button>
+                                                            <button data-bind="click : $parent.HolidayDelete.bind(this,$data.Id())" type="button" class="btn btn-danger btn-xs" ">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab3">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>March</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab4">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>April</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab5">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>May</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab6">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>June</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab7">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>July</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab8">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>August</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab9">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>September</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab10">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>October</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab11">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>November</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade in" id="tab12">
-                                <div class="panel-body">
-                                    <a href="#" class="btn btn-add btndate" data-toggle="modal" data-target="#addholiday"><i class=" ti-calendar"></i> <strong>December</strong></a>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover">
-                                            <thead>
-                                                <tr class="info">
-                                                    <th>Event Name</th>
-                                                    <th>start date</th>
-                                                    <th>End date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Eid holiday</td>
-                                                    <td>02/03/2017</td>
-                                                    <td>10/03/2017</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#update">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+        <!-- /.content -->
+
+        <div data-bind="modal : HolidayBeingEdited" id="holidayModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3><i class="fa fa-user m-r-5"></i> Update Holiday</h3>
+                    </div>
+                    <div class="modal-body ">
+                        <div id="modalAlert" class="row alert alert-danger" role="alert">
+                            This is a danger alert—check it out!
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <!-- Text input-->
+                                        <div class="col-md-12 form-group">
+                                            <label class="control-label">Holiday Name</label>
+                                            <input type="text" data-bind="value: HolidayBeingEdited() && HolidayBeingEdited().HolidayName" placeholder="Customer Name" class="form-control">
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Date from</label>
+                                            <input type="date" data-bind="value: HolidayBeingEdited() && HolidayBeingEdited().DateFrom" placeholder="Data od" class="form-control">
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Date to</label>
+                                            <input type="date" data-bind="value: HolidayBeingEdited() && HolidayBeingEdited().DateTo" placeholder="Mobile" class="form-control">
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="modalSave" class="btn btn-success pull-left">Zapisz</button>
+
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Anuluj</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
-    </section>
-    <!-- /.content -->
-</div>
+
+
+
+
+
+        <div data-bind="modalDelete : HolidayBeingDelete" id="holidayModalDelete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3><i class="fa fa-user m-r-5"></i>Usuń</h3>
+                    </div>        
+                        <div class="modal-body">
+                            <div class="row">
+                                <div id="modalAlertDelete" class="alert alert-danger" role="alert">
+                                    This is a danger alert—check it out!
+                                </div>
+                                <div class="col-md-12">                                   
+                                        
+                                            <div class="col-md-12 form-group user-form-group">
+                                                <label class="control-label" >Czy napewno chcesz usunąć: '<span data-bind="text: HolidayBeingDelete() && HolidayBeingDelete().HolidayName"></span>'</label>
+                                                <div class="pull-right">                                                    
+                                                    <button id="modalDelete"  class="btn btn-add btn-sm">TAK</button>
+                                                </div>
+                                            </div>      
+                                </div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                        @*<button type="button" id="modalDelete" class="btn btn-success pull-left">Usuń</button>*@
+
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Anuluj</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
+    </div>
 <!-- /.content-wrapper -->
