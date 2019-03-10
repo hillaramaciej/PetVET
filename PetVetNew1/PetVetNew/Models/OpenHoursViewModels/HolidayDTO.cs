@@ -9,7 +9,7 @@ namespace PetVetNew.Models.OpenHoursViewModels
 {
     public class HolidayDTO
     {
-        [JsonProperty(PropertyName ="id")]
+        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "holidayName")]
@@ -25,5 +25,26 @@ namespace PetVetNew.Models.OpenHoursViewModels
 
         [JsonProperty(PropertyName = "month")]
         public Month Month { get; set; }
+    }
+
+    public class HolidayStringDTO
+    {
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+
+        [JsonProperty(PropertyName = "holidayName")]
+        public string HolidayName { get; set; }
+
+
+        [JsonProperty(PropertyName = "dateFrom")]
+        public string DateFrom { get; set; }
+
+
+        [JsonProperty(PropertyName = "dateTo")]
+        public string DateTo { get; set; }
+
+        [JsonProperty(PropertyName = "month")]
+        public Month Month { get; set; }
+
     }
 }

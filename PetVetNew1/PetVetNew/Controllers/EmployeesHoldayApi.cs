@@ -42,59 +42,82 @@ namespace PetVET.Controllers
         }
 
        // GET: api/<controller>
-        [HttpGet]
-        [Route("api/[controller]/GetAll")]
-        public IActionResult GetALL()
+        //[HttpGet]
+        ////[Route("api/[controller]/GetAll")]
+        //public IActionResult Get()
+        //{
+
+        //    IEnumerable<HolidayDTO> holidayDTOList = new List<HolidayDTO>()
+        //    {
+        //        new HolidayDTO()
+        //        {
+        //            Id = 1,
+        //            DateFrom = new DateTime(2012,2,4),
+        //            DateTo = new DateTime(2012,2,4),
+        //            HolidayName = "Maj",
+        //            Month = PetVetNew.Models.Enums.Month.Maj
+
+        //         },
+        //            new HolidayDTO()
+        //        {
+        //            Id = 2,
+        //            DateFrom = new DateTime(2012,2,4),
+        //            DateTo = new DateTime(2012,2,4),
+        //            HolidayName = "Czerwiec",
+        //            Month = PetVetNew.Models.Enums.Month.Czerwiec
+
+        //         },
+        //              new HolidayDTO()
+        //              {
+        //            Id = 3,
+        //            DateFrom = new DateTime(2012,2,4),
+        //            DateTo = new DateTime(2012,2,4),
+        //            HolidayName = "Styczeń",
+        //            Month = PetVetNew.Models.Enums.Month.Styczeń
+
+        //         },
+        //    };
+
+        //    return Ok(holidayDTOList);
+       // }
+
+        // GET api/<controller>/5
+        [HttpGet("{month}")]
+        public IActionResult Get(PetVetNew.Models.Enums.Month month)
         {
 
-            IEnumerable<HolidayDTO> holidayDTOList = new List<HolidayDTO>()
+            IEnumerable<HolidayStringDTO> holidayDTOList = new List<HolidayStringDTO>()
             {
-                new HolidayDTO()
+                new HolidayStringDTO()
                 {
                     Id = 1,
-                    DateFrom = new DateTime(2012,2,4),
-                    DateTo = new DateTime(2012,2,4),
-                    HolidayName = "Maj",
-                    Month = PetVetNew.Models.Enums.Month.Maj
+                    DateFrom = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    DateTo = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    HolidayName = "swięto 1",
+                    //Month = PetVetNew.Models.Enums.Month.Maj
 
                  },
-                    new HolidayDTO()
+                    new HolidayStringDTO()
                 {
                     Id = 2,
-                    DateFrom = new DateTime(2012,2,4),
-                    DateTo = new DateTime(2012,2,4),
-                    HolidayName = "Czerwiec",
-                    Month = PetVetNew.Models.Enums.Month.Czerwiec
+                    DateFrom = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    DateTo = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    HolidayName = "swięto 2",
+                   // Month = PetVetNew.Models.Enums.Month.Czerwiec
 
                  },
-                      new HolidayDTO()
+                      new HolidayStringDTO()
                       {
                     Id = 3,
-                    DateFrom = new DateTime(2012,2,4),
-                    DateTo = new DateTime(2012,2,4),
-                    HolidayName = "Styczeń",
-                    Month = PetVetNew.Models.Enums.Month.Styczeń
+                    DateFrom = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    DateTo = new DateTime(2012,2,4).ToString("yyyy-MM-dd"),
+                    HolidayName = "swięto 3",
+                    //Month = PetVetNew.Models.Enums.Month.Styczeń
 
                  },
             };
 
             return Ok(holidayDTOList);
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-
-            var ttt = _ApplicationUserAccesor.Get();
-            Employee result = _IUnitOfWork.Employee.GetByID(id);
-
-            if (result == null)
-            {
-                return NotFound("Klient nie istnieje w bazie danych");
-            }
-
-            return Ok(result);
         }
 
 
@@ -107,13 +130,27 @@ namespace PetVET.Controllers
         public IActionResult Post([FromBody]HolidayDTO employeesViewModel)
         {
             int id = 0;
+            //  return new BadRequestObjectResult($"Święto o podanej nazwie : '{employeesViewModel.HolidayName}', istnieje juz w kalendarzu");
 
-           // Employee c = _mapper.Map<HolidaysDTO, EmployeeHoliday>(employeesViewModel);
+            // Employee c = _mapper.Map<HolidaysDTO, EmployeeHoliday>(employeesViewModel);
+
+
+            Random random = new Random();
+            var i =  random.Next();
+
             try
             {
+                HolidayStringDTO holidayStringDTO = new HolidayStringDTO()
+                {
+                    DateFrom = employeesViewModel.DateFrom.ToString("yyyy-MM-dd"),
+                    DateTo = employeesViewModel.DateTo.ToString("yyyy-MM-dd"),
+                    HolidayName = employeesViewModel.HolidayName,
+                    Id = employeesViewModel.Id == 0 ? i : employeesViewModel.Id
+                };
 
 
-                return new BadRequestObjectResult($"Klient o podanym email : , istnieje juz w bazie klientów");
+
+                return Ok(holidayStringDTO);
 
 
 
@@ -157,11 +194,14 @@ namespace PetVET.Controllers
         //{
         //}
 
-        //// DELETE api/<controller>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<controller>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+          //  return new BadRequestObjectResult($"Mamy Problem proszę spróbować jeszcze raz!!");
+            return Ok(id);
+
+        }
         //[HttpPost("search")]
         //public IActionResult Search([FromBody]CustomerQuickSearchcsDTO search)
         //{

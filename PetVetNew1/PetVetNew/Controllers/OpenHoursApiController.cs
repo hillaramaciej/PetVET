@@ -79,7 +79,10 @@ namespace PetVET.Controllers
             {
 
 
-                return new BadRequestObjectResult($"Klient o podanym email : , istnieje juz w bazie klientów");
+
+                return Ok(employeesViewModel);
+
+             //   return new BadRequestObjectResult($"Klient o podanym email : , istnieje juz w bazie klientów");
 
 
 

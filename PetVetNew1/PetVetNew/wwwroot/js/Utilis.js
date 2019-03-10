@@ -2,15 +2,20 @@
 var Utilis = function () {
     var self = this;
 
-    self.PostApi = function (url, data, success, faild) {
+    self.PostApi = function (url, data, success, faild,scope) {
 
        // debugger;
-        let __RequestVerificationToken = $("input[name='__RequestVerificationToken']").val()
+        let __RequestVerificationToken = $("input[name='__RequestVerificationToken']").val();
         data.__RequestVerificationToken = __RequestVerificationToken;
 
         var sentDate = JSON.stringify(data);
 
+       let _scope = this;
+        if (scope !== undefined)
+            _scope = scope;
+
         $.ajax({
+            scope: _scope,
             type: "POST",
             url: new URL(url, "https://" + window.location.host),
             headers: {
@@ -35,9 +40,23 @@ var Utilis = function () {
             data: JSON.stringify(data),
             contentType: "application/json",
             success: success,
-            error: faild,
+            error: faild
         });
     };
+
+
+
+    self.DeleteApi = function (url, success, faild) {
+
+        $.ajax({
+            type: "Delete",
+            url: new URL(url, "https://" + window.location.host),           
+            contentType: "application/json",
+            success: success,
+            error: faild
+        });
+    };
+
 
     self.SearchApi = function (url, data, success, faild) {
 
@@ -63,7 +82,8 @@ var Utilis = function () {
 
     return {
         PostApi: self.PostApi,
-        GetApi: self.GetApi
-    }
+        GetApi: self.GetApi,
+        DeleteApi: self.DeleteApi
+    };
 
 };

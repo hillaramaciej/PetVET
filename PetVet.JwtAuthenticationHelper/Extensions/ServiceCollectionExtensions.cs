@@ -55,7 +55,7 @@ namespace JwtAuthenticationHelper.Extensions
             services.AddScoped<IDataSerializer<AuthenticationTicket>, TicketSerializer>();
 
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>(serviceProvider =>
-                new JwtTokenGenerator(tokenValidationParams.ToTokenOptions(10)));
+                new JwtTokenGenerator(tokenValidationParams.ToTokenOptions(1)));
 
             services.AddAuthentication(options =>
             {
@@ -72,7 +72,7 @@ namespace JwtAuthenticationHelper.Extensions
                 // Perhaps in the future I can add some kind of hooks in the token generator that can
                 // let the referencing application know that the token has expired and the developer
                 // can then request a new token without the user having to re-login.
-                options.Cookie.Expiration = TimeSpan.FromMinutes(10);
+                options.Cookie.Expiration = TimeSpan.FromMinutes(1);
 
                 // Specify the TicketDataFormat to use to validate/create the ASP.NET authentication
                 // ticket. Its important that the same validation parameters are passed to this class
@@ -113,7 +113,7 @@ namespace JwtAuthenticationHelper.Extensions
             }
 
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>(serviceProvider =>
-                new JwtTokenGenerator(tokenValidationParams.ToTokenOptions(1)));
+                new JwtTokenGenerator(tokenValidationParams.ToTokenOptions(10)));
 
             services.AddAuthentication(options =>
             {
