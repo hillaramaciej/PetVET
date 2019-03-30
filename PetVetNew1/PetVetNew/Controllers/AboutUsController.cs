@@ -18,7 +18,7 @@ namespace PetVET.Controllers
         {
             AboutUsViewModel vm = new AboutUsViewModel();
 
-            return View(vm);
+            return View(vm); ;
         }
     }
 }
